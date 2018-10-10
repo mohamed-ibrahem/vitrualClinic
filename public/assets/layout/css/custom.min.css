@@ -1,0 +1,5 @@
+@media (max-width: 480px) {
+    .page-header .page-header-top .top-menu {
+        float: none;
+    }
+}
