@@ -21,7 +21,7 @@
 <!-- BEGIN INNER FOOTER -->
 <div class="page-footer">
     <div class="container">
-        2018 &copy; Metronic by keenthemes.
+        <div class="copyright"> 2018 © {{ config('app.name') }}.</div>
     </div>
 </div>
 <div class="scroll-to-top">

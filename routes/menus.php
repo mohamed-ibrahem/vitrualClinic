@@ -12,7 +12,7 @@ Menu::make('socials', function($menu) {
     $twitter = $menu->add('twitter', '#');
     $google = $menu->add('google', '#');
 
-    $facebook->link->attr(['class' => 'facebook', 'data-original-title' => 'facebook']);
-    $twitter->link->attr(['class' => 'twitter', 'data-original-title' => 'twitter']);
-    $google->link->attr(['class' => 'googleplus', 'data-original-title' => 'googleplus']);
+    $facebook->link->attr(['class' => 'social-icon-color facebook', 'data-original-title' => 'facebook']);
+    $twitter->link->attr(['class' => 'social-icon-color twitter', 'data-original-title' => 'twitter']);
+    $google->link->attr(['class' => 'social-icon-color googleplus', 'data-original-title' => 'googleplus']);
 });

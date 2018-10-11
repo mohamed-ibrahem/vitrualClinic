@@ -37,7 +37,7 @@
 </head>
 <!-- END HEAD -->
 
-<body{!! isset($class) ? 'class="'. $class .'"' : '' !!}>
+<body{!! isset($class) ? ' class="'. $class .'"' : '' !!}>
 @yield ('metronic-content')
 
 <!--[if lt IE 9]>
