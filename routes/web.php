@@ -22,8 +22,7 @@ Route::group([
     Route::group([
         'middleware' => ['auth', 'role:admin']
     ], function () {
-        Route::post('auth/logout', 'Admin\Auth\LoginController@logout')
-            ->name('auth.logout');
+        //
     });
 });
 
@@ -72,25 +71,31 @@ Route::group([
         Route::group([
             'prefix' => 'auth',
             'as' => 'auth.',
-            'namespace' => '\App\Http\Controllers\Auth'
         ], function () {
-            Route::get('login', 'LoginController@showLoginForm')
+            Route::get('login', 'Auth\LoginController@showLoginForm')
                 ->name('login');
-            Route::post('login', 'LoginController@login')
+            Route::post('login', 'Auth\LoginController@login')
                 ->name('login.post');
 
-            Route::post('password/email', 'ForgotPasswordController@sendResetLinkEmail')
+            Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')
                 ->name('password.email');
-            Route::get('password/reset', 'ForgotPasswordController@showLinkRequestForm')
+            Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')
                 ->name('password.request');
-            Route::post('password/reset', 'ResetPasswordController@reset');
-            Route::get('password/reset/{token}', 'ResetPasswordController@showResetForm')
+            Route::post('password/reset', 'Auth\ResetPasswordController@reset');
+            Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')
                 ->name('password.reset');
 
-            Route::get('register', 'RegisterController@showRegistrationForm')
+            Route::get('register', 'Auth\RegisterController@showRegistrationForm')
                 ->name('register');
-            Route::post('register', 'RegisterController@register')
+            Route::post('register', 'Auth\RegisterController@register')
                 ->name('register.post');
         });
+    });
+
+    Route::group([
+        'middleware' => ['auth']
+    ], function() {
+        Route::post('auth/logout', 'Auth\LoginController@logout')
+            ->name('auth.logout');
     });
 });

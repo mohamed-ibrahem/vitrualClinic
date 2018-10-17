@@ -25,6 +25,10 @@ class User extends Authenticatable
         'info' => 'collection'
     ];
 
+    protected $appends = [
+        'profile_pic'
+    ];
+
     /**
      * @project VirtualClinic
      *
@@ -77,5 +81,13 @@ class User extends Authenticatable
         }
 
         return false;
+    }
+
+    /**
+     * @return string
+     */
+    public function getProfilePicAttribute()
+    {
+        return asset($this->info->get('profile_pic', 'assets\layout\img\avatar.png'));
     }
 }

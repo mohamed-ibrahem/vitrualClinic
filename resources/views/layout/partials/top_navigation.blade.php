@@ -48,24 +48,37 @@
                          src="{{ auth()->user()->profile_pic }}">
                     <span class="username username-hide-mobile">{{ auth()->user()->name }}</span>
                 </a>
-                <ul class="dropdown-menu dropdown-menu-default"></ul>
+                <ul class="dropdown-menu dropdown-menu-default">
+                    <li>
+                        <a class="dropdown-item" href="{{ route('web.auth.logout') }}"
+                           onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('web.auth.logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </li>
+                </ul>
             </li>
             <!-- END USER LOGIN DROPDOWN -->
         </ul>
     @else
-        <form class="navbar-form" role="form" type="post" action="{{ route('web.auth.login.post') }}">
+        <form class="navbar-form" role="form" method="post" action="{{ route('web.auth.login.post') }}">
+            @csrf
             <div class="form-group">
-                <label class="sr-only" for="exampleInputEmail22">Email address</label>
+                <label class="sr-only">Email address</label>
                 <div class="input-icon">
                     <i class="fa fa-envelope"></i>
-                    <input type="email" class="form-control" id="exampleInputEmail22" placeholder="Enter email">
+                    <input type="email" name="email" class="form-control" placeholder="Enter email">
                 </div>
             </div>
             <div class="form-group">
-                <label class="sr-only" for="exampleInputPassword42">Password</label>
+                <label class="sr-only">Password</label>
                 <div class="input-icon">
                     <i class="fa fa-user"></i>
-                    <input type="password" class="form-control" id="exampleInputPassword42" placeholder="Password">
+                    <input type="password" name="password" class="form-control" placeholder="Password">
                 </div>
             </div>
 

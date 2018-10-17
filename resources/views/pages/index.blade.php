@@ -131,10 +131,6 @@
                     <h1>Popular Specialists</h1>
 
                     <div class="row">
-                        @php
-                            $numberOfColumns = 3;
-                            $productsPerChunk = ceil(\App\speciality::count()/2);
-                        @endphp
                         @foreach(\App\speciality::take(14)->inRandomOrder()->get()->chunk(7) as $chunks)
                             <div class="col-sm-6 about-links-item">
                                 <ul class="list-inline">
@@ -182,7 +178,7 @@
 
         .page-header-top {
             position: relative;
-            z-index: 2;
+            z-index: 3;
         }
 
         .page-header-menu {
@@ -281,6 +277,10 @@
         .about-links-item ul li {
             padding-top: 5px;
             padding-left: 0;
+        }
+
+        .page-header .page-header-top .top-menu .navbar-nav>li.dropdown>.dropdown-toggle {
+            background-color: transparent !important;
         }
 
         @media (max-width: 767px) {

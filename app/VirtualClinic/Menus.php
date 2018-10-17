@@ -1,8 +1,9 @@
 <?php
-
 /**
- * @project VirtualClinic
+ * Menus.php
+ * @project VirtualClinic - Oct/2018
  */
+
 Menu::make('main', function ($menu) {
     $menu->add('Home', ['route' => 'web.index']);
 });

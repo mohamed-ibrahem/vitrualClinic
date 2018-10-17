@@ -5,14 +5,25 @@
 @section ('metronic-content')
     <!-- BEGIN LOGO -->
     <div class="logo">
-        <a href="index.html">
+        <a href="{{ route('web.index') }}">
             <img src="{{ asset('assets/layout/img/logo-big.png') }}" alt=""/> </a>
     </div>
     <!-- END LOGO -->
     <!-- BEGIN LOGIN -->
     <div class="content">
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
         <!-- BEGIN LOGIN FORM -->
-        <form class="login-form" action="index.html" method="post">
+        <form class="login-form" action="{{ route('web.auth.login.post') }}" method="post">
+            @csrf
+
             <h3 class="form-title font-green">Sign In</h3>
             <div class="alert alert-danger display-hide">
                 <button class="close" data-close="alert"></button>
@@ -887,7 +898,7 @@
             return {
                 //main function to initiate the module
                 init: function () {
-                    handleLogin();
+                    //handleLogin();
                     handleForgetPassword();
                     handleRegister();
                 }
