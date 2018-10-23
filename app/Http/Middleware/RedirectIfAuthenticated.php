@@ -18,6 +18,15 @@ class RedirectIfAuthenticated
     public function handle($request, Closure $next, $guard = null)
     {
         if (Auth::guard($guard)->check()) {
+            if (Auth::user()->isAdmin())
+                return redirect()->route('admin.home');
+
+            if (Auth::user()->isDoctor())
+                return redirect()->route('doctor.home');
+
+            if (Auth::user()->isMember())
+                return redirect()->route('member.home');
+
             return redirect('/home');
         }
 

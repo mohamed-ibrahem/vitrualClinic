@@ -24,7 +24,7 @@ class LoginController extends Controller
      * @project VirtualClinic - Oct/2018
      *
      * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|null
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|null
      *
      * @throws \Illuminate\Validation\ValidationException
      */
@@ -48,13 +48,28 @@ class LoginController extends Controller
             return null;
         }
 
-        if ($this->attemptLogin($request)) {
-            $this->sendLoginResponse($request);
-            return null;
-        }
+        if ($this->attemptLogin($request))
+            return $this->sendLoginResponse($request);
 
         $this->incrementLoginAttempts($request);
 
         $this->sendFailedLoginResponse($request);
+    }
+
+    /**
+     * @project VirtualClinic - Oct/2018
+     *
+     * @return string
+     */
+    public function redirectTo()
+    {
+        if (\Auth::user()->isAdmin())
+            return route('admin.home');
+
+        if (\Auth::user()->isDoctor())
+            return route('doctor.home');
+
+        if (\Auth::user()->isMember())
+            return route('member.home');
     }
 }

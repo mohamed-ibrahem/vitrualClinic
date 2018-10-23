@@ -4,29 +4,58 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Password;
 
 class ForgotPasswordController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Password Reset Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller is responsible for handling password reset emails and
-    | includes a trait which assists in sending these notifications from
-    | your application to your users. Feel free to explore this trait.
-    |
-    */
-
     use SendsPasswordResetEmails;
 
     /**
-     * Create a new controller instance.
+     * @project VirtualClinic - Oct/2018
      *
-     * @return void
+     * @param Request $request
+     * @param $response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function __construct()
+    protected function sendResetLinkFailedResponse(Request $request, $response)
     {
-        $this->middleware('guest');
+        return back()
+            ->withInput($request->only('forget_email'))
+            ->withErrors(['forget_email' => trans($response)]);
+    }
+
+    /**
+     * @project VirtualClinic - Oct/2018
+     *
+     * @param Request $request
+     * @return void
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    protected function validateEmail(Request $request)
+    {
+        $this->validate($request, ['forget_email' => 'required|email']);
+    }
+
+    /**
+     * @project VirtualClinic - Oct/2018
+     *
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse|\Illuminate\Http\RedirectResponse
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function sendResetLinkEmail(Request $request)
+    {
+        $this->validateEmail($request);
+
+        $response = $this->broker()->sendResetLink([
+            'email' => $request->input('forget_email')
+        ]);
+
+        return $response == Password::RESET_LINK_SENT
+            ? $this->sendResetLinkResponse($request, $response)
+            : $this->sendResetLinkFailedResponse($request, $response);
     }
 }

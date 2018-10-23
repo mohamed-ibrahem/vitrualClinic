@@ -13,6 +13,16 @@ class RegisterController extends Controller
     use RegistersUsers;
 
     /**
+     * @project VirtualClinic - Oct/2018
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function showRegistrationForm()
+    {
+        return view('pages.register');
+    }
+
+    /**
      * @project VirtualClinic
      *
      * @param array $data
@@ -45,12 +55,19 @@ class RegisterController extends Controller
     }
 
     /**
-     * @project VirtualClinic
+     * @project VirtualClinic - Oct/2018
      *
      * @return string
      */
     public function redirectTo()
     {
-        return route('admin.home');
+        if (\Auth::user()->isAdmin())
+            return route('admin.home');
+
+        if (\Auth::user()->isDoctor())
+            return route('doctor.home');
+
+        if (\Auth::user()->isMember())
+            return route('member.home');
     }
 }

@@ -13,61 +13,36 @@
 
 Route::group([
     'as' => 'admin.',
-    'prefix' => 'admin'
+    'prefix' => 'admin',
+    'middleware' => ['auth', 'role:admin']
 ], function () {
-    Route::get('/', function() {
-        return view('admin.index');
-    })->name('home');
-
-    Route::group([
-        'middleware' => ['auth', 'role:admin']
-    ], function () {
-        //
-    });
+    Route::get('/', 'Admin\PagesController@index')->name('home');
 });
 
 Route::group([
     'as' => 'member.',
-    'prefix' => 'member'
+    'prefix' => 'member',
+    'middleware' => ['auth', 'role:member']
 ], function () {
-    Route::group([
-        'middleware' => ['auth', 'role:member']
-    ], function () {
-        //
-    });
-
-    Route::group([
-        'middleware' => ['guest']
-    ], function () {
-        //
-    });
+    Route::get('/', 'Member\PagesController@index')->name('home');
 });
 
 Route::group([
     'as' => 'doctor.',
-    'prefix' => 'doctor'
+    'prefix' => 'doctor',
+    'middleware' => ['auth', 'role:doctor']
 ], function () {
-    Route::group([
-        'middleware' => ['auth', 'role:doctor']
-    ], function () {
-        //
-    });
-
-    Route::group([
-        'middleware' => ['guest']
-    ], function () {
-        //
-    });
+    Route::get('/', 'Doctor\PagesController@index')->name('home');
 });
 
 Route::group([
     'as' => 'web.'
 ], function() {
-    Route::get('/', 'PagesController@index')->name('index');
-
     Route::group([
         'middleware' => ['guest']
     ], function () {
+        Route::get('/', 'PagesController@index')->name('index');
+
         Route::group([
             'prefix' => 'auth',
             'as' => 'auth.',

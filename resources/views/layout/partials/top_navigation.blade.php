@@ -56,33 +56,34 @@
                             {{ __('Logout') }}
                         </a>
 
-                        <form id="logout-form" action="{{ route('web.auth.logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                        {!! Form::open(['id' => 'logout-form', 'route' => 'web.auth.logout', 'style' => 'display: none;']) !!}
+                        {!! Form::close() !!}
                     </li>
                 </ul>
             </li>
             <!-- END USER LOGIN DROPDOWN -->
         </ul>
     @else
-        <form class="navbar-form" role="form" method="post" action="{{ route('web.auth.login.post') }}">
-            @csrf
-            <div class="form-group">
-                <label class="sr-only">Email address</label>
-                <div class="input-icon">
-                    <i class="fa fa-envelope"></i>
-                    <input type="email" name="email" class="form-control" placeholder="Enter email">
-                </div>
-            </div>
-            <div class="form-group">
-                <label class="sr-only">Password</label>
-                <div class="input-icon">
-                    <i class="fa fa-user"></i>
-                    <input type="password" name="password" class="form-control" placeholder="Password">
-                </div>
-            </div>
+        {!! Form::open(['class' => 'navbar-form', 'role' => 'form', 'route' => 'web.auth.login.post', 'method' => 'POST']) !!}
+        @component ('layout.partials.components.bs3-input', [
+            'name' => 'email',
+            'title' => 'Email address',
+            'type' => 'email',
+            'placeholder' => 'Enter email',
+            'icon' => 'fa fa-envelope',
+            'labelClass' => 'sr-only'
+        ])@endcomponent
 
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
+        @component ('layout.partials.components.bs3-input', [
+            'name' => 'password',
+            'type' => 'password',
+            'title' => 'Password',
+            'placeholder' => 'Password',
+            'icon' => 'fa fa-user',
+            'labelClass' => 'sr-only'
+        ])@endcomponent
+
+        <button type="submit" class="btn btn-primary">Login</button>
+        {!! Form::close() !!}
     @endif
 </div>

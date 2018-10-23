@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -25,6 +26,7 @@ class User extends Authenticatable
         'info' => 'collection'
     ];
 
+    /** @var array $appends */
     protected $appends = [
         'profile_pic'
     ];
@@ -47,6 +49,11 @@ class User extends Authenticatable
     public function specialities()
     {
         return $this->belongsToMany(speciality::class);
+    }
+
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new ResetPassword($token));
     }
 
     /**
@@ -81,6 +88,36 @@ class User extends Authenticatable
         }
 
         return false;
+    }
+
+    /**
+     * @project VirtualClinic - Oct/2018
+     *
+     * @return bool
+     */
+    public function isAdmin()
+    {
+        return $this->hasRole('admin');
+    }
+
+    /**
+     * @project VirtualClinic - Oct/2018
+     *
+     * @return bool
+     */
+    public function isDoctor()
+    {
+        return $this->hasRole('doctor');
+    }
+
+    /**
+     * @project VirtualClinic - Oct/2018
+     *
+     * @return bool
+     */
+    public function isMember()
+    {
+        return $this->hasRole('member');
     }
 
     /**

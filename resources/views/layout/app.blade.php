@@ -3,7 +3,7 @@
 ])
 
 @section ('metronic-content')
-    @if ( !isset($no_header) && ! $no_header)
+    @if ( !isset($no_header) || ! $no_header)
         <!-- BEGIN HEADER -->
         <div class="page-header">
             <!-- BEGIN HEADER TOP -->
@@ -86,7 +86,7 @@
             <!-- BEGIN PAGE CONTENT BODY -->
             <div class="page-content">
                 <div class="container">
-                @if (! isset($no_breadcrumbs) && ! $no_breadcrumbs)
+                @if (! isset($no_breadcrumbs) || ! $no_breadcrumbs)
                     <!-- BEGIN PAGE BREADCRUMBS -->
                     {!! Breadcrumbs::render() !!}
                     <!-- END PAGE BREADCRUMBS -->
