@@ -6,10 +6,11 @@ use App\Notifications\ResetPassword;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, Billable;
 
     /** @var array $fillable */
     protected $fillable = [
@@ -18,7 +19,8 @@ class User extends Authenticatable
 
     /** @var array $hidden */
     protected $hidden = [
-        'password', 'remember_token', 'role_id', 'info'
+        'password', 'remember_token', 'role_id', 'info',
+        'stripe_id', 'trial_ends_at'
     ];
 
     /** @var array $casts */
@@ -48,9 +50,15 @@ class User extends Authenticatable
      */
     public function specialities()
     {
-        return $this->belongsToMany(speciality::class);
+        return $this->belongsToMany(Speciality::class);
     }
 
+    /**
+     * @project VirtualClinic - Oct/2018
+     *
+     * @param string $token
+     * @return void
+     */
     public function sendPasswordResetNotification($token)
     {
         $this->notify(new ResetPassword($token));

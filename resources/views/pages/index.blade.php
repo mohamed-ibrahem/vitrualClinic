@@ -31,9 +31,8 @@
                         <li>Consult with the comfort of your home.</li>
                         <li>It is private and secure.</li>
                     </ul>
-                    @unless(auth()->check())
-                        <a href="{{ route('web.auth.login') }}" class="btn btn-primary">Join now</a>
-                    @endunless
+
+                    <a href="{{ route('web.auth.register') }}" class="btn btn-primary">Join now</a>
                 </div>
             </div>
         </div>
@@ -131,7 +130,7 @@
                     <h1>Popular Specialists</h1>
 
                     <div class="row">
-                        @foreach(\App\speciality::take(14)->inRandomOrder()->get()->chunk(7) as $chunks)
+                        @foreach(\App\Speciality::take(14)->inRandomOrder()->get()->chunk(7) as $chunks)
                             <div class="col-sm-6 about-links-item">
                                 <ul class="list-inline">
                                     @foreach($chunks as $speciality)

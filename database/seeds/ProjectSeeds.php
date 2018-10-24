@@ -78,7 +78,7 @@ class ProjectSeeds extends Seeder
      */
     private function createDoctor()
     {
-        $count = \App\speciality::all()->count();
+        $count = \App\Speciality::all()->count();
 
         for ($i = 1; $i <= 10; $i++) {
             \App\Role::Doctors()->user()->create([
@@ -179,7 +179,7 @@ class ProjectSeeds extends Seeder
             'Forensic Medicine Physicians'
         ]);
 
-        \App\speciality::insert($_specialities->map(function($speciality) {
+        \App\Speciality::insert($_specialities->map(function($speciality) {
             return [
                 'name' => str_slug($speciality),
                 'display_name' => $speciality

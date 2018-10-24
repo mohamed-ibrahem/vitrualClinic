@@ -32,11 +32,14 @@
                     @isset($group)
                 </div>
             @endisset
-                    @isset($icon)
-                </div>
-            @endisset
-
-            @if ($errors->has($name))
-                <span class="help-block">{{ $errors->first($name) }}</span>
-            @endif
+            @isset($icon)
         </div>
+    @endisset
+
+    @if ($errors->has($name))
+        <span class="help-block">{{ $errors->first($name) }}</span>
+    @endif
+    @isset ($help_block)
+        <span class="help-block">{!! $help_block !!}</span>
+    @endisset
+</div>

@@ -71,7 +71,7 @@
             'type' => 'email',
             'placeholder' => 'Enter email',
             'icon' => 'fa fa-envelope',
-            'labelClass' => 'sr-only'
+            'labelClass' => 'sr-only',
         ])@endcomponent
 
         @component ('layout.partials.components.bs3-input', [
@@ -80,7 +80,7 @@
             'title' => 'Password',
             'placeholder' => 'Password',
             'icon' => 'fa fa-user',
-            'labelClass' => 'sr-only'
+            'labelClass' => 'sr-only',
         ])@endcomponent
 
         <button type="submit" class="btn btn-primary">Login</button>

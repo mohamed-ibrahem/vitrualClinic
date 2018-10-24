@@ -60,9 +60,9 @@ Route::group([
             Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')
                 ->name('password.reset');
 
-            Route::get('register', 'Auth\RegisterController@showRegistrationForm')
+            Route::get('register/{role?}', 'Auth\RegisterController@showRegistrationForm')
                 ->name('register');
-            Route::post('register', 'Auth\RegisterController@register')
+            Route::post('register/{role}', 'Auth\RegisterController@register')
                 ->name('register.post');
         });
     });

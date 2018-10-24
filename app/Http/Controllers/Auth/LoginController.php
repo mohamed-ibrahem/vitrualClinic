@@ -53,7 +53,13 @@ class LoginController extends Controller
 
         $this->incrementLoginAttempts($request);
 
-        $this->sendFailedLoginResponse($request);
+        try {
+            $this->sendFailedLoginResponse($request);
+        } catch (\Illuminate\Validation\ValidationException $exception) {
+            return redirect()->route('web.auth.login')
+                ->withInput()
+                ->withErrors($exception->errors());
+        }
     }
 
     /**

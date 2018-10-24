@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class speciality extends Model
+class Speciality extends Model
 {
     /** @var array $fillable */
     protected $fillable = [

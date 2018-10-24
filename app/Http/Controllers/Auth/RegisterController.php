@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Auth;
 
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use App\User;
 use App\Http\Controllers\Controller;
 use Hash;
+use Illuminate\Http\Request;
 use Validator;
 
 class RegisterController extends Controller
@@ -15,42 +17,100 @@ class RegisterController extends Controller
     /**
      * @project VirtualClinic - Oct/2018
      *
+     * @param string $role
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function showRegistrationForm()
+    public function showRegistrationForm($role = 'member')
     {
-        return view('pages.register');
+        return view('pages.register_' . $role);
+    }
+
+    /**
+     * @project VirtualClinic - Oct/2018
+     *
+     * @param Request $request
+     * @param $role
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
+    public function register(Request $request, $role)
+    {
+        $this->validator($request->all(), $role)->validate();
+
+        event(new Registered($user = $this->create($request->all(), $role)));
+
+        $this->guard()->login($user);
+
+        return $this->registered($request, $user)
+            ?: redirect($this->redirectPath());
     }
 
     /**
      * @project VirtualClinic
      *
      * @param array $data
+     * @param $role
      * @return \Illuminate\Contracts\Validation\Validator|\Illuminate\Validation\Validator
      */
-    protected function validator(array $data)
+    protected function validator(array $data, $role)
     {
-        return Validator::make($data, [
-            'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:6|confirmed'
-        ]);
+        $rules = [];
+
+        if ($role === 'member')
+            $rules = [
+                'fname' => 'required|string|max:150',
+                'lname' => 'required|string|max:150',
+                'gender' => 'required',
+                'age' => 'required|min:0|max:200',
+                'country' => 'required',
+                'email' => 'required|string|email|max:255|unique:users',
+                'phone_country' => 'required',
+                'phone' => 'required',
+                'password' => 'required|string|min:6|confirmed',
+                'program' => 'required'
+            ];
+        else if ($role === 'doctor')
+            $rules = [
+                'fname' => 'required|string|max:150',
+                'lname' => 'required|string|max:150',
+                'gender' => 'required',
+                'age' => 'required|min:0|max:200',
+                'country' => 'required',
+                'email' => 'required|string|email|max:255|unique:users',
+                'phone_country' => 'required',
+                'phone' => 'required',
+                'password' => 'required|string|min:6|confirmed',
+                'description' => 'required',
+                'specialities' => 'required'
+            ];
+
+        return Validator::make($data, $rules);
     }
 
     /**
      * @project VirtualClinic
      *
      * @param array $data
+     * @param $role
      * @return mixed
      */
-    protected function create(array $data)
+    protected function create(array $data, $role)
     {
         return User::create([
-            'name' => $data['name'],
+            'name' => $data['fname'] . ' ' . $data['lname'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'role_id' => 1,
-            'info' => []
+            'role_id' => ($role === 'member' ? 3 : ($role === 'doctor' ? 2 : 1)),
+            'info' => [
+                'gender' => $data['gender'],
+                'age' => $data['age'],
+                'country' => $data['country'],
+                'phone' => [
+                    'country' => $data['phone_country'],
+                    'number' => $data['phone']
+                ]
+            ]
         ]);
     }
 
