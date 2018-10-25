@@ -55,32 +55,24 @@ class RegisterController extends Controller
      */
     protected function validator(array $data, $role)
     {
-        $rules = [];
+        $rules = [
+            'fname' => 'required|string|max:150',
+            'lname' => 'required|string|max:150',
+            'gender' => 'required',
+            'age' => 'required|min:0|max:200',
+            'country' => 'required',
+            'email' => 'required|string|email|max:255|unique:users',
+            'phone_country' => 'required',
+            'phone' => 'required',
+            'password' => 'required|string|min:6|confirmed',
+        ];
 
         if ($role === 'member')
             $rules = [
-                'fname' => 'required|string|max:150',
-                'lname' => 'required|string|max:150',
-                'gender' => 'required',
-                'age' => 'required|min:0|max:200',
-                'country' => 'required',
-                'email' => 'required|string|email|max:255|unique:users',
-                'phone_country' => 'required',
-                'phone' => 'required',
-                'password' => 'required|string|min:6|confirmed',
                 'program' => 'required'
             ];
         else if ($role === 'doctor')
             $rules = [
-                'fname' => 'required|string|max:150',
-                'lname' => 'required|string|max:150',
-                'gender' => 'required',
-                'age' => 'required|min:0|max:200',
-                'country' => 'required',
-                'email' => 'required|string|email|max:255|unique:users',
-                'phone_country' => 'required',
-                'phone' => 'required',
-                'password' => 'required|string|min:6|confirmed',
                 'description' => 'required',
                 'specialities' => 'required'
             ];
