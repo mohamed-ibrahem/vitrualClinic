@@ -1,3 +1,4 @@
+@if(! isset($no_footer) || !$no_footer)
 <!-- BEGIN PRE-FOOTER -->
 <div class="page-prefooter">
     <div class="container">
@@ -9,15 +10,26 @@
 
             <div class="col-sm-3 footer-block">
                 <h2>Follow Us On</h2>
-
-                {!! Menu::get('socials')->asUl([
-                    'class' => 'social-icons'
-                ]) !!}
+                <ul class="social-icons">
+                    <li>
+                        <a href="javascript:;" data-original-title="facebook" class="facebook"></a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-original-title="twitter" class="twitter"></a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-original-title="googleplus" class="googleplus"></a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" data-original-title="linkedin" class="linkedin"></a>
+                    </li>
+                </ul>
             </div>
         </div>
     </div>
 </div>
 <!-- END PRE-FOOTER -->
+@endif
 <!-- BEGIN INNER FOOTER -->
 <div class="page-footer">
     <div class="container">

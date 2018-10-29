@@ -19,6 +19,8 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \App\Http\Middleware\TrustProxies::class,
+        \Cog\Laravel\Ban\Http\Middleware\ForbidBannedUser::class,
+        \HighIdeas\UsersOnline\Middleware\UsersOnline::class,
     ];
 
     /**
@@ -35,7 +37,6 @@ class Kernel extends HttpKernel
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            \App\Http\Middleware\AppBootstrapperMiddleware::class,
         ],
 
         'api' => [

@@ -1,21 +1,13 @@
-@extends ('layout.app')
+@extends ('layout.app', [
+    'no_footer' => true
+])
 
 @section ('title', 'Home Page')
 @section ('description', 'Home Page')
 
 @section ('content')
-    <div class="portlet box purple ">
-        <div class="portlet-title">
-            <div class="caption">
-                <i class="fa fa-gift"></i> Horizontal Form Height Sizing </div>
-            <div class="tools">
-                <a href="" class="collapse" data-original-title="" title=""> </a>
-                <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>
-                <a href="" class="reload" data-original-title="" title=""> </a>
-                <a href="" class="remove" data-original-title="" title=""> </a>
-            </div>
-        </div>
-        <div class="portlet-body form">
+    <div class="container">
+        @component('layout.partials.components.portlet', ['title' => 'Visitors'])
             <form class="form-horizontal" role="form">
                 <div class="form-body">
                     <div class="form-group">
@@ -75,6 +67,6 @@
                     <button type="submit" class="btn green">Submit</button>
                 </div>
             </form>
-        </div>
+        @endcomponent
     </div>
 @stop

@@ -3,6 +3,8 @@
 namespace App;
 
 use App\Notifications\ResetPassword;
+use Cog\Laravel\Ban\Traits\Bannable;
+use HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -10,7 +12,7 @@ use Laravel\Cashier\Billable;
 
 class User extends Authenticatable
 {
-    use Notifiable, Billable;
+    use Notifiable, Billable, UsersOnlineTrait, Bannable;
 
     /** @var array $fillable */
     protected $fillable = [

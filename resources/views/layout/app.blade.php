@@ -1,5 +1,5 @@
 @extends ('layout.metronic', [
-    'class' => 'page-container-bg-solid page-boxed page-header-top-fixed'
+    'class' => 'page-container-bg-solid page-boxed page-header-menu-fixed'
 ])
 
 @section ('metronic-content')
