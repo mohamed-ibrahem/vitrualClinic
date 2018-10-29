@@ -3,10 +3,16 @@
  * @project VirtualClinic
  */
 
-Breadcrumbs::for('web.index', function ($trail) {
-    $trail->push('Home', route('web.index'));
+Breadcrumbs::for('index', function (\DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator $trail) {
+    $trail->push(
+        trans('pages.index.title'),
+        route('index')
+    );
 });
 
-Breadcrumbs::for('admin.home', function ($trail) {
-    $trail->push('Home', route('admin.home'));
+Breadcrumbs::for('admin.home', function (\DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator $trail) {
+    $trail->push(
+        trans('pages.admin.home.title'),
+        route('index')
+    );
 });

@@ -1,82 +1,77 @@
-@extends ('layout.app')
+@extends ('layout.app', [
+    'no_footer' => true
+])
 
-@section ('title', 'Home Page')
-@section ('description', 'Home Page')
+@section ('title', trans('pages.admin.home.title'))
+@section ('description', trans('pages.admin.home.description', ['user' => auth()->user()->name]))
 
 @section ('content')
     <div class="container">
-        <div class="portlet box purple ">
-            <div class="portlet-title">
-                <div class="caption">
-                    <i class="fa fa-gift"></i> Horizontal Form Height Sizing </div>
-                <div class="tools">
-                    <a href="" class="collapse" data-original-title="" title=""> </a>
-                    <a href="#portlet-config" data-toggle="modal" class="config" data-original-title="" title=""> </a>
-                    <a href="" class="reload" data-original-title="" title=""> </a>
-                    <a href="" class="remove" data-original-title="" title=""> </a>
+        <div class="row">
+            <div class="col-sm-3">
+                <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20">
+                    <h4 class="widget-thumb-heading">@lang('pages.admin.home.widgets.doctors.title')</h4>
+                    <div class="widget-thumb-wrap">
+                        <i class="widget-thumb-icon bg-green fa fa-user-md"></i>
+                        <div class="widget-thumb-body">
+                            <span class="widget-thumb-subtitle">@lang('pages.admin.home.widgets.doctors.subtitle')</span>
+                            <span class="widget-thumb-body-stat" data-counter="counterup" data-value="{{ $doctors->count() }}">{{ $doctors->count() }}</span>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="portlet-body form">
-                <form class="form-horizontal" role="form">
-                    <div class="form-body">
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Large Input</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control input-lg" placeholder="Large Input"> </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Default Input</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control" placeholder="Default Input"> </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Small Input</label>
-                            <div class="col-md-9">
-                                <input type="text" class="form-control input-sm" placeholder="Default Input"> </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Large Select</label>
-                            <div class="col-md-9">
-                                <select class="form-control input-lg">
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
-                                    <option>Option 4</option>
-                                    <option>Option 5</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Default Select</label>
-                            <div class="col-md-9">
-                                <select class="form-control">
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
-                                    <option>Option 4</option>
-                                    <option>Option 5</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-md-3 control-label">Small Select</label>
-                            <div class="col-md-9">
-                                <select class="form-control input-sm">
-                                    <option>Option 1</option>
-                                    <option>Option 2</option>
-                                    <option>Option 3</option>
-                                    <option>Option 4</option>
-                                    <option>Option 5</option>
-                                </select>
-                            </div>
+            <div class="col-sm-3">
+                <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20">
+                    <h4 class="widget-thumb-heading">@lang('pages.admin.home.widgets.members.title')</h4>
+                    <div class="widget-thumb-wrap">
+                        <i class="widget-thumb-icon bg-blue fa fa-user"></i>
+                        <div class="widget-thumb-body">
+                            <span class="widget-thumb-subtitle">@lang('pages.admin.home.widgets.members.subtitle')</span>
+                            <span class="widget-thumb-body-stat" data-counter="counterup" data-value="{{ $members->count() }}">{{ $members->count() }}</span>
                         </div>
                     </div>
-                    <div class="form-actions right1">
-                        <button type="button" class="btn default">Cancel</button>
-                        <button type="submit" class="btn green">Submit</button>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20">
+                    <h4 class="widget-thumb-heading">@lang('pages.admin.home.widgets.messages.title')</h4>
+                    <div class="widget-thumb-wrap">
+                        <i class="widget-thumb-icon bg-purple fa fa-comments"></i>
+                        <div class="widget-thumb-body">
+                            <span class="widget-thumb-subtitle">@lang('pages.admin.home.widgets.messages.subtitle')</span>
+                            <span class="widget-thumb-body-stat" data-counter="counterup" data-value="{{ $messages->count() }}">{{ $messages->count() }}</span>
+                        </div>
                     </div>
-                </form>
+                </div>
+            </div>
+            <div class="col-sm-3">
+                <div class="widget-thumb widget-bg-color-white text-uppercase margin-bottom-20">
+                    <h4 class="widget-thumb-heading">@lang('pages.admin.home.widgets.ratings.title')</h4>
+                    <div class="widget-thumb-wrap">
+                        <i class="widget-thumb-icon bg-red fa fa-star-half-alt"></i>
+                        <div class="widget-thumb-body">
+                            <span class="widget-thumb-subtitle">@lang('pages.admin.home.widgets.ratings.subtitle')</span>
+                            <span class="widget-thumb-body-stat" data-counter="counterup" data-value="0">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                {!! $registrants->container() !!}
             </div>
         </div>
     </div>
 @stop
+
+@push ('scripts')
+    <script src="{{ asset('assets/global/plugins/counterup/jquery.waypoints.min.js') }}"></script>
+    <script src="{{ asset('assets/global/plugins/counterup/jquery.counterup.min.js') }}"></script>
+    <script src="{{ asset('assets/global/plugins/charts/Chart.min.js') }}"></script>
+    {!! $registrants->script() !!}
+    <script>
+
+    </script>
+@endpush

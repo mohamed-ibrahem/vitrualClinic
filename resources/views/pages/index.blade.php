@@ -1,25 +1,11 @@
 @extends ('layout.app', [
+    'class' => 'about_page',
     'no_breadcrumbs' => true,
     'no_header' => true,
 ])
 
 @section ('header')
     <div class="page-header">
-        <div class="page-header-top">
-            <div class="container">
-                <!-- BEGIN LOGO -->
-                <div class="page-logo">
-                    <a href="{{ url('/') }}">
-                        <img src="{{ asset('assets/layout/img/logo-default.jpg') }}"
-                             alt="{{ config('app.name') }}" class="logo-default"/>
-                    </a>
-                </div>
-                <!-- END LOGO -->
-                <!-- BEGIN TOP NAVIGATION MENU -->
-            @include ('layout.partials.top_navigation')
-            <!-- END TOP NAVIGATION MENU -->
-            </div>
-        </div>
         <div class="page-header-menu" style="display: block;">
             <div class="container">
                 <div class="page-title text-center">
@@ -32,7 +18,7 @@
                         <li>It is private and secure.</li>
                     </ul>
 
-                    <a href="{{ route('web.auth.register') }}" class="btn btn-primary">Join now</a>
+                    <a href="javascript:;" onclick="App.scrollTo($('.phoneapp'), -100)" class="btn btn-primary">Download now</a>
                 </div>
             </div>
         </div>

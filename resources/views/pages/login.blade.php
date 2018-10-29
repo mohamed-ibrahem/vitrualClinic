@@ -5,7 +5,7 @@
 @section ('metronic-content')
     <!-- BEGIN LOGO -->
     <div class="logo">
-        <a href="{{ route('web.index') }}">
+        <a href="{{ route('index') }}">
             <img src="{{ asset('assets/layout/img/logo-big.png') }}" alt=""/>
         </a>
     </div>
@@ -13,7 +13,7 @@
     <!-- BEGIN LOGIN -->
     <div class="content">
         <!-- BEGIN LOGIN FORM -->
-        {!! Form::open(['class' => 'login-form', 'route' => 'web.auth.login.post', 'method' => 'POST']) !!}
+        {!! Form::open(['class' => 'login-form', 'route' => 'login.post', 'method' => 'POST']) !!}
         <h3 class="form-title font-green">Sign In</h3>
 
         @component('layout.partials.components.bs3-input', [
@@ -50,7 +50,7 @@
         {!! Form::close() !!}
     <!-- END LOGIN FORM -->
         <!-- BEGIN FORGOT PASSWORD FORM -->
-        {!! Form::open(['class' => 'forget-form', 'method' => 'POST', 'route' => 'web.auth.password.email']) !!}
+        {!! Form::open(['class' => 'forget-form', 'method' => 'POST', 'route' => 'password.email']) !!}
         <h3 class="font-green">Forget Password ?</h3>
         <p>Enter your e-mail address below to reset your password.</p>
 
@@ -68,9 +68,6 @@
         </div>
     {!! Form::close() !!}
     <!-- END FORGOT PASSWORD FORM -->
-        <div class="create-account">
-            <a href="{{ route('web.auth.register') }}" class="uppercase">Create an account</a>
-        </div>
     </div>
 
     <div class="copyright"> 2018 © {{ config('app.name') }}.</div>

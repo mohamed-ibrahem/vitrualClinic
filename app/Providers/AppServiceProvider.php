@@ -2,6 +2,9 @@
 
 namespace App\Providers;
 
+use Carbon\Carbon;
+use DateInterval;
+use DatePeriod;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +16,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Carbon::macro('range', function ($start, $interval, $end) {
+            return collect(new DatePeriod($start, $interval, $end));
+        });
     }
 
     /**

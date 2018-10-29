@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.7.9 on 2018-10-24 21:09:25.
+ * Generated for Laravel 5.7.9 on 2018-10-29 01:27:35.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3135,29 +3135,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function flush()
         {
-            return \Illuminate\Cache\FileStore::flush();
-        }
-        
-        /**
-         * Get the Filesystem instance.
-         *
-         * @return \Illuminate\Filesystem\Filesystem 
-         * @static 
-         */ 
-        public static function getFilesystem()
-        {
-            return \Illuminate\Cache\FileStore::getFilesystem();
-        }
-        
-        /**
-         * Get the working directory of the cache.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getDirectory()
-        {
-            return \Illuminate\Cache\FileStore::getDirectory();
+            return \Illuminate\Cache\ArrayStore::flush();
         }
         
         /**
@@ -3168,7 +3146,7 @@ namespace Illuminate\Support\Facades {
          */ 
         public static function getPrefix()
         {
-            return \Illuminate\Cache\FileStore::getPrefix();
+            return \Illuminate\Cache\ArrayStore::getPrefix();
         }
          
     }
@@ -15403,6 +15381,236 @@ namespace Nahid\Talk\Facades {
  
 }
 
+namespace Spatie\Analytics { 
+
+    /**
+     * 
+     *
+     * @see \Spatie\Analytics\Analytics
+     */ 
+    class AnalyticsFacade {
+        
+        /**
+         * 
+         *
+         * @param string $viewId
+         * @return $this 
+         * @static 
+         */ 
+        public static function setViewId($viewId)
+        {
+            return \Spatie\Analytics\Analytics::setViewId($viewId);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function fetchVisitorsAndPageViews($period)
+        {
+            return \Spatie\Analytics\Analytics::fetchVisitorsAndPageViews($period);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function fetchTotalVisitorsAndPageViews($period)
+        {
+            return \Spatie\Analytics\Analytics::fetchTotalVisitorsAndPageViews($period);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function fetchMostVisitedPages($period, $maxResults = 20)
+        {
+            return \Spatie\Analytics\Analytics::fetchMostVisitedPages($period, $maxResults);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function fetchTopReferrers($period, $maxResults = 20)
+        {
+            return \Spatie\Analytics\Analytics::fetchTopReferrers($period, $maxResults);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function fetchUserTypes($period)
+        {
+            return \Spatie\Analytics\Analytics::fetchUserTypes($period);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function fetchTopBrowsers($period, $maxResults = 10)
+        {
+            return \Spatie\Analytics\Analytics::fetchTopBrowsers($period, $maxResults);
+        }
+        
+        /**
+         * Call the query method on the authenticated client.
+         *
+         * @param \Spatie\Analytics\Period $period
+         * @param string $metrics
+         * @param array $others
+         * @return array|null 
+         * @static 
+         */ 
+        public static function performQuery($period, $metrics, $others = array())
+        {
+            return \Spatie\Analytics\Analytics::performQuery($period, $metrics, $others);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function getAnalyticsService()
+        {
+            return \Spatie\Analytics\Analytics::getAnalyticsService();
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            \Spatie\Analytics\Analytics::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin)
+        {
+            \Spatie\Analytics\Analytics::mixin($mixin);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            return \Spatie\Analytics\Analytics::hasMacro($name);
+        }
+         
+    }
+ 
+}
+
+namespace Torann\GeoIP\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class GeoIP {
+        
+        /**
+         * Get the location from the provided IP.
+         *
+         * @param string $ip
+         * @return \Torann\GeoIP\Location 
+         * @static 
+         */ 
+        public static function getLocation($ip = null)
+        {
+            return \Torann\GeoIP\GeoIP::getLocation($ip);
+        }
+        
+        /**
+         * Get the currency code from ISO.
+         *
+         * @param string $iso
+         * @return string 
+         * @static 
+         */ 
+        public static function getCurrency($iso)
+        {
+            return \Torann\GeoIP\GeoIP::getCurrency($iso);
+        }
+        
+        /**
+         * Get service instance.
+         *
+         * @return \Torann\GeoIP\Contracts\ServiceInterface 
+         * @throws Exception
+         * @static 
+         */ 
+        public static function getService()
+        {
+            return \Torann\GeoIP\GeoIP::getService();
+        }
+        
+        /**
+         * Get cache instance.
+         *
+         * @return \Torann\GeoIP\Cache 
+         * @static 
+         */ 
+        public static function getCache()
+        {
+            return \Torann\GeoIP\GeoIP::getCache();
+        }
+        
+        /**
+         * Get the client IP address.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getClientIP()
+        {
+            return \Torann\GeoIP\GeoIP::getClientIP();
+        }
+        
+        /**
+         * Get configuration value.
+         *
+         * @param string $key
+         * @param mixed $default
+         * @return mixed 
+         * @static 
+         */ 
+        public static function config($key, $default = null)
+        {
+            return \Torann\GeoIP\GeoIP::config($key, $default);
+        }
+         
+    }
+ 
+}
+
 
 namespace  { 
 
@@ -17787,6 +17995,10 @@ namespace  {
     class Menu extends \Lavary\Menu\Facade {}
 
     class Talk extends \Nahid\Talk\Facades\Talk {}
+
+    class Analytics extends \Spatie\Analytics\AnalyticsFacade {}
+
+    class GeoIP extends \Torann\GeoIP\Facades\GeoIP {}
  
 }
 

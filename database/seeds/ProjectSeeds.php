@@ -66,7 +66,8 @@ class ProjectSeeds extends Seeder
                 'password' => bcrypt('member'),
                 'info' => [
                     'gender' => rand(0, 1)
-                ]
+                ],
+                'created_at' => now()->subDays(rand(00, 89))->timestamp
             ];
         }
 
@@ -85,7 +86,8 @@ class ProjectSeeds extends Seeder
                 'name' => 'Doctor ' . $i,
                 'email' => 'doctor'. $i .'@system.app',
                 'password' => bcrypt('doctor'),
-                'info' => []
+                'info' => [],
+                'created_at' => now()->subDays(rand(00, 89))->timestamp
             ])->specialities()->sync(rand(1, $count - 1));
         }
     }
