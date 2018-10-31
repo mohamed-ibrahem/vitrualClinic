@@ -24,6 +24,14 @@ return [
                 'ratings' => [
                     'title' => 'Ratings',
                     'subtitle' => 'Total Ratings'
+                ],
+
+                'registrants' => [
+                    'title' => 'Registrants',
+
+                    'options' => [
+                        'Yearly', 'Monthly', 'Weekly'
+                    ]
                 ]
             ]
         ],

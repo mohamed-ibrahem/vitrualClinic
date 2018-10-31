@@ -53,6 +53,17 @@ class Role extends Model
      * @param Builder $query
      * @return Builder
      */
+    public function scopeUsers(Builder $query)
+    {
+        return $query->whereIn('name', ['doctor', 'members'])->get();
+    }
+
+    /**
+     * @project VirtualClinic
+     *
+     * @param Builder $query
+     * @return Builder
+     */
     public function scopeMembers(Builder $query)
     {
         return $query->where('name', 'member')->first();

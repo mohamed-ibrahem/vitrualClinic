@@ -20,7 +20,12 @@
             @endisset
         </div>
     @endisset
-    <div class="portlet-body">
-        {!! $slot !!}
-    </div>
+
+    @isset($body)
+        {!! $body !!}
+    @else
+        <div class="portlet-body">
+            {!! $slot !!}
+        </div>
+    @endif
 </div>
