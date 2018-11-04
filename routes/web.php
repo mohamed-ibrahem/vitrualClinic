@@ -17,12 +17,16 @@ Route::group([
     'middleware' => ['auth', 'role:admin']
 ], function () {
     Route::get('/', 'Admin\PagesController@index')->name('home');
+    Route::get('/languages', function() {
+        return view('vendor.translation-manager.index');
+    });
     Route::post('auth/logout', 'Auth\LoginController@logout')
         ->name('logout');
 });
 
 Route::group([
     'prefix' => 'auth',
+    'middleware' => 'guest'
 ], function () {
     Route::get('login', 'Auth\LoginController@showLoginForm')
         ->name('login');

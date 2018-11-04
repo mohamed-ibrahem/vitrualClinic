@@ -1,5 +1,24 @@
 <div class="top-menu">
     <ul class="nav navbar-nav pull-right">
+        <li class="dropdown dropdown-extended dropdown-tasks dropdown-dark" id="header_task_bar">
+            <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
+                <i class="fa fa-globe"></i>
+            </a>
+            <ul class="dropdown-menu">
+                @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+                    <li{!! LaravelLocalization::getCurrentLocaleName() === $properties['name'] ? ' class="active"' : '' !!}>
+                        <a rel="alternate" hreflang="{{ $localeCode }}"
+                           href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                            <i class="fa fa-flag fa-fw"></i>
+                            {{ $properties['native'] }}
+                        </a>
+                    </li>
+                @endforeach
+            </ul>
+        </li>
+        <li class="droddown dropdown-separator">
+            <span class="separator"></span>
+        </li>
         <!-- BEGIN INBOX DROPDOWN -->
         <li class="dropdown dropdown-extended dropdown-inbox dropdown-dark" id="header_inbox_bar">
             <a href="javascript:;" class="dropdown-toggle"

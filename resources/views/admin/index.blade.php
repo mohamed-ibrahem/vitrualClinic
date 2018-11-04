@@ -160,7 +160,7 @@
                                 @empty
                                 <tr>
                                     <td colspan="5" class="alert-warning">
-                                        <div class="">@lang('general.alerts.no_data', ['link' => '#', 'title' => 'visit users'])</div>
+                                        <div class="">@lang('general.alerts.no_data', ['link' => '#', 'title' => trans('general.showAll', ['page' => trans_choice('pages.admin.users.doctors.title', 2)])])</div>
                                     </td>
                                 </tr>
                             @endforelse

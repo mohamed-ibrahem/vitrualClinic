@@ -4,6 +4,8 @@
     'no_header' => true,
 ])
 
+@section('title', 'Mobile app')
+
 @section ('header')
     <div class="page-header">
         <div class="page-header-menu" style="display: block;">
@@ -139,7 +141,7 @@
     </div>
 @stop
 
-@push ('styles')
+@push ('customize')
     <style>
         .page-header {
             height: 70vh;
