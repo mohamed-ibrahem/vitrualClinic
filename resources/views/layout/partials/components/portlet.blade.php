@@ -3,19 +3,19 @@
         <div class="portlet-title">
             <div class="caption">
                 @isset($icon)<i class="{{ $icon }}"></i>@endisset
-                {!! $title !!}
+                <span class="caption-subject bold">{!! $title !!}</span>
+                @isset($subtitle)<span class="caption-helper">{!! $subtitle !!}</span>@endisset
             </div>
 
             @isset ($actions)
-                <div class="actions tools">
+                <div class="{{ isset($actionClass) ? $actionClass : 'actions tools' }}">
                     {!! $actions !!}
                 </div>
 
             @else
                 <div class="actions tools">
                     <a href="javascript:;" class="collapse"></a>
-                    <a href="javascript:;" class="fullscreen"></a>
-                    <a href="javascript:;" class="remove"></a>
+                    <a href="javascript:;" class="fa fullscreen"></a>
                 </div>
             @endisset
         </div>

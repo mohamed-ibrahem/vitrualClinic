@@ -79,7 +79,7 @@ class ProjectSeeds extends Seeder
      */
     private function createDoctor()
     {
-        $count = \App\Speciality::all()->count();
+        $count = \App\Speciality::pluck('id');
 
         for ($i = 1; $i <= 10; $i++) {
             \App\Role::Doctors()->user()->create([
@@ -88,7 +88,7 @@ class ProjectSeeds extends Seeder
                 'password' => bcrypt('doctor'),
                 'info' => [],
                 'created_at' => now()->subDays(rand(00, 89))->timestamp
-            ])->specialities()->sync(rand(1, $count - 1));
+            ])->specialities()->sync([$count->random()]);
         }
     }
 

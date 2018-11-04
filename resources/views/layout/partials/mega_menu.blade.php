@@ -20,5 +20,13 @@
                 </li>
             </ul>
         </li>
+
+        <li class="menu-dropdown{{ \Request::is('mobile') ? ' active' : '' }}">
+            <a href="{{ route('admin.home') }}">@lang('pages.admin.mobile.title')</a>
+        </li>
+
+        <li class="menu-dropdown{{ \Request::is('system') ? ' active' : '' }}">
+            <a href="{{ route('admin.home') }}">@lang('pages.admin.system.title')</a>
+        </li>
     </ul>
 </div>

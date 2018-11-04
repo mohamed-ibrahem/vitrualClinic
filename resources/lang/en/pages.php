@@ -32,6 +32,16 @@ return [
                     'options' => [
                         'Yearly', 'Monthly', 'Weekly'
                     ]
+                ],
+
+                'specialties' => [
+                    'title' => 'Top Specialties',
+                ],
+
+                'main' => [
+                    'title' => 'General statistics',
+                    'active' => 'Online users',
+                    'sessions' => 'Most online'
                 ]
             ]
         ],
@@ -46,6 +56,14 @@ return [
                 'title' => 'Members',
                 'description' => ''
             ]
+        ],
+
+        'mobile' => [
+            'title' => 'Mobile apps'
+        ],
+
+        'system' => [
+            'title' => 'System'
         ]
     ],
 ];

@@ -68,7 +68,9 @@
         <div class="row">
             <div class="col-sm-6">
                 @component('layout.partials.components.portlet', [
-                    'title' => trans('pages.admin.home.widgets.registrants.title')
+                    'title' => trans('pages.admin.home.widgets.registrants.title'),
+                    'actionClass' => 'actions',
+                    'icon' => 'fa fa-users'
                 ])
                     @slot('body')
                         <div id="registrants_statistics"
@@ -77,14 +79,94 @@
                     @endslot
                     @slot('actions')
                         <div class="btn-group btn-group-devided" data-toggle="buttons" id="registrants_options">
+                            <label class="btn btn-transparent grey-salsa btn-outline btn-circle btn-sm">
+                                <input type="radio" name="options" value="year" class="toggle"
+                                       id="option1">{{ trans('pages.admin.home.widgets.registrants.options.0') }}
+                            </label>
+                            <label class="btn btn-transparent grey-salsa btn-outline btn-circle btn-sm">
+                                <input type="radio" name="options" value="month" class="toggle"
+                                       id="option2">{{ trans('pages.admin.home.widgets.registrants.options.1') }}
+                            </label>
                             <label class="btn btn-transparent grey-salsa btn-outline btn-circle btn-sm active">
-                                <input type="radio" name="options" value="year" class="toggle" id="option1" checked>{{ trans('pages.admin.home.widgets.registrants.options.0') }}</label>
-                            <label class="btn btn-transparent grey-salsa btn-outline btn-circle btn-sm">
-                                <input type="radio" name="options" value="month" class="toggle" id="option2">{{ trans('pages.admin.home.widgets.registrants.options.1') }}</label>
-                            <label class="btn btn-transparent grey-salsa btn-outline btn-circle btn-sm">
-                                <input type="radio" name="options" value="week" class="toggle" id="option3">{{ trans('pages.admin.home.widgets.registrants.options.2') }}</label>
+                                <input type="radio" name="options" value="week" class="toggle" id="option3"
+                                       checked>{{ trans('pages.admin.home.widgets.registrants.options.2') }}</label>
                         </div>
                     @endslot
+                @endcomponent
+            </div>
+            <div class="col-sm-6">
+                @component('layout.partials.components.portlet', [
+                    'title' => trans('pages.admin.home.widgets.specialties.title'),
+                    'icon' => 'fa fa-hospital-alt',
+                    'actions' => ''
+                ])
+                    @slot('body')
+                        <div id="specialties_statistics"
+                             class="portlet-body portlet-body-morris-fit"
+                             style="height: 267px"></div>
+                    @endslot
+                @endcomponent
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12">
+                @component('layout.partials.components.portlet', [
+                    'title' => trans('pages.admin.home.widgets.main.title'),
+                ])
+                    <div class="row number-stats margin-bottom-30">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="stat-left">
+                                <div class="stat-chart">
+                                    <div id="sparkline_bar"></div>
+                                </div>
+                                <div class="stat-number">
+                                    <div class="title">@lang('pages.admin.home.widgets.main.active')</div>
+                                    <div class="number" data-counter="counterup" data-value="{{ $allOnline = (new \App\User)->allOnline()->count() }}">{{ $allOnline }}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                            <div class="stat-right">
+                                <div class="stat-chart">
+                                    <div id="sparkline_bar2"></div>
+                                </div>
+                                <div class="stat-number">
+                                    <div class="title">@lang('pages.admin.home.widgets.main.sessions')</div>
+                                    <div class="number" data-counter="counterup" data-value="{{ $mostRecentOnline = (new \App\User)->mostRecentOnline()->count() }}">{{ $mostRecentOnline }}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="table-scrollable table-scrollable-borderless">
+                        <table class="table table-hover table-light">
+                            <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @forelse((new \App\User)->mostRecentOnline() as $users)
+                                <tr>
+                                    <td>{{ $users->name }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                </tr>
+                                @empty
+                                <tr>
+                                    <td colspan="5" class="alert-warning">
+                                        <div class="">@lang('general.alerts.no_data', ['link' => '#', 'title' => 'visit users'])</div>
+                                    </td>
+                                </tr>
+                            @endforelse
+                            </tbody>
+                        </table>
+                    </div>
                 @endcomponent
             </div>
         </div>
@@ -102,43 +184,39 @@
     <script src="{{ asset('assets/global/plugins/morris/morris.min.js') }}"></script>
     <script>
         var Home = {
-            morris_registrants_statistics: null,
-            registrants_data: @json($registrants),
+            initRegistrants: function () {
+                var morris_registrants_statistics = null,
+                    registrants_data = @json($registrants);
 
-            initRegistrants: function() {
-                this.morris_registrants_statistics = Morris.Area({
+                morris_registrants_statistics = Morris.Area({
                     element: 'registrants_statistics',
                     padding: 0,
-                    behaveLikeLine: false,
                     gridEnabled: false,
                     gridLineColor: false,
+                    hideHover: true,
                     axes: false,
-                    fillOpacity: 1,
-                    data: this.registrants_data['year'],
-                    lineColors: ['#399a8c', '#92e9dc'],
-                    xkey: 'date',
+                    data: registrants_data['week'],
+                    lineColors: ['#32c5d2', '#92e9dc'],
+                    xkey: 'label',
                     ykeys: ['doctors', 'members'],
                     labels: ['Doctors', 'Members'],
-                    pointSize: 0,
-                    lineWidth: 0,
-                    hideHover: 'auto',
-                    resize: true
                 });
-            },
-
-            handleRegistrantsOptions: function() {
-                var that = this;
-                $('#registrants_options input[name="options"]').on('change', function(e) {
+                $('#registrants_options input[name="options"]').on('change', function (e) {
                     e.preventDefault();
-                    that.morris_registrants_statistics.setData(that.registrants_data[this.value]);
-
-                    console.log(that.morris_registrants_statistics);
+                    morris_registrants_statistics.setData(registrants_data[this.value]);
                 });
             },
 
-            init: function() {
-                this.handleRegistrantsOptions();
+            initSpecialities: function () {
+                new Morris.Donut({
+                    element: 'specialties_statistics',
+                    data: @json($specialties)
+                });
+            },
+
+            init: function () {
                 this.initRegistrants();
+                this.initSpecialities();
             },
         };
         $(function () {

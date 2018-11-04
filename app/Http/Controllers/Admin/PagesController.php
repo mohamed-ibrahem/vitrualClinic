@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Role;
+use App\Speciality;
 use App\User;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
@@ -25,8 +26,9 @@ class PagesController extends Controller
         $messages = Conversation::get();
 
         $registrants = $this->getUsersRegistrationsDate();
+        $specialties = $this->getTopSpecialties();
 
-        return view('admin.index', compact('doctors', 'members', 'messages', 'registrants'));
+        return view('admin.index', compact('doctors', 'members', 'messages', 'registrants', 'specialties'));
     }
 
     private function getUsersRegistrationsDate()
@@ -36,30 +38,49 @@ class PagesController extends Controller
         $years = Carbon::range(now()->subYear(2)->startOfYear(), CarbonInterval::fromString('1 Year'), now()->endOfYear());
         foreach ($years as $year) {
             $registrants['year'][] = [
-                'date' => $year->format('Y/m/d'),
+                'label' => $year->format('Y'),
                 'doctors' => Role::Doctors()->user()->whereBetween('created_at', [$year, Carbon::parse($year)->endOfYear()])->count(),
                 'members' => Role::Members()->user()->whereBetween('created_at', [$year, Carbon::parse($year)->endOfYear()])->count()
             ];
         }
 
-        $months = Carbon::range(now()->startOfYear(), CarbonInterval::fromString('1 month'), now()->endOfYear());
+        $months = Carbon::range(now()->startOfYear(), CarbonInterval::fromString('1 month'), now());
         foreach ($months as $month) {
             $registrants['month'][] = [
-                'date' => $month->format('Y/m/d'),
+                'label' => $month->format('Y-m-d'),
                 'doctors' => Role::Doctors()->user()->whereBetween('created_at', [$month, Carbon::parse($month)->endOfMonth()])->count(),
                 'members' => Role::Members()->user()->whereBetween('created_at', [$month, Carbon::parse($month)->endOfMonth()])->count()
             ];
         }
 
-        $weeks = Carbon::range(now()->startOfMonth(), CarbonInterval::fromString('1 week'), now()->endOfMonth());
+        $weeks = Carbon::range(now()->subWeeks(3), CarbonInterval::fromString('1 week'), now()->endOfWeek());
         foreach ($weeks as $week) {
             $registrants['week'][] = [
-                'date' => $week->format('Y/m/d'),
+                'label' => $week->format('Y-m-d'),
                 'doctors' => Role::Doctors()->user()->whereBetween('created_at', [$week, Carbon::parse($week)->endOfWeek()])->count(),
                 'members' => Role::Members()->user()->whereBetween('created_at', [$week, Carbon::parse($week)->endOfWeek()])->count()
             ];
         }
 
         return $registrants;
+    }
+
+    private function getTopSpecialties()
+    {
+        return Speciality::with('users')->get()
+            ->map(function ($speciality) {
+                return [
+                    'label' => $speciality->display_name,
+                    'value' => $speciality->users->count()
+                ];
+            })
+            ->sortByDesc(function ($speciality) {
+                return $speciality['value'];
+            })
+            ->filter(function($speciality) {
+                return $speciality['value'] > 0;
+            })
+            ->take(5)
+            ->values()->all();
     }
 }
