@@ -21,7 +21,16 @@ Breadcrumbs::for('admin.settings', function (\DaveJamesMiller\Breadcrumbs\Breadc
     $trail->parent('admin.home');
 
     $trail->push(
-        trans('pages.admin.settings.title'),
+        trans('pages.admin.system.title'),
         route('admin.settings')
+    );
+});
+
+Breadcrumbs::for('admin.languages.index', function (\DaveJamesMiller\Breadcrumbs\BreadcrumbsGenerator $trail) {
+    $trail->parent('admin.home');
+
+    $trail->push(
+        trans('pages.admin.translation.title'),
+        route('admin.languages.index')
     );
 });

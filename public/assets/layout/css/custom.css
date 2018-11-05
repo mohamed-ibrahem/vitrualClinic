@@ -1,3 +1,7 @@
+.portlet.light>.portlet-title>.caption>i {
+    font-weight: initial;
+}
+
 @media (max-width: 480px) {
     .page-header .page-header-top .top-menu {
         float: none;

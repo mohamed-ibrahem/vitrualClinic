@@ -17,13 +17,23 @@ Route::group([
     'middleware' => ['auth', 'role:admin']
 ], function () {
     Route::get('/', 'Admin\PagesController@index')->name('home');
-    Route::get('/settings', 'Admin\PagesController@settings')->name('settings');
+    Route::get('/system', 'Admin\PagesController@settings')->name('settings');
+    Route::group([
+        'prefix' => 'languages',
+        'as' => 'languages.'
+    ], function() {
+        Route::get('/', 'Admin\TranslationsController@getIndex')->name('index');
+        Route::post('/edit/{groupKey}', 'Admin\TranslationsController@postEdit');
+        Route::post('/import', 'Admin\TranslationsController@postImport');
+        Route::post('/publish', 'Admin\TranslationsController@postPublish');
+    });
     Route::post('auth/logout', 'Auth\LoginController@logout')
         ->name('logout');
 });
 
 Route::group([
     'prefix' => 'auth',
+    'middleware' => 'guest'
 ], function () {
     Route::get('login', 'Auth\LoginController@showLoginForm')
         ->name('login');

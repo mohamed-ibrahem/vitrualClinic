@@ -10,7 +10,7 @@
 
             <div class="col-sm-3 footer-block">
                 <h2>@lang('general.footer.social')</h2>
-                <ul class="social-icons">
+                <ul class="social-icons social-icons-color">
                     <li>
                         <a href="javascript:;" data-original-title="facebook" class="facebook"></a>
                     </li>

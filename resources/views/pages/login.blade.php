@@ -75,6 +75,9 @@
 
 @push ('styles')
     <link rel="stylesheet" href="{{ asset('assets/global/plugins/uniform/css/uniform.default.css') }}">
+@endpush
+
+@push('customize')
     <style>
         .login {
             background-color: #364150 !important;
