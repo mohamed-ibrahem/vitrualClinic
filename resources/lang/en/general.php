@@ -28,4 +28,5 @@ return array (
     ),
     'logout' => 'Logout',
   ),
+  'dir' => '',
 );

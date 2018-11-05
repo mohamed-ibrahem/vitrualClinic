@@ -101,8 +101,8 @@
             <a href="{{ route('admin.home') }}">@lang('pages.admin.mobile.title')</a>
         </li>
 
-        <li class="menu-dropdown{{ \Request::is('system') ? ' active' : '' }}">
-            <a href="{{ url('admin/translations') }}" target="_blank">Translation Manager</a>
+        <li class="menu-dropdown{{ \Request::is('admin/languages') ? ' active' : '' }}">
+            <a href="{{ url('admin/languages') }}">@lang('pages.admin.translation.title')</a>
         </li>
 
         <li class="menu-dropdown{{ \Request::is('system') ? ' active' : '' }}">

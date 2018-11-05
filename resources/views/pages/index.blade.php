@@ -3,24 +3,15 @@
     'no_breadcrumbs' => true,
     'no_header' => true,
 ])
-
-@section('title', 'Mobile app')
-
 @section ('header')
     <div class="page-header">
         <div class="page-header-menu" style="display: block;">
             <div class="container">
                 <div class="page-title text-center">
                     <h1 class="bold">{{ config('app.name') }}</h1>
-                    <ul class="list-unstyled margin-bottom-30 margin-top-30">
-                        <li>2500+ doctors from 80+ specialities.</li>
-                        <li>Ideal for Medical Second Opinion and Medical Advice.</li>
-                        <li>Trusted by patients across 196 countries.</li>
-                        <li>Consult with the comfort of your home.</li>
-                        <li>It is private and secure.</li>
-                    </ul>
+                    @lang('pages.index.description')
 
-                    <a href="javascript:;" onclick="App.scrollTo($('.phoneapp'), -100)" class="btn btn-primary">Download now</a>
+                    <a href="javascript:;" onclick="App.scrollTo($('.phoneapp'), -100)" class="btn btn-primary">@lang('pages.index.main_button')</a>
                 </div>
             </div>
         </div>
@@ -36,12 +27,10 @@
                         <i class="icon-user-follow font-red-sunglo theme-font"></i>
                     </div>
                     <div class="card-title">
-                        <span>Save Time</span>
+                        <span>@lang('pages.index.features.0.title')</span>
                     </div>
                     <div class="card-desc">
-                    <span>
-                        Helping several thousand users everyday.
-                    </span>
+                    <span>@lang('pages.index.features.0.body')</span>
                     </div>
                 </div>
             </div>
@@ -51,12 +40,10 @@
                         <i class="icon-trophy font-green-haze theme-font"></i>
                     </div>
                     <div class="card-title">
-                        <span>Save Travel</span>
+                        <span>@lang('pages.index.features.1.title')</span>
                     </div>
                     <div class="card-desc">
-                    <span>
-                        Treating patients with health issues from Psychiatry, Sexology, Radiology, Dermatology, OB/GYN, Oncology and 80+ other specialities.
-                    </span>
+                        <span>@lang('pages.index.features.1.body')</span>
                     </div>
                 </div>
             </div>
@@ -65,13 +52,12 @@
                     <div class="card-icon">
                         <i class="icon-basket font-purple-wisteria theme-font"></i>
                     </div>
+
                     <div class="card-title">
-                        <span>Comfort of Your Home</span>
+                        <span>@lang('pages.index.features.2.title')</span>
                     </div>
                     <div class="card-desc">
-                    <span>
-                        Trusted by millions and serving users world wide.
-                    </span>
+                        <span>@lang('pages.index.features.2.body')</span>
                     </div>
                 </div>
             </div>
@@ -81,12 +67,10 @@
                         <i class="icon-layers font-blue theme-font"></i>
                     </div>
                     <div class="card-title">
-                        <span>Your first query is FREE</span>
+                        <span>@lang('pages.index.features.3.title')</span>
                     </div>
                     <div class="card-desc">
-                    <span>
-                        Most convenient for expats and travellers.
-                    </span>
+                        <span>@lang('pages.index.features.3.body')</span>
                     </div>
                 </div>
             </div>
@@ -100,8 +84,8 @@
                     <img src="{{ asset('assets/layout/img/icliniq-app.png') }}" class="img-responsive">
                 </div>
                 <div class="col-md-8">
-                    <h1>GET {{ config('app.name') }} APP</h1>
-                    <h3>{{ config('app.name') }} app is now available for Android Phones and iPhone.</h3>
+                    <h1>@lang('pages.index.phone.download', ['app' => config('app.name')])</h1>
+                    <h3>@lang('pages.index.phone.availability', ['app' => config('app.name')])</h3>
                     <ul class="list-inline margin-top-20">
                         <li><a href="#"><img src="{{ asset('assets/layout/img/android-btn.png') }}" alt=""></a></li>
                         <li><a href="#"><img src="{{ asset('assets/layout/img/iphone-btn.png') }}" alt=""></a></li>
@@ -115,15 +99,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 about-links">
-                    <h1>Popular Specialists</h1>
+                    <h1>@lang('pages.index.top_specialties')</h1>
 
                     <div class="row">
-                        @foreach(\App\Speciality::take(14)->inRandomOrder()->get()->chunk(7) as $chunks)
+                        @foreach(\App\Speciality::Top()->take(12)->chunk(6) as $chunks)
                             <div class="col-sm-6 about-links-item">
-                                <ul class="list-inline">
+                                <ul class="list-unstyled" style="margin-top: 15px">
                                     @foreach($chunks as $speciality)
                                         <li>
-                                            <a class="badge" href="#">{{ $speciality->display_name }}</a>
+                                            <a class="badge badge-info" href="#" style="display: block;font-size: 13px !important;height: auto;padding: 7px;">{{ $speciality['label'] }}</a>
                                         </li>
                                     @endforeach
                                 </ul>
@@ -145,7 +129,7 @@
     <style>
         .page-header {
             height: 70vh;
-            background-image: url("{{ asset('assets/layout/img/shutterstock_202325818-e1433766480815-890x400.jpg') }}");
+            background-image: url("https://vitrualclinic.localhost/assets/layout/img/shutterstock_202325818-e1433766480815-890x400.jpg");
             background-position: center bottom;
             -webkit-background-size: cover;
             background-size: cover;
@@ -178,6 +162,10 @@
 
         .page-header-menu .page-title h1 {
             letter-spacing: 5px;
+        }
+
+        .page-content {
+            padding: 30px 0 0;
         }
 
         .portlet {
@@ -225,7 +213,7 @@
         }
 
         .phoneapp {
-            background-image: url("{{ asset('assets/layout/img/5.jpg') }}");
+            background-image: url("https://vitrualclinic.localhost/assets/layout/img/5.jpg");
         }
 
         .phoneapp .col-md-8 {
@@ -241,7 +229,7 @@
         }
 
         .about-image {
-            height: 250px;
+            height: 304px;
             padding-left: 110px;
         }
 

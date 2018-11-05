@@ -8,9 +8,9 @@
             </div>
 
             @isset ($actions)
-                <div class="{{ isset($actionClass) ? $actionClass : 'actions tools' }}">
+                <{{ isset($actionTag) ? $actionTag : 'div' }} class="{{ isset($actionClass) ? $actionClass : 'actions tools' }}">
                     {!! $actions !!}
-                </div>
+                </{{isset( $actionTag) ?  $actionTag : 'div' }}>
 
             @else
                 <div class="actions tools">
@@ -24,7 +24,7 @@
     @isset($body)
         {!! $body !!}
     @else
-        <div class="portlet-body">
+        <div class="portlet-body{{ isset($bodyClass) ? ' ' . $bodyClass : '' }}">
             {!! $slot !!}
         </div>
     @endif

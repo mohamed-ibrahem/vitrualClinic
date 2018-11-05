@@ -67,16 +67,7 @@ class PagesController extends Controller
 
     private function getTopSpecialties()
     {
-        return Speciality::with('users')->get()
-            ->map(function ($speciality) {
-                return [
-                    'label' => $speciality->display_name,
-                    'value' => $speciality->users->count()
-                ];
-            })
-            ->sortByDesc(function ($speciality) {
-                return $speciality['value'];
-            })
+        return Speciality::Top()
             ->filter(function($speciality) {
                 return $speciality['value'] > 0;
             })

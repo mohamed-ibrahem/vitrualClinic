@@ -17,8 +17,13 @@ Route::group([
     'middleware' => ['auth', 'role:admin']
 ], function () {
     Route::get('/', 'Admin\PagesController@index')->name('home');
-    Route::get('/languages', function() {
-        return view('vendor.translation-manager.index');
+    Route::group([
+        'prefix' => 'languages',
+    ], function() {
+        Route::get('/', 'Admin\TranslationsController@getIndex');
+        Route::post('/edit/{groupKey}', 'Admin\TranslationsController@postEdit');
+        Route::post('/import', 'Admin\TranslationsController@postImport');
+        Route::post('/publish', 'Admin\TranslationsController@postPublish');
     });
     Route::post('auth/logout', 'Auth\LoginController@logout')
         ->name('logout');

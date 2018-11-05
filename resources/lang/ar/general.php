@@ -27,4 +27,5 @@ return array (
   'showAll' => 'مشاهدة كل ال:page',
   'submit' => 'ارسال',
   'update' => 'حفظ التغييرات',
+  'dir' => 'rtl',
 );

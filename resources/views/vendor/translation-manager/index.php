@@ -238,7 +238,7 @@
                                 &times;
                             </button>
                             <?php echo $locale ?>
-                            
+
                         </div>
                     </li>
                 <?php endforeach; ?>
@@ -268,7 +268,6 @@
                 <button type="submit" class="btn btn-primary" data-disable-with="Publishing.." >Publish all</button>
             </form>
         </fieldset>
-
     <?php endif; ?>
 </div>
 
