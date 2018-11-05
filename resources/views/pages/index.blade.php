@@ -2,6 +2,7 @@
     'class' => 'about_page',
     'no_breadcrumbs' => true,
     'no_header' => true,
+    'no_footer' => false
 ])
 
 @section ('header')

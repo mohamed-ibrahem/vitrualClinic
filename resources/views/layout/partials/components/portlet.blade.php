@@ -24,7 +24,7 @@
     @isset($body)
         {!! $body !!}
     @else
-        <div class="portlet-body">
+        <div class="portlet-body{{ isset($bodyClass) ? (' ' . $bodyClass) : '' }}">
             {!! $slot !!}
         </div>
     @endif

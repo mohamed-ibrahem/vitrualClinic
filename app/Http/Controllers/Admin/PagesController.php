@@ -29,6 +29,16 @@ class PagesController extends Controller
         return view('admin.index', compact('doctors', 'members', 'messages', 'registrants'));
     }
 
+    /**
+     * @project VirtualClinic - Nov/2018
+     *
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function settings()
+    {
+        return view('admin.settings');
+    }
+
     private function getUsersRegistrationsDate()
     {
         $registrants = ['year' => [], 'month' => [], 'week' => []];

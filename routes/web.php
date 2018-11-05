@@ -17,6 +17,7 @@ Route::group([
     'middleware' => ['auth', 'role:admin']
 ], function () {
     Route::get('/', 'Admin\PagesController@index')->name('home');
+    Route::get('/settings', 'Admin\PagesController@settings')->name('settings');
     Route::post('auth/logout', 'Auth\LoginController@logout')
         ->name('logout');
 });

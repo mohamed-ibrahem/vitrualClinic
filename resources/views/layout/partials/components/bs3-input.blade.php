@@ -6,7 +6,7 @@
 
     @php
         $options = [
-            'class' => 'form-control placeholder-no-fix' . (isset($inputClass) ? ' ' . $inputClass : ''),
+            'class' => 'form-control placeholder-no-fix' . (isset($size) ? (' input-' . $size) : '') . (isset($inputClass) ? (' ' . $inputClass) : ''),
             'id' => $name
         ];
 
@@ -14,8 +14,9 @@
             $options['placeholder'] = $placeholder;
     @endphp
 
+    @isset($div){!! $div !!}@endisset
     @isset($icon)
-        <div class="input-icon">
+        <div class="input-icon{{ isset($size) ? (' input-icon-' . $size) : '' }}">
             <i class="{{ $icon }}"></i>
             @endisset
             @isset($group)
@@ -42,4 +43,5 @@
     @isset ($help_block)
         <span class="help-block">{!! $help_block !!}</span>
     @endisset
+    @isset($div)</div>@endisset
 </div>

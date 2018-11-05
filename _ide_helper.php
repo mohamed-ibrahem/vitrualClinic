@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.7.9 on 2018-10-29 01:27:35.
+ * Generated for Laravel 5.7.12 on 2018-11-02 16:41:48.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -2679,6 +2679,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Unset the given driver instances.
+         *
+         * @param array|string|null $name
+         * @return $this 
+         * @static 
+         */ 
+        public static function forgetDriver($name = null)
+        {
+            return \Illuminate\Cache\CacheManager::forgetDriver($name);
+        }
+        
+        /**
          * Register a custom driver creator Closure.
          *
          * @param string $driver
@@ -4872,6 +4884,19 @@ namespace Illuminate\Support\Facades {
         public static function put($path, $contents, $lock = false)
         {
             return \Illuminate\Filesystem\Filesystem::put($path, $contents, $lock);
+        }
+        
+        /**
+         * Write the contents of a file, replacing it atomically if it already exists.
+         *
+         * @param string $path
+         * @param string $content
+         * @return void 
+         * @static 
+         */ 
+        public static function replace($path, $content)
+        {
+            \Illuminate\Filesystem\Filesystem::replace($path, $content);
         }
         
         /**
@@ -7488,6 +7513,18 @@ namespace Illuminate\Support\Facades {
         }
         
         /**
+         * Set the intended url.
+         *
+         * @param string $url
+         * @return void 
+         * @static 
+         */ 
+        public static function setIntendedUrl($url)
+        {
+            \Illuminate\Routing\Redirector::setIntendedUrl($url);
+        }
+        
+        /**
          * Create a new redirect response to the given path.
          *
          * @param string $path
@@ -9983,6 +10020,7 @@ namespace Illuminate\Support\Facades {
      * @method static \Illuminate\Routing\Route permanentRedirect(string $uri, string $destination)
      * @method static \Illuminate\Routing\Route view(string $uri, string $view, array $data = [])
      * @method static void bind(string $key, string|callable $binder)
+     * @method static void model(string $key, string $class, \Closure|null $callback = null)
      * @method static \Illuminate\Routing\Route current()
      * @method static string|null currentRouteName()
      * @method static string|null currentRouteAction()
@@ -12425,12 +12463,13 @@ namespace Illuminate\Support\Facades {
          * Determine if the given request has a valid signature.
          *
          * @param \Illuminate\Http\Request $request
+         * @param bool $absolute
          * @return bool 
          * @static 
          */ 
-        public static function hasValidSignature($request)
+        public static function hasValidSignature($request, $absolute = true)
         {
-            return \Illuminate\Routing\UrlGenerator::hasValidSignature($request);
+            return \Illuminate\Routing\UrlGenerator::hasValidSignature($request, $absolute);
         }
         
         /**
@@ -13619,6 +13658,184 @@ namespace Illuminate\Support\Facades {
         public static function renderTranslation()
         {
             return \Illuminate\View\Factory::renderTranslation();
+        }
+         
+    }
+ 
+}
+
+namespace Akaunting\Setting { 
+
+    /**
+     * 
+     *
+     */ 
+    class Facade {
+        
+        /**
+         * Set the table to query from.
+         *
+         * @param string $table
+         * @static 
+         */ 
+        public static function setTable($table)
+        {
+            return \Akaunting\Setting\Drivers\Database::setTable($table);
+        }
+        
+        /**
+         * Set the key column name to query from.
+         *
+         * @param string $key
+         * @static 
+         */ 
+        public static function setKey($key)
+        {
+            return \Akaunting\Setting\Drivers\Database::setKey($key);
+        }
+        
+        /**
+         * Set the value column name to query from.
+         *
+         * @param string $value
+         * @static 
+         */ 
+        public static function setValue($value)
+        {
+            return \Akaunting\Setting\Drivers\Database::setValue($value);
+        }
+        
+        /**
+         * Set the query constraint.
+         *
+         * @param \Closure $callback
+         * @static 
+         */ 
+        public static function setConstraint($callback)
+        {
+            return \Akaunting\Setting\Drivers\Database::setConstraint($callback);
+        }
+        
+        /**
+         * Set extra columns to be added to the rows.
+         *
+         * @param array $columns
+         * @static 
+         */ 
+        public static function setExtraColumns($columns)
+        {
+            return \Akaunting\Setting\Drivers\Database::setExtraColumns($columns);
+        }
+        
+        /**
+         * Unset a key in the settings data.
+         *
+         * @param string $key
+         * @static 
+         */ 
+        public static function forget($key)
+        {
+            return \Akaunting\Setting\Drivers\Database::forget($key);
+        }
+        
+        /**
+         * Parse data coming from the database.
+         *
+         * @param array $data
+         * @return array 
+         * @static 
+         */ 
+        public static function parseReadData($data)
+        {
+            return \Akaunting\Setting\Drivers\Database::parseReadData($data);
+        }
+        
+        /**
+         * Get a specific key from the settings data.
+         *
+         * @param string|array $key
+         * @param mixed $default Optional default value.
+         * @return mixed 
+         * @static 
+         */ 
+        public static function get($key, $default = null)
+        {
+            //Method inherited from \Akaunting\Setting\Contracts\Driver            
+            return \Akaunting\Setting\Drivers\Database::get($key, $default);
+        }
+        
+        /**
+         * Determine if a key exists in the settings data.
+         *
+         * @param string $key
+         * @return boolean 
+         * @static 
+         */ 
+        public static function has($key)
+        {
+            //Method inherited from \Akaunting\Setting\Contracts\Driver            
+            return \Akaunting\Setting\Drivers\Database::has($key);
+        }
+        
+        /**
+         * Set a specific key to a value in the settings data.
+         *
+         * @param string|array $key Key string or associative array of key => value
+         * @param mixed $value Optional only if the first argument is an array
+         * @static 
+         */ 
+        public static function set($key, $value = null)
+        {
+            //Method inherited from \Akaunting\Setting\Contracts\Driver            
+            return \Akaunting\Setting\Drivers\Database::set($key, $value);
+        }
+        
+        /**
+         * Unset all keys in the settings data.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function forgetAll()
+        {
+            //Method inherited from \Akaunting\Setting\Contracts\Driver            
+            \Akaunting\Setting\Drivers\Database::forgetAll();
+        }
+        
+        /**
+         * Get all settings data.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function all()
+        {
+            //Method inherited from \Akaunting\Setting\Contracts\Driver            
+            return \Akaunting\Setting\Drivers\Database::all();
+        }
+        
+        /**
+         * Save any changes done to the settings data.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function save()
+        {
+            //Method inherited from \Akaunting\Setting\Contracts\Driver            
+            \Akaunting\Setting\Drivers\Database::save();
+        }
+        
+        /**
+         * Make sure data is loaded.
+         *
+         * @param $force Force a reload of data. Default false.
+         * @static 
+         */ 
+        public static function load($force = false)
+        {
+            //Method inherited from \Akaunting\Setting\Contracts\Driver            
+            return \Akaunting\Setting\Drivers\Database::load($force);
         }
          
     }
@@ -14959,102 +15176,6 @@ namespace Collective\Html {
  
 }
 
-namespace Lavary\Menu { 
-
-    /**
-     * 
-     *
-     */ 
-    class Facade {
-        
-        /**
-         * Check if a menu exists.
-         *
-         * @param string $name
-         * @return bool 
-         * @static 
-         */ 
-        public static function exists($name)
-        {
-            return \Lavary\Menu\Menu::exists($name);
-        }
-        
-        /**
-         * Create a new menu instance.
-         *
-         * @param string $name
-         * @param callable $callback
-         * @return \Menu 
-         * @static 
-         */ 
-        public static function makeOnce($name, $callback)
-        {
-            return \Lavary\Menu\Menu::makeOnce($name, $callback);
-        }
-        
-        /**
-         * Create a new menu instance.
-         *
-         * @param string $name
-         * @param callable $callback
-         * @return \Menu 
-         * @static 
-         */ 
-        public static function make($name, $callback)
-        {
-            return \Lavary\Menu\Menu::make($name, $callback);
-        }
-        
-        /**
-         * Loads and merges configuration data.
-         *
-         * @param string $name
-         * @return array 
-         * @static 
-         */ 
-        public static function loadConf($name)
-        {
-            return \Lavary\Menu\Menu::loadConf($name);
-        }
-        
-        /**
-         * Return Menu instance from the collection by key.
-         *
-         * @param string $key
-         * @return \Lavary\Menu\Item 
-         * @static 
-         */ 
-        public static function get($key)
-        {
-            return \Lavary\Menu\Menu::get($key);
-        }
-        
-        /**
-         * Return Menu collection.
-         *
-         * @return \Illuminate\Support\Collection 
-         * @static 
-         */ 
-        public static function getCollection()
-        {
-            return \Lavary\Menu\Menu::getCollection();
-        }
-        
-        /**
-         * Alias for getCollection.
-         *
-         * @return \Illuminate\Support\Collection 
-         * @static 
-         */ 
-        public static function all()
-        {
-            return \Lavary\Menu\Menu::all();
-        }
-         
-    }
- 
-}
-
 namespace Nahid\Talk\Facades { 
 
     /**
@@ -15375,153 +15496,6 @@ namespace Nahid\Talk\Facades {
         public static function deleteThread($id = null)
         {
             return \Nahid\Talk\Talk::deleteThread($id);
-        }
-         
-    }
- 
-}
-
-namespace Spatie\Analytics { 
-
-    /**
-     * 
-     *
-     * @see \Spatie\Analytics\Analytics
-     */ 
-    class AnalyticsFacade {
-        
-        /**
-         * 
-         *
-         * @param string $viewId
-         * @return $this 
-         * @static 
-         */ 
-        public static function setViewId($viewId)
-        {
-            return \Spatie\Analytics\Analytics::setViewId($viewId);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function fetchVisitorsAndPageViews($period)
-        {
-            return \Spatie\Analytics\Analytics::fetchVisitorsAndPageViews($period);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function fetchTotalVisitorsAndPageViews($period)
-        {
-            return \Spatie\Analytics\Analytics::fetchTotalVisitorsAndPageViews($period);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function fetchMostVisitedPages($period, $maxResults = 20)
-        {
-            return \Spatie\Analytics\Analytics::fetchMostVisitedPages($period, $maxResults);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function fetchTopReferrers($period, $maxResults = 20)
-        {
-            return \Spatie\Analytics\Analytics::fetchTopReferrers($period, $maxResults);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function fetchUserTypes($period)
-        {
-            return \Spatie\Analytics\Analytics::fetchUserTypes($period);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function fetchTopBrowsers($period, $maxResults = 10)
-        {
-            return \Spatie\Analytics\Analytics::fetchTopBrowsers($period, $maxResults);
-        }
-        
-        /**
-         * Call the query method on the authenticated client.
-         *
-         * @param \Spatie\Analytics\Period $period
-         * @param string $metrics
-         * @param array $others
-         * @return array|null 
-         * @static 
-         */ 
-        public static function performQuery($period, $metrics, $others = array())
-        {
-            return \Spatie\Analytics\Analytics::performQuery($period, $metrics, $others);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function getAnalyticsService()
-        {
-            return \Spatie\Analytics\Analytics::getAnalyticsService();
-        }
-        
-        /**
-         * Register a custom macro.
-         *
-         * @param string $name
-         * @param object|callable $macro
-         * @return void 
-         * @static 
-         */ 
-        public static function macro($name, $macro)
-        {
-            \Spatie\Analytics\Analytics::macro($name, $macro);
-        }
-        
-        /**
-         * Mix another object into the class.
-         *
-         * @param object $mixin
-         * @return void 
-         * @throws \ReflectionException
-         * @static 
-         */ 
-        public static function mixin($mixin)
-        {
-            \Spatie\Analytics\Analytics::mixin($mixin);
-        }
-        
-        /**
-         * Checks if macro is registered.
-         *
-         * @param string $name
-         * @return bool 
-         * @static 
-         */ 
-        public static function hasMacro($name)
-        {
-            return \Spatie\Analytics\Analytics::hasMacro($name);
         }
          
     }
@@ -17986,17 +17960,15 @@ namespace  {
 
     class View extends \Illuminate\Support\Facades\View {}
 
+    class Setting extends \Akaunting\Setting\Facade {}
+
     class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
 
     class Form extends \Collective\Html\FormFacade {}
 
     class Html extends \Collective\Html\HtmlFacade {}
 
-    class Menu extends \Lavary\Menu\Facade {}
-
     class Talk extends \Nahid\Talk\Facades\Talk {}
-
-    class Analytics extends \Spatie\Analytics\AnalyticsFacade {}
 
     class GeoIP extends \Torann\GeoIP\Facades\GeoIP {}
  

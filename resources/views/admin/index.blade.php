@@ -1,6 +1,4 @@
-@extends ('layout.app', [
-    'no_footer' => true
-])
+@extends ('layout.app')
 
 @section ('title', trans('pages.admin.home.title'))
 @section ('description', trans('pages.admin.home.description', ['user' => auth()->user()->name]))

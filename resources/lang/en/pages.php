@@ -46,6 +46,10 @@ return [
                 'title' => 'Members',
                 'description' => ''
             ]
+        ],
+
+        'settings' => [
+            'title' => 'Settings'
         ]
     ],
 ];

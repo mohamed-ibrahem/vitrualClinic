@@ -1,4 +1,4 @@
-@if(! isset($no_footer) || !$no_footer)
+@if(isset($no_footer) && !$no_footer)
 <!-- BEGIN PRE-FOOTER -->
 <div class="page-prefooter">
     <div class="container">

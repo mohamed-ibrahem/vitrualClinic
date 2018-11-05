@@ -20,5 +20,9 @@
                 </li>
             </ul>
         </li>
+
+        <li class="menu-dropdown{{ \Request::is('admin/settings') ? ' active' : '' }}">
+            <a href="{{ route('admin.settings') }}">@lang('pages.admin.settings.title')</a>
+        </li>
     </ul>
 </div>
