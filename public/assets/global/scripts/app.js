@@ -587,7 +587,13 @@ var App = function() {
                 $(parent.attr('data-related')).css('height', parent.height());
             }
        });
-    }
+    };
+
+   var handleButtons = function() {
+       $('button').on('click', function() {
+           $(this).button('loading');
+       });
+   };
 
     //* END:CORE HANDLERS *//
 
@@ -620,6 +626,7 @@ var App = function() {
             handleBootstrapConfirmation(); // handle bootstrap confirmations
             handleTextareaAutosize(); // handle autosize textareas
             handleCounterup(); // handle counterup instances
+            handleButtons();
 
             //Handle group element heights
             this.addResizeHandler(handleHeight); // handle auto calculating height on window resize
