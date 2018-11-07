@@ -16,10 +16,10 @@
     <meta content="{{ config('app.name') }}" name="author" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-    @if (!isset($no_loading) || $no_loading)
+    @unless (isset($no_loading) && $no_loading)
         <script src="{{ asset('assets/global/plugins/pace/pace.min.js') }}"></script>
         <link rel="stylesheet" href="{{ assets_dir('assets/global/plugins/pace/themes/pace-theme-flash.css') }}">
-    @endif
+    @endunless
     <link href="{{ asset('assets/global/plugins/font-awesome/css/all.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/global/plugins/simple-line-icons/simple-line-icons.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ assets_dir('assets/global/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
