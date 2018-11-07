@@ -4,10 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Role;
 use App\Speciality;
-use App\User;
+use Barryvdh\TranslationManager\Models\Translation;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
-use ConsoleTVs\Charts\Classes\Chartjs\Chart;
+use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Nahid\Talk\Conversations\Conversation;
@@ -34,11 +34,14 @@ class PagesController extends Controller
     /**
      * @project VirtualClinic - Nov/2018
      *
+     * @param \Barryvdh\TranslationManager\Manager $manager
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function settings()
+    public function settings(\Barryvdh\TranslationManager\Manager $manager)
     {
-        return view('admin.settings');
+        return view('admin.settings', [
+            'locales' => $manager->getLocales()
+        ]);
     }
 
     private function getUsersRegistrationsDate()

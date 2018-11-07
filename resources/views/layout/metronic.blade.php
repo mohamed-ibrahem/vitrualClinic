@@ -16,7 +16,7 @@
     <meta content="{{ config('app.name') }}" name="author" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
-    @if (!isset($noLoading) || $noLoading)
+    @if (!isset($no_loading) || $no_loading)
         <script src="{{ asset('assets/global/plugins/pace/pace.min.js') }}"></script>
         <link rel="stylesheet" href="{{ assets_dir('assets/global/plugins/pace/themes/pace-theme-flash.css') }}">
     @endif
@@ -35,9 +35,9 @@
     <!-- BEGIN THEME LAYOUT STYLES -->
     <link href="{{ assets_dir('assets/layout/css/layout.min.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/layout/css/blue-hoki.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/layout/css/custom.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/layout/css/custom.css') }}" rel="stylesheet" type="text/css" />
     @if (trans('general.dir') === 'rtl')
-        <link href="{{ asset('assets/layout/css/custom-rtl.min.css') }}" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/layout/css/custom-rtl.css') }}" rel="stylesheet" type="text/css" />
     @endif
     @stack ('customize')
     <!-- END THEME LAYOUT STYLES -->

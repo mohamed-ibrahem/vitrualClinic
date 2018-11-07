@@ -36,6 +36,7 @@
             'title' => trans('pages.admin.translation.title'),
             'icon' => 'fa fa-globe',
             'type' => 'box green',
+            'portletClass' => '',
             'actionTag' => 'ul',
             'actionClass' => 'nav nav-tabs',
             'actions' => $tabsTitle,

@@ -2,7 +2,8 @@
     'class' => 'about_page',
     'no_breadcrumbs' => true,
     'no_header' => true,
-    'no_footer' => false
+    'no_footer' => false,
+    'no_loading' => true
 ])
 @section ('header')
     <div class="page-header">

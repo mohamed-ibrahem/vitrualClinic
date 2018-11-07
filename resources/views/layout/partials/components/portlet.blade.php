@@ -1,6 +1,6 @@
 <div class="portlet{{ isset($type) ? ' ' . $type : ' light' }}">
     @isset($title)
-        <div class="portlet-title">
+        <div class="portlet-title{{ isset($portletClass) ? $portletClass : '' }}">
             <div class="caption">
                 @isset($icon)<i class="{{ $icon }}"></i>@endisset
                 <span class="caption-subject bold">{!! $title !!}</span>

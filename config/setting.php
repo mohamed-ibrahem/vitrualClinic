@@ -10,7 +10,7 @@ return [
     | Auto-save every time the application shuts down
     |
     */
-	'auto_save'			=> false,
+	'auto_save'			=> true,
 
     /*
     |--------------------------------------------------------------------------
@@ -22,7 +22,7 @@ return [
     | Supported: "database", "json"
     |
     */
-	'driver'			=> 'database',
+	'driver'			=> 'json',
 
     /*
     |--------------------------------------------------------------------------
@@ -49,7 +49,7 @@ return [
     |
     */
 	'json' => [
-        'path'          => storage_path().'/settings.json',
+        'path'          => storage_path('/settings.json'),
     ],
 
     /*
@@ -65,6 +65,7 @@ return [
     |
     */
     'override' => [
-        
+        'app.locale' => 'settings.locale',
+        'app.name' => 'settings.name'
     ],
 ];

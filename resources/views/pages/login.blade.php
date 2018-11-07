@@ -1,5 +1,6 @@
 @extends ('layout.metronic', [
-    'class' => 'login'
+    'class' => 'login',
+    'no_loading' => true
 ])
 
 @section ('metronic-content')

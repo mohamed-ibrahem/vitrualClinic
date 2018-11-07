@@ -2,6 +2,14 @@
     font-weight: initial;
 }
 
+.portlet.box>.portlet-title {
+    padding: 10px 15px;
+}
+
+.page-head .page-toolbar {
+    padding: 6px 0;
+}
+
 @media (max-width: 480px) {
     .page-header .page-header-top .top-menu {
         float: none;
