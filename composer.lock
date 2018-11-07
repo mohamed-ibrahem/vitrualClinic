@@ -4,71 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d20ced823629a38153f33501264bf92b",
+    "content-hash": "2f14369bb80dcd3f8df9e2dccf8ebb78",
     "packages": [
-        {
-            "name": "akaunting/setting",
-            "version": "1.0.7",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/akaunting/setting.git",
-                "reference": "69d77dc8f23abbb90a3f96503b9e1144abf7a05d"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/akaunting/setting/zipball/69d77dc8f23abbb90a3f96503b9e1144abf7a05d",
-                "reference": "69d77dc8f23abbb90a3f96503b9e1144abf7a05d",
-                "shasum": ""
-            },
-            "require": {
-                "laravel/framework": ">=5.2 <6.0",
-                "php": ">=5.5.9"
-            },
-            "require-dev": {
-                "laravel/framework": ">=5.2 <6.0",
-                "mockery/mockery": "0.9.*",
-                "phpunit/phpunit": ">=4.8, <6"
-            },
-            "type": "library",
-            "extra": {
-                "laravel": {
-                    "providers": [
-                        "Akaunting\\Setting\\Provider"
-                    ],
-                    "aliases": {
-                        "Setting": "Akaunting\\Setting\\Facade"
-                    }
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Akaunting\\Setting\\": "./src"
-                },
-                "files": [
-                    "src/helpers.php"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Denis Duliçi",
-                    "email": "info@akaunting.com",
-                    "homepage": "https://akaunting.com",
-                    "role": "Developer"
-                }
-            ],
-            "description": "Persistent settings package for Laravel.",
-            "keywords": [
-                "Settings",
-                "config",
-                "laravel",
-                "persistent"
-            ],
-            "time": "2018-07-19T08:04:53+00:00"
-        },
         {
             "name": "anahkiasen/underscore-php",
             "version": "2.0.0",
@@ -940,16 +877,16 @@
         },
         {
             "name": "laravel/framework",
-            "version": "v5.7.12",
+            "version": "v5.7.13",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel/framework.git",
-                "reference": "4cb5bf13e0cd50015f8e6a420a52fa8b90758eb1"
+                "reference": "3ff3110ac14f2b4876acaff289bb55a1af74f02e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel/framework/zipball/4cb5bf13e0cd50015f8e6a420a52fa8b90758eb1",
-                "reference": "4cb5bf13e0cd50015f8e6a420a52fa8b90758eb1",
+                "url": "https://api.github.com/repos/laravel/framework/zipball/3ff3110ac14f2b4876acaff289bb55a1af74f02e",
+                "reference": "3ff3110ac14f2b4876acaff289bb55a1af74f02e",
                 "shasum": ""
             },
             "require": {
@@ -1015,6 +952,7 @@
                 "aws/aws-sdk-php": "^3.0",
                 "doctrine/dbal": "^2.6",
                 "filp/whoops": "^2.1.4",
+                "guzzlehttp/guzzle": "^6.3",
                 "league/flysystem-cached-adapter": "^1.0",
                 "mockery/mockery": "^1.0",
                 "moontoast/math": "^1.1",
@@ -1079,7 +1017,7 @@
                 "framework",
                 "laravel"
             ],
-            "time": "2018-10-30T14:44:34+00:00"
+            "time": "2018-11-07T12:41:02+00:00"
         },
         {
             "name": "laravel/tinker",
@@ -3725,16 +3663,16 @@
     "packages-dev": [
         {
             "name": "barryvdh/laravel-ide-helper",
-            "version": "v2.5.1",
+            "version": "v2.5.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-ide-helper.git",
-                "reference": "7db1843473e1562d8e0490b51db847d3a1415140"
+                "reference": "981ff45b43e0cf808af0a5a5f40f6369e0e29499"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/7db1843473e1562d8e0490b51db847d3a1415140",
-                "reference": "7db1843473e1562d8e0490b51db847d3a1415140",
+                "url": "https://api.github.com/repos/barryvdh/laravel-ide-helper/zipball/981ff45b43e0cf808af0a5a5f40f6369e0e29499",
+                "reference": "981ff45b43e0cf808af0a5a5f40f6369e0e29499",
                 "shasum": ""
             },
             "require": {
@@ -3795,7 +3733,7 @@
                 "phpstorm",
                 "sublime"
             ],
-            "time": "2018-09-06T18:41:09+00:00"
+            "time": "2018-10-06T09:35:51+00:00"
         },
         {
             "name": "barryvdh/reflection-docblock",

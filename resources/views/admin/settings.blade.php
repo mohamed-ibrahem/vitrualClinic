@@ -2,6 +2,13 @@
 
 @section('title', trans('pages.admin.system.title'))
 
+@section('toolbar')
+    <button class="btn navbar-btn btn-primary" onclick="event.preventDefault(); document.getElementById('main-settings').submit();">
+        <i class="fa fa-save fa-fw"></i>
+        @lang('general.save')
+    </button>
+@endsection
+
 @section ('content')
     @php
         $tabsTitle = '';
@@ -25,23 +32,24 @@
                     'actionClass' => 'nav nav-tabs',
                     'actions' => $tabsTitle
                 ])
+                    {!! Form::open(['class' => 'form-horizontal', 'id' => 'main-settings']) !!}
+
                     <div class="tab-content">
                         @foreach($locales as $locale)
                             <div class="tab-pane{{ $loop->first ? ' active' : '' }}" id="{{ $locale }}">
-                                {!! Form::open(['class' => 'form-horizontal']) !!}
                                 @component('layout.partials.components.bs3-input', [
                                     'title' => trans('pages.admin.system.general.form.0', [], $locale),
-                                    'name' => 'name',
+                                    'name' => $locale . '.name',
                                     'type' => 'text',
-                                    'value' => setting('app.name', config('app.name')),
+                                    'value' => setting($locale . '.name')[0],
                                     'icon' => 'fa fa-language',
                                     'labelClass' => 'col-sm-3',
                                     'div' => '<div class="col-sm-9">'
                                 ])@endcomponent
-                                {!! Form::close() !!}
                             </div>
                         @endforeach
                     </div>
+                    {!! Form::close() !!}
                 @endcomponent
             </div>
         </div>

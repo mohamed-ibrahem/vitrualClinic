@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Role;
+use App\Setting;
 use App\Speciality;
 use Barryvdh\TranslationManager\Models\Translation;
 use Carbon\Carbon;
@@ -42,6 +43,13 @@ class PagesController extends Controller
         return view('admin.settings', [
             'locales' => $manager->getLocales()
         ]);
+    }
+
+    public function postSettings(Request $request)
+    {
+        (new Setting)->addArray(array_except($request->all(), ['_token']));
+
+        return redirect()->back();
     }
 
     private function getUsersRegistrationsDate()

@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-11-06 10:15:31.
+    * Generated on 2018-11-07 17:03:44.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -159,8 +159,6 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
-        'setting' => \Akaunting\Setting\Drivers\Database::class,
-        'setting.manager' => \Akaunting\Setting\Manager::class,
         'swift.mailer' => \Swift_Mailer::class,
         'swift.transport' => \Illuminate\Mail\TransportManager::class,
         'talk' => \Nahid\Talk\Talk::class,
@@ -323,8 +321,6 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
-        'setting' => \Akaunting\Setting\Drivers\Database::class,
-        'setting.manager' => \Akaunting\Setting\Manager::class,
         'swift.mailer' => \Swift_Mailer::class,
         'swift.transport' => \Illuminate\Mail\TransportManager::class,
         'talk' => \Nahid\Talk\Talk::class,
@@ -487,8 +483,6 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
-        'setting' => \Akaunting\Setting\Drivers\Database::class,
-        'setting.manager' => \Akaunting\Setting\Manager::class,
         'swift.mailer' => \Swift_Mailer::class,
         'swift.transport' => \Illuminate\Mail\TransportManager::class,
         'talk' => \Nahid\Talk\Talk::class,
@@ -651,8 +645,6 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
-        'setting' => \Akaunting\Setting\Drivers\Database::class,
-        'setting.manager' => \Akaunting\Setting\Manager::class,
         'swift.mailer' => \Swift_Mailer::class,
         'swift.transport' => \Illuminate\Mail\TransportManager::class,
         'talk' => \Nahid\Talk\Talk::class,
@@ -815,8 +807,6 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
-        'setting' => \Akaunting\Setting\Drivers\Database::class,
-        'setting.manager' => \Akaunting\Setting\Manager::class,
         'swift.mailer' => \Swift_Mailer::class,
         'swift.transport' => \Illuminate\Mail\TransportManager::class,
         'talk' => \Nahid\Talk\Talk::class,
@@ -979,8 +969,6 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
-        'setting' => \Akaunting\Setting\Drivers\Database::class,
-        'setting.manager' => \Akaunting\Setting\Manager::class,
         'swift.mailer' => \Swift_Mailer::class,
         'swift.transport' => \Illuminate\Mail\TransportManager::class,
         'talk' => \Nahid\Talk\Talk::class,
@@ -1143,8 +1131,6 @@ namespace PHPSTORM_META {
         'router' => \Illuminate\Routing\Router::class,
         'session' => \Illuminate\Session\SessionManager::class,
         'session.store' => \Illuminate\Session\Store::class,
-        'setting' => \Akaunting\Setting\Drivers\Database::class,
-        'setting.manager' => \Akaunting\Setting\Manager::class,
         'swift.mailer' => \Swift_Mailer::class,
         'swift.transport' => \Illuminate\Mail\TransportManager::class,
         'talk' => \Nahid\Talk\Talk::class,

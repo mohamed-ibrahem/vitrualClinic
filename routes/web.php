@@ -18,6 +18,7 @@ Route::group([
 ], function () {
     Route::get('/', 'Admin\PagesController@index')->name('home');
     Route::get('/system', 'Admin\PagesController@settings')->name('settings');
+    Route::post('/system', 'Admin\PagesController@postSettings');
     Route::group([
         'prefix' => 'languages',
         'as' => 'languages.'

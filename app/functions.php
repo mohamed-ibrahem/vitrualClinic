@@ -11,3 +11,15 @@ if (! function_exists('assets_dir')) {
         return asset($path, $secure);
     }
 }
+
+if (! function_exists('setting')) {
+    function setting($key = null, $default = null) {
+        if ($key)
+            return (new \App\Setting)->search(
+                str_replace('.', '_', $key),
+                $default
+            );
+
+        return new \App\Setting;
+    }
+}

@@ -1,43 +1,43 @@
 <?php
 
 return array (
-  'admin' =>
+  'admin' => 
   array (
-    'home' =>
+    'home' => 
     array (
       'title' => 'الرئيسية',
       'description' => 'أهلا بعودتك :user ',
-      'widgets' =>
+      'widgets' => 
       array (
-        'doctors' =>
+        'doctors' => 
         array (
           'subtitle' => 'عدد الأطباء',
           'title' => 'الأطباء',
         ),
-        'main' =>
+        'main' => 
         array (
           'active' => 'الاعضاء النشطون',
           'sessions' => 'نشطون مسبقاً',
           'title' => 'إحصائيات عامة',
         ),
-        'members' =>
+        'members' => 
         array (
           'subtitle' => 'عدد المشتركين',
           'title' => 'المشتركين',
         ),
-        'messages' =>
+        'messages' => 
         array (
           'subtitle' => 'عدد الرسائل',
           'title' => 'المحادثات',
         ),
-        'ratings' =>
+        'ratings' => 
         array (
           'subtitle' => 'عدد التقييمات',
           'title' => 'التقييمات',
         ),
-        'registrants' =>
+        'registrants' => 
         array (
-          'options' =>
+          'options' => 
           array (
             0 => 'سنوياً',
             1 => 'شهرياً',
@@ -45,37 +45,39 @@ return array (
           ),
           'title' => 'المسجلين',
         ),
-        'specialties' =>
+        'specialties' => 
         array (
           'title' => 'أعلى التخصصات',
         ),
       ),
     ),
-    'mobile' =>
+    'mobile' => 
     array (
       'title' => 'تطبيق الموبايل',
     ),
-    'system' =>
+    'system' => 
     array (
       'title' => 'النظام',
-        'general' => [
-            'title' => 'الإعدادت العامة',
-            'form' => [
-                'عنوان الموقع'
-            ]
-        ]
+      'general' => 
+      array (
+        'title' => 'الإعدادت العامة',
+        'form' => 
+        array (
+          0 => 'عنوان الموقع',
+        ),
+      ),
     ),
-    'users' =>
+    'users' => 
     array (
-      'admins' =>
+      'admins' => 
       array (
         'title' => '{1} مدير|[2, *] مدراء',
       ),
-      'doctors' =>
+      'doctors' => 
       array (
         'title' => '{1} طبيب|[2, *] أطباء',
       ),
-      'members' =>
+      'members' => 
       array (
         'paymentMethods' => 'وسائل الدفع',
         'programs' => 'البرامج',
@@ -83,7 +85,7 @@ return array (
       ),
       'title' => 'المستخدمين',
     ),
-    'translation' =>
+    'translation' => 
     array (
       'title' => 'الترجمة',
       'key' => 'المفتاح',
