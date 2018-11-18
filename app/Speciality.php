@@ -15,8 +15,6 @@ class Speciality extends Model
     public $timestamps = false;
 
     /**
-     * @user mohamed-ibrahim 2018
-     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function users()
@@ -24,6 +22,12 @@ class Speciality extends Model
         return $this->belongsToMany(User::class);
     }
 
+    /**
+     * @user mohamed-ibrahim 2018
+     *
+     * @param $query
+     * @return mixed
+     */
     public function scopeTop($query)
     {
         return $query->with('users')->get()
@@ -36,5 +40,18 @@ class Speciality extends Model
             ->sortByDesc(function ($speciality) {
                 return $speciality['value'];
             });
+    }
+
+    /**
+     * @user mohamed-ibrahim 2018
+     *
+     * @param $query
+     * @return mixed
+     */
+    public function scopeHaveDoctors($query)
+    {
+        return $query->Top()->filter(function($specialty) {
+            return $specialty['value'];
+        });
     }
 }

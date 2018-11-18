@@ -15,30 +15,30 @@
     <div class="content">
         <!-- BEGIN LOGIN FORM -->
         {!! Form::open(['class' => 'login-form', 'route' => 'login.post', 'method' => 'POST']) !!}
-        <h3 class="form-title font-green">Sign In</h3>
+        <h3 class="form-title font-green">@lang('pages.login.title')</h3>
 
         @component('layout.partials.components.bs3-input', [
             'name' => 'email',
             'type' => 'email',
-            'placeholder' => 'Email Address',
-            'title' => 'Email Address',
+            'placeholder' => trans('general.users.email'),
+            'title' => trans('general.users.email'),
             'labelClass' => 'visible-ie8 visible-ie9'
         ])@endcomponent
 
         @component('layout.partials.components.bs3-input', [
             'name' => 'password',
             'type' => 'password',
-            'placeholder' => 'Password',
-            'title' => 'Password',
+            'placeholder' => trans('general.users.password'),
+            'title' => trans('general.users.password'),
             'labelClass' => 'visible-ie8 visible-ie9'
         ])@endcomponent
 
         <div class="form-actions">
-            <button type="submit" class="btn green uppercase">Login</button>
+            <button type="submit" class="btn green uppercase">@lang('pages.login.submit')</button>
 
             {!! Form::label(
                 'remember',
-                Form::checkbox('remember', old('remember'), false, ['id' => 'remember']) . ' Remember',
+                Form::checkbox('remember', old('remember'), false, ['id' => 'remember']) . ' ' . trans('pages.login.remember'),
                 [
                     'class' => 'rememberme check',
                     'for' => 'remember'
@@ -46,32 +46,32 @@
                 false
             ) !!}
 
-            <a href="javascript:;" id="forget-password" class="forget-password">Forgot Password?</a>
+            <a href="javascript:;" id="forget-password" class="forget-password">@lang('pages.login.forgot.link')</a>
         </div>
         {!! Form::close() !!}
     <!-- END LOGIN FORM -->
         <!-- BEGIN FORGOT PASSWORD FORM -->
         {!! Form::open(['class' => 'forget-form', 'method' => 'POST', 'route' => 'password.email']) !!}
-        <h3 class="font-green">Forget Password ?</h3>
-        <p>Enter your e-mail address below to reset your password.</p>
+        <h3 class="font-green">@lang('pages.login.forgot.title')</h3>
+        <p>@lang('pages.login.forgot.subtitle')</p>
 
         @component ('layout.partials.components.bs3-input', [
             'name' => 'forget_email',
             'type' => 'email',
-            'title' => 'Email Address',
-            'placeholder' => 'Email Address',
+            'placeholder' => trans('general.users.email'),
+            'title' => trans('general.users.email'),
             'labelClass' => 'visible-ie8 visible-ie9'
         ])@endcomponent
 
         <div class="form-actions">
-            <button type="submit" class="btn btn-success uppercase">Submit</button>
-            <button type="button" id="back-btn" class="btn btn-default pull-right">Back</button>
+            <button type="submit" class="btn btn-success uppercase">@lang('pages.login.forgot.submit')</button>
+            <button type="button" id="back-btn" class="btn btn-default pull-right">@lang('pages.login.forgot.back')</button>
         </div>
     {!! Form::close() !!}
     <!-- END FORGOT PASSWORD FORM -->
     </div>
 
-    <div class="copyright"> 2018 © {{ config('app.name') }}.</div>
+    <div class="copyright">@lang('general.footer.copyright', ['app' => config('app.name')])</div>
 @endsection
 
 @push ('styles')
@@ -195,7 +195,7 @@
 
         .login .content .forget-password {
             font-size: 14px;
-            float: right;
+            float: {{ trans('general.dir') ? 'left' : 'right' }};
             display: inline-block;
             margin-top: 10px;
         }

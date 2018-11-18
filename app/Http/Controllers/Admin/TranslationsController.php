@@ -56,19 +56,6 @@ class TranslationsController extends Controller
         return array_unique($locales);
     }
 
-    public function postAdd($group = null)
-    {
-        $keys = explode("\n", request()->get('keys'));
-
-        foreach ($keys as $key) {
-            $key = trim($key);
-            if ($group && $key) {
-                $this->manager->missingKey('*', $group, $key);
-            }
-        }
-        return redirect()->back();
-    }
-
     public function postEdit($group = null)
     {
         if (!in_array($group, $this->manager->getConfig('exclude_groups'))) {
@@ -88,27 +75,12 @@ class TranslationsController extends Controller
         }
     }
 
-    public function postDelete($group = null, $key)
-    {
-        if (!in_array($group, $this->manager->getConfig('exclude_groups')) && $this->manager->getConfig('delete_enabled')) {
-            Translation::where('group', $group)->where('key', $key)->delete();
-            return ['status' => 'ok'];
-        }
-    }
-
     public function postImport(Request $request)
     {
-        $replace = $request->get('replace', false);
-        $counter = $this->manager->importTranslations($replace);
+        $this->manager->truncateTranslations();
+        $counter = $this->manager->importTranslations(true);
 
         return ['status' => 'ok', 'counter' => $counter];
-    }
-
-    public function postFind()
-    {
-        $numFound = $this->manager->findTranslations();
-
-        return ['status' => 'ok', 'counter' => (int)$numFound];
     }
 
     public function postPublish()
@@ -123,34 +95,5 @@ class TranslationsController extends Controller
         }
 
         return ['status' => 'ok'];
-    }
-
-    public function postAddGroup(Request $request)
-    {
-        $group = str_replace(".", '', $request->input('new-group'));
-        if ($group) {
-            return redirect()->action('\Barryvdh\TranslationManager\Controller@getView', $group);
-        } else {
-            return redirect()->back();
-        }
-    }
-
-    public function postAddLocale(Request $request)
-    {
-        $locales = $this->manager->getLocales();
-        $newLocale = str_replace([], '-', trim($request->input('new-locale')));
-        if (!$newLocale || in_array($newLocale, $locales)) {
-            return redirect()->back();
-        }
-        $this->manager->addLocale($newLocale);
-        return redirect()->back();
-    }
-
-    public function postRemoveLocale(Request $request)
-    {
-        foreach ($request->input('remove-locale', []) as $locale => $val) {
-            $this->manager->removeLocale($locale);
-        }
-        return redirect()->back();
     }
 }

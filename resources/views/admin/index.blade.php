@@ -67,27 +67,27 @@
             <div class="col-sm-6">
                 @component('layout.partials.components.portlet', [
                     'title' => trans('pages.admin.home.widgets.registrants.title'),
-                    'actionClass' => 'actions',
                     'icon' => 'fa fa-users'
                 ])
-                    @slot('body')
-                        <div id="registrants_statistics"
-                             class="portlet-body portlet-body-morris-fit morris-chart"
-                             style="height: 267px"></div>
-                    @endslot
+                    <div id="registrants_statistics"
+                         class="portlet-body portlet-body-morris-fit morris-chart"
+                         style="height: 267px"></div>
+
                     @slot('actions')
-                        <div class="btn-group btn-group-devided" data-toggle="buttons" id="registrants_options">
-                            <label class="btn btn-transparent grey-salsa btn-outline btn-circle btn-sm">
-                                <input type="radio" name="options" value="year" class="toggle"
-                                       id="option1">{{ trans('pages.admin.home.widgets.registrants.options.0') }}
-                            </label>
-                            <label class="btn btn-transparent grey-salsa btn-outline btn-circle btn-sm">
-                                <input type="radio" name="options" value="month" class="toggle"
-                                       id="option2">{{ trans('pages.admin.home.widgets.registrants.options.1') }}
-                            </label>
-                            <label class="btn btn-transparent grey-salsa btn-outline btn-circle btn-sm active">
-                                <input type="radio" name="options" value="week" class="toggle" id="option3"
-                                       checked>{{ trans('pages.admin.home.widgets.registrants.options.2') }}</label>
+                        <div class="actions">
+                            <div class="btn-group btn-group-devided" data-toggle="buttons" id="registrants_options">
+                                <label class="btn btn-transparent grey-salsa btn-outline btn-circle btn-sm">
+                                    <input type="radio" name="options" value="year" class="toggle"
+                                           id="option1">{{ trans('pages.admin.home.widgets.registrants.options.0') }}
+                                </label>
+                                <label class="btn btn-transparent grey-salsa btn-outline btn-circle btn-sm">
+                                    <input type="radio" name="options" value="month" class="toggle"
+                                           id="option2">{{ trans('pages.admin.home.widgets.registrants.options.1') }}
+                                </label>
+                                <label class="btn btn-transparent grey-salsa btn-outline btn-circle btn-sm active">
+                                    <input type="radio" name="options" value="week" class="toggle" id="option3"
+                                           checked>{{ trans('pages.admin.home.widgets.registrants.options.2') }}</label>
+                            </div>
                         </div>
                     @endslot
                 @endcomponent
@@ -98,11 +98,9 @@
                     'icon' => 'fa fa-hospital-alt',
                     'actions' => ''
                 ])
-                    @slot('body')
-                        <div id="specialties_statistics"
-                             class="portlet-body portlet-body-morris-fit"
-                             style="height: 267px"></div>
-                    @endslot
+                    <div id="specialties_statistics"
+                         class="portlet-body portlet-body-morris-fit"
+                         style="height: 267px"></div>
                 @endcomponent
             </div>
         </div>
@@ -120,7 +118,8 @@
                                 </div>
                                 <div class="stat-number">
                                     <div class="title">@lang('pages.admin.home.widgets.main.active')</div>
-                                    <div class="number" data-counter="counterup" data-value="{{ $allOnline = (new \App\User)->allOnline()->count() }}">{{ $allOnline }}</div>
+                                    <div class="number" data-counter="counterup"
+                                         data-value="{{ $allOnline = (new \App\User)->allOnline()->count() }}">{{ $allOnline }}</div>
                                 </div>
                             </div>
                         </div>
@@ -131,7 +130,8 @@
                                 </div>
                                 <div class="stat-number">
                                     <div class="title">@lang('pages.admin.home.widgets.main.sessions')</div>
-                                    <div class="number" data-counter="counterup" data-value="{{ $mostRecentOnline = (new \App\User)->mostRecentOnline()->count() }}">{{ $mostRecentOnline }}</div>
+                                    <div class="number" data-counter="counterup"
+                                         data-value="{{ $mostRecentOnline = (new \App\User)->mostRecentOnline()->count() }}">{{ $mostRecentOnline }}</div>
                                 </div>
                             </div>
                         </div>
@@ -155,10 +155,11 @@
                                     <td></td>
                                     <td></td>
                                 </tr>
-                                @empty
+                            @empty
                                 <tr>
                                     <td colspan="5" class="alert-warning">
-                                        <div class="">@lang('general.alerts.no_data', ['link' => '#', 'title' => trans('general.showAll', ['page' => trans_choice('pages.admin.users.doctors.title', 2)])])</div>
+                                        <div
+                                            class="">@lang('general.alerts.no_data', ['link' => '#', 'title' => trans('general.showAll', ['page' => trans_choice('pages.admin.users.doctors.title', 2)])])</div>
                                     </td>
                                 </tr>
                             @endforelse

@@ -28,4 +28,23 @@ return array (
   'submit' => 'ارسال',
   'update' => 'حفظ التغييرات',
   'dir' => 'rtl',
+  'datatable' => 
+  array (
+    'sProcessing' => 'جارٍ التحميل...',
+    'sLengthMenu' => 'أظهر _MENU_ مدخلات',
+    'sZeroRecords' => 'لم يعثر على أية سجلات',
+    'sInfo' => '',
+    'sInfoEmpty' => 'يعرض 0 إلى 0 من أصل 0 سجل',
+    'sInfoFiltered' => '(منتقاة من مجموع _MAX_ مُدخل)',
+    'sInfoPostFix' => '',
+    'sSearch' => 'ابحث:',
+    'sUrl' => '',
+    'oPaginate' => 
+    array (
+      'sFirst' => 'الأول',
+      'sPrevious' => 'السابق',
+      'sNext' => 'التالي',
+      'sLast' => 'الأخير',
+    ),
+  ),
 );

@@ -11,7 +11,7 @@ return array (
   'array' => 'The :attribute must be an array.',
   'before' => 'The :attribute must be a date before :date.',
   'before_or_equal' => 'The :attribute must be a date before or equal to :date.',
-  'between' => 
+  'between' =>
   array (
     'numeric' => 'The :attribute must be between :min and :max.',
     'file' => 'The :attribute must be between :min and :max kilobytes.',
@@ -31,14 +31,14 @@ return array (
   'exists' => 'The selected :attribute is invalid.',
   'file' => 'The :attribute must be a file.',
   'filled' => 'The :attribute field must have a value.',
-  'gt' => 
+  'gt' =>
   array (
     'numeric' => 'The :attribute must be greater than :value.',
     'file' => 'The :attribute must be greater than :value kilobytes.',
     'string' => 'The :attribute must be greater than :value characters.',
     'array' => 'The :attribute must have more than :value items.',
   ),
-  'gte' => 
+  'gte' =>
   array (
     'numeric' => 'The :attribute must be greater than or equal :value.',
     'file' => 'The :attribute must be greater than or equal :value kilobytes.',
@@ -53,21 +53,21 @@ return array (
   'ipv4' => 'The :attribute must be a valid IPv4 address.',
   'ipv6' => 'The :attribute must be a valid IPv6 address.',
   'json' => 'The :attribute must be a valid JSON string.',
-  'lt' => 
+  'lt' =>
   array (
     'numeric' => 'The :attribute must be less than :value.',
     'file' => 'The :attribute must be less than :value kilobytes.',
     'string' => 'The :attribute must be less than :value characters.',
     'array' => 'The :attribute must have less than :value items.',
   ),
-  'lte' => 
+  'lte' =>
   array (
     'numeric' => 'The :attribute must be less than or equal :value.',
     'file' => 'The :attribute must be less than or equal :value kilobytes.',
     'string' => 'The :attribute must be less than or equal :value characters.',
     'array' => 'The :attribute must not have more than :value items.',
   ),
-  'max' => 
+  'max' =>
   array (
     'numeric' => 'The :attribute may not be greater than :max.',
     'file' => 'The :attribute may not be greater than :max kilobytes.',
@@ -76,7 +76,7 @@ return array (
   ),
   'mimes' => 'The :attribute must be a file of type: :values.',
   'mimetypes' => 'The :attribute must be a file of type: :values.',
-  'min' => 
+  'min' =>
   array (
     'numeric' => 'The :attribute must be at least :min.',
     'file' => 'The :attribute must be at least :min kilobytes.',
@@ -96,7 +96,7 @@ return array (
   'required_without' => 'The :attribute field is required when :values is not present.',
   'required_without_all' => 'The :attribute field is required when none of :values are present.',
   'same' => 'The :attribute and :other must match.',
-  'size' => 
+  'size' =>
   array (
     'numeric' => 'The :attribute must be :size.',
     'file' => 'The :attribute must be :size kilobytes.',
@@ -108,11 +108,4 @@ return array (
   'unique' => 'The :attribute has already been taken.',
   'uploaded' => 'The :attribute failed to upload.',
   'url' => 'The :attribute format is invalid.',
-  'custom' => 
-  array (
-    'attribute-name' => 
-    array (
-      'rule-name' => 'custom-message',
-    ),
-  ),
 );

@@ -3,12 +3,20 @@
     font-weight: 900 !important;
 }
 
+.fa-fw {
+    width: 1.75em;
+}
+
 .portlet.box>.portlet-title {
     padding: 10px 15px;
 }
 
 .page-head .page-toolbar {
     padding: 6px 0;
+}
+
+.table .btn-group .btn {
+    margin-right: 0;
 }
 
 @media (max-width: 480px) {

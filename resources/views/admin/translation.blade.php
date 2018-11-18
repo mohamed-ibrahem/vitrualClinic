@@ -22,89 +22,87 @@
 
 @section('content')
     <div class="container">
-        @php
-            $tabsTitle = '';
-            $i = 0;
-
-            foreach($groups as $key => $value):
-                $tabsTitle .= '<li'. ($i === 0 ? ' class="active"' : '') .'><a href="#'. $key .'" data-toggle="tab">'. $value .'</a></li>';
-
-                $i++;
-            endforeach;
-        @endphp
         @component('layout.partials.components.portlet', [
             'title' => trans('pages.admin.translation.title'),
             'icon' => 'fa fa-globe',
             'type' => 'box green',
             'portletClass' => '',
-            'actionTag' => 'ul',
-            'actionClass' => 'nav nav-tabs',
-            'actions' => $tabsTitle,
         ])
             <div class="tab-content">
                 @foreach($groups as $_key => $value)
                     <div class="tab-pane{{ $loop->first ? ' active' : '' }}" id="{{ $_key }}">
                         <div class="table-responsive">
                             <table class="table table-striped table-bordered table-hover">
-                            <thead>
-                            <tr>
-                                <th width="15%">@lang('pages.admin.translation.key')</th>
-                                @foreach ($locales as $locale)
-                                    <th>{{ $locale }}</th>
-                                @endforeach
-                            </tr>
-                            </thead>
+                                <thead>
+                                <tr>
+                                    @foreach ($locales as $locale)
+                                        <th width="{{ (1 / count($locales)) * 100 }}%">{{ $locale }}</th>
+                                    @endforeach
+                                </tr>
+                                </thead>
 
-                            <tbody>
-                            <?php foreach ($translations[$_key] as $key => $translation): ?>
-                            <tr id="<?php echo htmlentities($key, ENT_QUOTES, 'UTF-8', false) ?>">
-                                <td><?php echo htmlentities($key, ENT_QUOTES, 'UTF-8', false) ?></td>
-                                <?php foreach ($locales as $locale): ?>
-                                <?php $t = isset($translation[$locale]) ? $translation[$locale] : null ?>
-                                <td>
-                                    <a href="#edit"
-                                       class="editable status-<?php echo $t ? $t->status : 0 ?> locale-<?php echo $locale ?>"
-                                       data-locale="<?php echo $locale ?>" data-name="<?php echo $locale . "|" . htmlentities($key, ENT_QUOTES, 'UTF-8', false) ?>"
-                                       id="username" data-type="textarea" data-pk="<?php echo $t ? $t->id : 0 ?>"
-                                       data-url="{{ action('Admin\TranslationsController@postEdit', ['group' => $_key]) }}"
-                                       data-title="Enter translation"><?php echo $t ? htmlentities($t->value, ENT_QUOTES, 'UTF-8', false) : '' ?></a>
-                                </td>
+                                <tbody>
+                                <?php foreach ($translations[$_key] as $key => $translation): ?>
+                                <tr id="<?php echo htmlentities($key, ENT_QUOTES, 'UTF-8', false) ?>">
+                                    <?php foreach ($locales as $locale): ?>
+                                    <?php $t = isset($translation[$locale]) ? $translation[$locale] : null ?>
+                                    <td>
+                                        <a href="#edit"
+                                           class="editable status-<?php echo $t ? $t->status : 0 ?> locale-<?php echo $locale ?>"
+                                           data-locale="<?php echo $locale ?>"
+                                           data-name="<?php echo $locale . "|" . htmlentities($key, ENT_QUOTES, 'UTF-8', false) ?>"
+                                           id="username" data-type="textarea" data-pk="<?php echo $t ? $t->id : 0 ?>"
+                                           data-url="{{ action('Admin\TranslationsController@postEdit', ['group' => $_key]) }}"
+                                           data-title="Enter translation"><?php echo $t ? htmlentities($t->value, ENT_QUOTES, 'UTF-8', false) : '' ?></a>
+                                    </td>
+                                    <?php endforeach; ?>
+                                </tr>
                                 <?php endforeach; ?>
-                            </tr>
-                            <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 @endforeach
             </div>
+
+            @slot ('actions')
+                <ul class="nav nav-tabs">
+                    @foreach($groups as $key => $value)
+                        <li{!! ($loop->first ? ' class="active"' : '') !!}>
+                            <a href="#{{ $key }}" data-toggle="tab">{{ $value }}</a>
+                        </li>
+                    @endforeach
+                </ul>
+            @endslot
         @endcomponent
     </div>
 @endsection
 
 @push('styles')
-    <link rel="stylesheet" href="{{ asset('assets/global/plugins/bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('assets/global/plugins/bootstrap-editable/bootstrap-editable/css/bootstrap-editable.css') }}">
 @endpush
 
 @push ('scripts')
-    <script src="{{ asset('assets/global/plugins/bootstrap-editable/bootstrap-editable/js/bootstrap-editable.min.js') }}"></script>
+    <script
+        src="{{ asset('assets/global/plugins/bootstrap-editable/bootstrap-editable/js/bootstrap-editable.min.js') }}"></script>
     <script>
-        $(function() {
-            $('.editable').editable().on('hidden', function(e, reason){
+        $(function () {
+            $('.editable').editable().on('hidden', function (e, reason) {
                 var locale = $(this).data('locale');
-                if(reason === 'save'){
+                if (reason === 'save') {
                     $(this).removeClass('status-0').addClass('status-1');
                 }
-                if(reason === 'save' || reason === 'nochange') {
-                    var $next = $(this).closest('tr').next().find('.editable.locale-'+locale);
-                    setTimeout(function() {
+                if (reason === 'save' || reason === 'nochange') {
+                    var $next = $(this).closest('tr').next().find('.editable.locale-' + locale);
+                    setTimeout(function () {
                         $next.editable('show');
                     }, 300);
                 }
             });
-            $('form').on('submit', function(e) {
+            $('form').on('submit', function (e) {
                 e.preventDefault();
-                $.post($(this).attr('action'), function() {
+                $.post($(this).attr('action'), function () {
                     window.location.reload();
                 });
             })

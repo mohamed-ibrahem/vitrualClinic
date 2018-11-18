@@ -10,17 +10,6 @@
 @endsection
 
 @section ('content')
-    @php
-        $tabsTitle = '';
-        $i = 0;
-
-        foreach($locales as $value):
-            $tabsTitle .= '<li'. ($i === 0 ? ' class="active margin-right-10"' : '') .'><a class="btn-circle" href="#'. $value .'" data-toggle="tab">'. $value .'</a></li>';
-
-            $i++;
-        endforeach;
-    @endphp
-
     <div class="container">
         <div class="row">
             <div class="col-sm-12">
@@ -28,12 +17,8 @@
                     'title' => trans('pages.admin.system.general.title'),
                     'icon' => 'fa fa-cogs fa-fw',
                     'type' => 'box green',
-                    'actionTag' => 'ul',
-                    'actionClass' => 'nav nav-tabs',
-                    'actions' => $tabsTitle
                 ])
                     {!! Form::open(['class' => 'form-horizontal', 'id' => 'main-settings']) !!}
-
                     <div class="tab-content">
                         @foreach($locales as $locale)
                             <div class="tab-pane{{ $loop->first ? ' active' : '' }}" id="{{ $locale }}">
@@ -50,6 +35,16 @@
                         @endforeach
                     </div>
                     {!! Form::close() !!}
+
+                    @slot ('actions')
+                        <ul class="nav nav-tabs">
+                            @foreach($locales as $value)
+                            <li{!! ($loop->first ? ' class="active margin-right-10"' : '') !!}>
+                                <a class="btn-circle" href="#{{ $value }}" data-toggle="tab">{{ $value }}</a>
+                            </li>
+                            @endforeach
+                        </ul>
+                    @endslot
                 @endcomponent
             </div>
         </div>
