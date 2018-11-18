@@ -1,17 +1,19 @@
-@extends ('layout.app')
+@extends ('layout.app', [
+    'wrapper' => Form::open(['class' => 'form-horizontal', 'id' => 'register_doctor', 'route' => 'admin.doctors.store']),
+    'endOfWrapper' => form::close()
+])
 
 @section ('title', trans('general.createNew', ['page' => trans_choice('pages.admin.users.doctors.title', 1)]))
 
 @section ('toolbar')
-    <a href="javascript:;" class="btn navbar-btn btn-primary" onclick="event.preventDefault(); document.getElementById('register_doctor').submit();">
+    <button type="submit" class="btn navbar-btn btn-primary">
         <i class="fa fa-user-plus fa-fw"></i>
         @lang('general.submit')
-    </a>
+    </button>
 @endsection
 
 @section ('content')
     <div class="container">
-        {!! Form::open(['class' => 'form-horizontal', 'id' => 'register_doctor', 'route' => 'admin.doctors.store']) !!}
         <div class="row">
             <div class="col-sm-8">
                 @component('layout.partials.components.portlet', [
@@ -591,7 +593,6 @@
                 ])@endcomponent
             </div>
         </div>
-        {!! form::close() !!}
     </div>
 @endsection
 
@@ -731,6 +732,7 @@
                             }
                         },
                         errorPlacement: function (error, element) {
+                            $('button[type="submit"]').button('reset');
                             if (element.parent('.input-group').length) {
                                 error.insertAfter(element.parent());
                             } else {
