@@ -1,10 +1,10 @@
 <div class="hor-menu">
     <ul class="nav navbar-nav">
-        <li class="menu-dropdown{{ \Request::is('*/admin') ? ' active' : '' }}">
+        <li class="menu-dropdown{{ \Request::is('*admin') ? ' active' : '' }}">
             <a href="{{ route('admin.home') }}">@lang('pages.admin.home.title')</a>
         </li>
 
-        <li class="menu-dropdown mega-menu-dropdown mega-menu-full{{ (\Request::is('*/doctors*') || \Request::is('*/members*') || \Request::is('*/admins*')) ? ' active' : '' }}">
+        <li class="menu-dropdown mega-menu-dropdown mega-menu-full{{ (\Request::is('*doctors*') || \Request::is('*members*') || \Request::is('*admins*')) ? ' active' : '' }}">
             <a href="javascript:;">@lang('pages.admin.users.title') <span class="arrow"></span></a>
             <ul class="dropdown-menu">
                 <li>
@@ -97,15 +97,15 @@
             </ul>
         </li>
 
-        <li class="menu-dropdown{{ \Request::is('*/admin/mobile') ? ' active' : '' }}">
+        <li class="menu-dropdown{{ \Request::is('*admin/mobile') ? ' active' : '' }}">
             <a href="{{ route('admin.home') }}">@lang('pages.admin.mobile.title')</a>
         </li>
 
-        <li class="menu-dropdown{{ \Request::is('*/admin/languages') ? ' active' : '' }}">
+        <li class="menu-dropdown{{ \Request::is('*admin/languages') ? ' active' : '' }}">
             <a href="{{ url('admin/languages') }}">@lang('pages.admin.translation.title')</a>
         </li>
 
-        <li class="menu-dropdown{{ \Request::is('*/admin/system') ? ' active' : '' }}">
+        <li class="menu-dropdown{{ \Request::is('*admin/system') ? ' active' : '' }}">
             <a href="{{ route('admin.settings') }}">@lang('pages.admin.system.title')</a>
         </li>
     </ul>

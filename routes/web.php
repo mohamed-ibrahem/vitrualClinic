@@ -18,13 +18,14 @@ Route::group([
 ], function () {
     Route::get('/', 'Admin\PagesController@index')->name('home');
 
-    Route::get('/system', 'Admin\PagesController@settings')->name('settings');
-    Route::post('/system', 'Admin\PagesController@postSettings');
+    Route::get('/system/{page?}', 'Admin\PagesController@settings')->name('settings');
+    Route::post('/system/{page?}', 'Admin\PagesController@postSettings');
 
-    Route::resource('admins', 'Admin\AdminsController');
-    Route::resource('doctors', 'Admin\DoctorsController');
-    Route::resource('members', 'Admin\MembersController');
-
+    Route::resources([
+        'admins' => 'Admin\AdminsController',
+        'doctors' => 'Admin\DoctorsController',
+        'members' => 'Admin\MembersController'
+    ]);
     Route::post('auth/logout', 'Auth\LoginController@logout')
         ->name('logout');
     Route::group([

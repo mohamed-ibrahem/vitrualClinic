@@ -35,7 +35,7 @@ class TranslationsController extends Controller
             $translations[$translation->group][$translation->key][$translation->locale] = $translation;
         }
 
-        return view('admin.translation')
+        return view('admin.pages.translation')
             ->with('translations', $translations)
             ->with('locales', $locales)
             ->with('groups', $groups);
