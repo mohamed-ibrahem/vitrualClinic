@@ -54,7 +54,7 @@ class MembersController extends Controller
             'name' => $request->input('fname') . ' ' . $request->input('lname'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
-            'role_id' => 2,
+            'role_id' => 3,
             'info' => [
                 'gender' => $request->input('gender'),
                 'age' => $request->input('age'),
