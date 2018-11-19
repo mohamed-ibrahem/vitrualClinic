@@ -3,11 +3,13 @@
 return array (
   'search' => 'Search',
   'submit' => 'Submit',
+  'cancel' => 'Cancel',
   'save' => 'Save',
   'update' => 'Update',
   'reports' => 'Reports',
   'showAll' => 'Show All :page',
   'createNew' => 'New :page',
+  'edit' => 'Update :page',
   'settings' => 'Settings',
   'alerts' =>
   array (
@@ -39,6 +41,7 @@ return array (
           'show' => 'Show profile',
           'edit' => 'Edit :user',
           'ban' => 'Ban :user',
+          'unban' => 'Unban :user',
           'delete' => 'Delete'
       ],
     'sProcessing' => 'Processing...',

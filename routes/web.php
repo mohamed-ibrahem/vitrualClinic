@@ -26,6 +26,11 @@ Route::group([
         'doctors' => 'Admin\DoctorsController',
         'members' => 'Admin\MembersController'
     ]);
+    Route::patch('/doctors/{doctor}/ban', 'Admin\DoctorsController@ban')->name('doctors.ban');
+    Route::patch('/doctors/{doctor}/unban', 'Admin\DoctorsController@unban')->name('doctors.unban');
+    Route::patch('/members/{member}/ban', 'Admin\DoctorsController@ban')->name('members.ban');
+    Route::patch('/members/{member}/unban', 'Admin\DoctorsController@unban')->name('members.unban');
+
     Route::post('auth/logout', 'Auth\LoginController@logout')
         ->name('logout');
     Route::group([

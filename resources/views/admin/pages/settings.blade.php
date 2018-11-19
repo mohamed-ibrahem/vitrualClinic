@@ -1,9 +1,12 @@
-@extends ('layout.app')
+@extends ('layout.app', [
+    'wrapper' => Form::open(['class' => 'form-horizontal', 'id' => 'main-settings']),
+    'endOfWrapper' => form::close()
+])
 
 @section('title', trans('pages.admin.system.title'))
 
 @section('toolbar')
-    <button class="btn navbar-btn btn-primary" onclick="event.preventDefault(); document.getElementById('main-settings').submit();">
+    <button class="btn navbar-btn btn-primary" type="submit">
         <i class="fa fa-save fa-fw"></i>
         @lang('general.save')
     </button>
@@ -18,7 +21,6 @@
                     'icon' => 'fa fa-cogs fa-fw',
                     'type' => 'box green',
                 ])
-                    {!! Form::open(['class' => 'form-horizontal', 'id' => 'main-settings']) !!}
                     <div class="tab-content">
                         @foreach($locales as $locale)
                             <div class="tab-pane{{ $loop->first ? ' active' : '' }}" id="{{ $locale }}">
@@ -34,7 +36,6 @@
                             </div>
                         @endforeach
                     </div>
-                    {!! Form::close() !!}
 
                     @slot ('actions')
                         <ul class="nav nav-tabs">

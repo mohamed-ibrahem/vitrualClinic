@@ -1,4 +1,4 @@
-<div class="portlet{{ isset($type) ? ' ' . $type : ' light' }}">
+<div class="portlet{{ isset($type) ? ' ' . $type : ' light' }}"{!! isset($extra) ? (' '. implode(' ', $extra)) : '' !!}>
     @if(isset($title) || isset($actions))
         <div class="portlet-title{{ isset($portletClass) ? $portletClass : '' }}">
             <div class="caption">
