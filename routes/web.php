@@ -17,8 +17,22 @@ Route::group([
     'middleware' => ['auth', 'role:admin']
 ], function () {
     Route::get('/', 'Admin\PagesController@index')->name('home');
-    Route::get('/system', 'Admin\PagesController@settings')->name('settings');
-    Route::post('/system', 'Admin\PagesController@postSettings');
+
+    Route::get('/system/{page?}', 'Admin\PagesController@settings')->name('settings');
+    Route::post('/system/{page?}', 'Admin\PagesController@postSettings');
+
+    Route::resources([
+        'admins' => 'Admin\AdminsController',
+        'doctors' => 'Admin\DoctorsController',
+        'members' => 'Admin\MembersController'
+    ], [
+        'except' => ['show']
+    ]);
+    Route::patch('/doctors/{doctor}/ban', 'Admin\DoctorsController@ban')->name('doctors.ban');
+    Route::patch('/doctors/{doctor}/unban', 'Admin\DoctorsController@unban')->name('doctors.unban');
+    Route::patch('/members/{member}/ban', 'Admin\DoctorsController@ban')->name('members.ban');
+    Route::patch('/members/{member}/unban', 'Admin\DoctorsController@unban')->name('members.unban');
+
     Route::group([
         'prefix' => 'languages',
         'as' => 'languages.'
@@ -28,6 +42,7 @@ Route::group([
         Route::post('/import', 'Admin\TranslationsController@postImport');
         Route::post('/publish', 'Admin\TranslationsController@postPublish');
     });
+
     Route::post('auth/logout', 'Auth\LoginController@logout')
         ->name('logout');
 });
@@ -48,11 +63,6 @@ Route::group([
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
     Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')
         ->name('password.reset');
-
-    Route::get('register/{role?}', 'Auth\RegisterController@showRegistrationForm')
-        ->name('register');
-    Route::post('register/{role}', 'Auth\RegisterController@register')
-        ->name('register.post');
 });
 
 Route::get('/', 'PagesController@index')->name('index');

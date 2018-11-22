@@ -131,7 +131,7 @@
     <style>
         .page-header {
             height: 70vh;
-            background-image: url("https://vitrualclinic.localhost/assets/layout/img/shutterstock_202325818-e1433766480815-890x400.jpg");
+            background-image: url("{{ asset('assets/layout/img/shutterstock_202325818-e1433766480815-890x400.jpg') }}");
             background-position: center bottom;
             -webkit-background-size: cover;
             background-size: cover;
@@ -215,7 +215,7 @@
         }
 
         .phoneapp {
-            background-image: url("https://vitrualclinic.localhost/assets/layout/img/5.jpg");
+            background-image: url("{{ asset('assets/layout/img/5.jpg') }}");
         }
 
         .phoneapp .col-md-8 {

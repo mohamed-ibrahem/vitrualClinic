@@ -16,6 +16,10 @@
     <meta content="{{ config('app.name') }}" name="author" />
     <!-- BEGIN GLOBAL MANDATORY STYLES -->
     <link href="//fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&subset=all" rel="stylesheet" type="text/css" />
+    @if (trans('general.dir') === 'rtl')
+        <link rel="stylesheet" type="text/css" href="//www.fontstatic.com/f=dubai" />
+    @endif
+
     @unless (isset($no_loading) && $no_loading)
         <script src="{{ asset('assets/global/plugins/pace/pace.min.js') }}"></script>
         <link rel="stylesheet" href="{{ assets_dir('assets/global/plugins/pace/themes/pace-theme-flash.css') }}">

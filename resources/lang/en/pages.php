@@ -135,4 +135,18 @@ return array (
     ),
     'top_specialties' => 'Popular Specialists',
   ),
+  'login' => 
+  array (
+    'title' => 'Sign in',
+    'forgot' => 
+    array (
+      'link' => 'Forgot password?',
+      'title' => 'Forget Password ?',
+      'subtitle' => 'Enter your e-mail address below to reset your password.',
+      'back' => 'Back',
+      'submit' => 'Submit',
+    ),
+    'remember' => 'Remember',
+    'submit' => 'Login',
+  ),
 );

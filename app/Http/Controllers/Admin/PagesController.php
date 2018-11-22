@@ -29,18 +29,20 @@ class PagesController extends Controller
         $registrants = $this->getUsersRegistrationsDate();
         $specialties = $this->getTopSpecialties();
 
-        return view('admin.index', compact('doctors', 'members', 'messages', 'registrants', 'specialties'));
+        return view('admin.pages.index', compact('doctors', 'members', 'messages', 'registrants', 'specialties'));
     }
 
     /**
      * @project VirtualClinic - Nov/2018
      *
      * @param \Barryvdh\TranslationManager\Manager $manager
+     * @param $page
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function settings(\Barryvdh\TranslationManager\Manager $manager)
+    public function settings(\Barryvdh\TranslationManager\Manager $manager, $page = 'admin.pages.settings')
     {
-        return view('admin.settings', [
+        return view($page, [
             'locales' => $manager->getLocales()
         ]);
     }

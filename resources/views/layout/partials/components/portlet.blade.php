@@ -1,17 +1,14 @@
-<div class="portlet{{ isset($type) ? ' ' . $type : ' light' }}">
-    @isset($title)
+<div class="portlet{{ isset($type) ? ' ' . $type : ' light' }}"{!! isset($extra) ? (' '. implode(' ', $extra)) : '' !!}>
+    @if(isset($title) || isset($actions))
         <div class="portlet-title{{ isset($portletClass) ? $portletClass : '' }}">
             <div class="caption">
                 @isset($icon)<i class="{{ $icon }}"></i>@endisset
-                <span class="caption-subject bold">{!! $title !!}</span>
+                @isset($title)<span class="caption-subject bold">{!! $title !!}</span>@endisset
                 @isset($subtitle)<span class="caption-helper">{!! $subtitle !!}</span>@endisset
             </div>
 
             @isset ($actions)
-                <{{ isset($actionTag) ? $actionTag : 'div' }} class="{{ isset($actionClass) ? $actionClass : 'actions tools' }}">
-                    {!! $actions !!}
-                </{{isset( $actionTag) ?  $actionTag : 'div' }}>
-
+                {!! $actions !!}
             @else
                 <div class="actions tools">
                     <a href="javascript:;" class="collapse"></a>
@@ -19,7 +16,7 @@
                 </div>
             @endisset
         </div>
-    @endisset
+    @endif
 
     @isset($body)
         {!! $body !!}

@@ -7,10 +7,11 @@ use Cog\Laravel\Ban\Traits\Bannable;
 use HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Cog\Contracts\Ban\Bannable as BannableContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Cashier\Billable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements BannableContract
 {
     use Notifiable, Billable, UsersOnlineTrait, Bannable;
 
@@ -32,7 +33,7 @@ class User extends Authenticatable
 
     /** @var array $appends */
     protected $appends = [
-        'profile_pic'
+        'profile_pic', 'country'
     ];
 
     /**
@@ -136,5 +137,54 @@ class User extends Authenticatable
     public function getProfilePicAttribute()
     {
         return asset($this->info->get('profile_pic', 'assets\layout\img\avatar.png'));
+    }
+
+    /**
+     * @return string
+     */
+    public function getPhoneAttribute()
+    {
+        if ($this->info->has('phone')) {
+            $arr = $this->info->get('phone', ['country' => '', 'number' => '']);
+
+            return '+' . $arr['country'] . $arr['number'];
+        }
+
+        return false;
+    }
+
+    public function getCountryAttribute()
+    {
+        if ($this->info->has('country'))
+            return asset('assets/global/img/flags/' . $this->info->get('country', 'EG') . '.png');
+
+        return false;
+    }
+
+    /**
+     * @project VirtualClinic - Nov/2018
+     *
+     * @param $key
+     * @param $value
+     * @return void
+     */
+    public function updateValue($key, $value)
+    {
+        $this->update([
+            'info' => $this->info->put($key, $value)
+        ]);
+    }
+
+    /**
+     * @project VirtualClinic - Nov/2018
+     *
+     * @param $values
+     * @return void
+     */
+    public function updateValues($values)
+    {
+        $this->update([
+            'info' => $this->info->merge($values)
+        ]);
     }
 }

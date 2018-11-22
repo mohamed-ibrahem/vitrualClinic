@@ -590,7 +590,7 @@ var App = function() {
     };
 
    var handleButtons = function() {
-       $('button').on('click', function() {
+       $('.loading, button:not([type="button"])').on('click', function() {
            $(this).button('loading');
        });
    };

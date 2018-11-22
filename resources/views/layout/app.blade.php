@@ -56,6 +56,7 @@
     <div class="page-container">
         <!-- BEGIN CONTENT -->
         <div class="page-content-wrapper">
+            {!! isset($wrapper) ? $wrapper : '' !!}
             <!-- BEGIN CONTENT BODY -->
             <!-- BEGIN PAGE HEAD-->
             <div class="page-head">
@@ -101,6 +102,7 @@
             </div>
             <!-- END PAGE CONTENT BODY -->
             <!-- END CONTENT BODY -->
+            {!! isset($endOfWrapper) ? $endOfWrapper : '' !!}
         </div>
         <!-- END CONTENT -->
     </div>
