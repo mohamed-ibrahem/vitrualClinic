@@ -606,16 +606,6 @@
                         </div>
                         <div class="tab-pane" id="tab3">
                             @component('layout.partials.components.bs3-input', [
-                                   'name' => 'program',
-                                   'type' => 'select',
-                                   'list' => [10 => 'Program 1', 40 => 'Program 2', 100 => 'Program 3'],
-                                   'value' => isset($user) ? $user->program : 10,
-                                   'title' => 'Chose program type',
-                                   'labelClass' => 'col-md-4',
-                                   'div' => '<div class="col-md-8">',
-                                   'help_block' => '<span class="amount">10</span>$ per month'
-                               ])@endcomponent
-                            @component('layout.partials.components.bs3-input', [
                             'name' => 'description',
                             'type' => 'textarea',
                             'title' => 'Description',

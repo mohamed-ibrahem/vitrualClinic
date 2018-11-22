@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2018-11-08 12:15:27.
+    * Generated on 2018-11-22 12:16:58.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -135,7 +135,6 @@ namespace PHPSTORM_META {
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'form' => \Collective\Html\FormBuilder::class,
-        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
@@ -297,7 +296,6 @@ namespace PHPSTORM_META {
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'form' => \Collective\Html\FormBuilder::class,
-        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
@@ -459,7 +457,6 @@ namespace PHPSTORM_META {
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'form' => \Collective\Html\FormBuilder::class,
-        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
@@ -621,7 +618,6 @@ namespace PHPSTORM_META {
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'form' => \Collective\Html\FormBuilder::class,
-        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
@@ -783,7 +779,6 @@ namespace PHPSTORM_META {
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'form' => \Collective\Html\FormBuilder::class,
-        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
@@ -945,7 +940,6 @@ namespace PHPSTORM_META {
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'form' => \Collective\Html\FormBuilder::class,
-        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
@@ -1107,7 +1101,6 @@ namespace PHPSTORM_META {
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
         'form' => \Collective\Html\FormBuilder::class,
-        'geoip' => \Torann\GeoIP\GeoIP::class,
         'hash' => \Illuminate\Hashing\HashManager::class,
         'hash.driver' => \Illuminate\Hashing\BcryptHasher::class,
         'html' => \Collective\Html\HtmlBuilder::class,
