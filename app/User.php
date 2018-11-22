@@ -33,7 +33,7 @@ class User extends Authenticatable implements BannableContract
 
     /** @var array $appends */
     protected $appends = [
-        'profile_pic'
+        'profile_pic', 'country'
     ];
 
     /**
@@ -149,6 +149,14 @@ class User extends Authenticatable implements BannableContract
 
             return '+' . $arr['country'] . $arr['number'];
         }
+
+        return false;
+    }
+
+    public function getCountryAttribute()
+    {
+        if ($this->info->has('country'))
+            return asset('assets/global/img/flags/' . $this->info->get('country', 'EG') . '.png');
 
         return false;
     }

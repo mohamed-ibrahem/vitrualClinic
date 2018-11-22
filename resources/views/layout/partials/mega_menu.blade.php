@@ -15,7 +15,7 @@
                                     <li><h3>@choice('pages.admin.users.admins.title', 2)</h3></li>
                                     <li{!! Request::is('*admins') ? ' class="active"' : '' !!}>
                                         <a href="{{ route('admin.admins.index') }}">
-                                            <i class="fa fa-user-md"></i>
+                                            <i class="fa fa-user"></i>
                                             @lang('general.showAll', ['page' => trans_choice('pages.admin.users.admins.title', 2)])
                                         </a>
                                     </li>
@@ -44,13 +44,13 @@
                                     </li>
                                     <li>
                                         <a href="components_date_time_pickers.html">
-                                            <i class="fa fa-user-md"></i>
+                                            <i class="fa fa-chart-bar"></i>
                                             @lang('general.reports')
                                         </a>
                                     </li>
                                     <li>
                                         <a href="components_date_time_pickers.html">
-                                            <i class="fa fa-user-md"></i>
+                                            <i class="fa fa-cog"></i>
                                             @lang('general.settings')
                                         </a>
                                     </li>
@@ -61,31 +61,37 @@
                                     <li><h3>@choice('pages.admin.users.members.title', 2)</h3></li>
                                     <li{!! Request::is('*members') ? ' class="active"' : '' !!}>
                                         <a href="{{ route('admin.members.index') }}">
-                                            <i class="fa fa-user-md"></i>
+                                            <i class="fa fa-user"></i>
                                             @lang('general.showAll', ['page' => trans_choice('pages.admin.users.members.title', 2)])
                                         </a>
                                     </li>
                                     <li{!! Request::is('*members/create') ? ' class="active"' : '' !!}>
                                         <a href="{{ route('admin.members.create') }}">
-                                            <i class="fa fa-user-md"></i>
+                                            <i class="fa fa-user-plus"></i>
+                                            @lang('general.createNew', ['page' => trans_choice('pages.admin.users.members.title', 2)])
+                                        </a>
+                                    </li>
+                                    <li{!! Request::is('*members/programs') ? ' class="active"' : '' !!}>
+                                        <a href="{{ route('admin.members.create') }}">
+                                            <i class="fa fa-columns"></i>
                                             @lang('pages.admin.users.members.programs')
                                         </a>
                                     </li>
                                     <li>
                                         <a href="components_date_time_pickers.html">
-                                            <i class="fa fa-user-md"></i>
+                                            <i class="fa fa-credit-card"></i>
                                             @lang('pages.admin.users.members.paymentMethods')
                                         </a>
                                     </li>
                                     <li>
                                         <a href="components_date_time_pickers.html">
-                                            <i class="fa fa-user-md"></i>
+                                            <i class="fa fa-chart-bar"></i>
                                             @lang('general.reports')
                                         </a>
                                     </li>
                                     <li>
                                         <a href="components_date_time_pickers.html">
-                                            <i class="fa fa-user-md"></i>
+                                            <i class="fa fa-cog"></i>
                                             @lang('general.settings')
                                         </a>
                                     </li>

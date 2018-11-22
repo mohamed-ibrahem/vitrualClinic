@@ -19,8 +19,8 @@
                 <tr>
                     <th colspan="2" width="25%">{{ trans_choice('pages.admin.users.doctors.title', 1) }}</th>
                     <th>Specialties</th>
-                    <th>Contacts</th>
-                    <th width="20%"></th>
+                    <th width="10%">Contacts</th>
+                    <th width="15%"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -51,11 +51,15 @@
                             @endif
                         </td>
                         <td>
-                            <a href="mailto:{{ $user->email }}">
+                            <a class="btn btn-xs btn-default tooltips"
+                               data-container="body" data-original-title="Email {{ $user->name }}"
+                               href="mailto:{{ $user->email }}">
                                 <i class="fa fa-fw fa-comment"></i>
                             </a>
                             @if ($user->phone)
-                                <a href="tel:{{ $user->phone }}">
+                                <a class="btn btn-xs btn-default tooltips"
+                                   data-container="body" data-original-title="Call {{ $user->name }}"
+                                   href="tel:{{ $user->phone }}">
                                     <i class="fa fa-fw fa-phone"></i>
                                 </a>
                             @endif
@@ -100,14 +104,14 @@
             @component('layout.partials.components.dataTable', [
                 'title' => 'Banned ' .trans_choice('pages.admin.users.doctors.title', 2)
             ])
-                <table class="table table-striped table-hover order-column" id="لbanned_doctors">
+                <table class="table table-striped table-hover order-column" id="banned_doctors">
                     <thead>
                     <tr>
                         <th colspan="2" width="25%">{{ trans_choice('pages.admin.users.doctors.title', 1) }}</th>
                         <th>Contacts</th>
                         <th>Ban reason</th>
                         <th>Ban expire at</th>
-                        <th width="20%"></th>
+                        <th width="15%"></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -120,11 +124,15 @@
                                 {{ $user->name }}
                             </td>
                             <td>
-                                <a href="mailto:{{ $user->email }}">
+                                <a class="btn btn-xs btn-default tooltips"
+                                   data-container="body" data-original-title="Email {{ $user->name }}"
+                                   href="mailto:{{ $user->email }}">
                                     <i class="fa fa-fw fa-comment"></i>
                                 </a>
                                 @if ($user->phone)
-                                    <a href="tel:{{ $user->phone }}">
+                                    <a class="btn btn-xs btn-default tooltips"
+                                       data-container="body" data-original-title="Call {{ $user->name }}"
+                                       href="tel:{{ $user->phone }}">
                                         <i class="fa fa-fw fa-phone"></i>
                                     </a>
                                 @endif
@@ -199,9 +207,10 @@
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
 
-                            <img src="{{ $user->profile_pic }}" alt="{{ $user->name }}" width="55" class="pull-left img-circle margin-right-10">
+                            <img src="{{ $user->profile_pic }}" alt="{{ $user->name }}" width="55"
+                                 class="pull-left img-circle margin-right-10">
                             <h4 class="modal-title">
-                                {{ $user->name }}<br />
+                                {{ $user->name }}<br/>
                                 <small>{{ str_limit(
                                     implode(', ', $user->specialities->map(function($specialty) {
                                         return $specialty->display_name;
@@ -211,7 +220,77 @@
                         </div>
 
                         <div class="modal-body">
-                            <h1>Soon</h1>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @component('layout.partials.components.portlet', [
+                                        'title' => 'General Information',
+                                        'icon' => 'fa fa-user'
+                                    ])
+                                        @slot ('body')
+                                            <div class="portlet-body">
+                                                <table class="table table-striped">
+                                                    <tr>
+                                                        <td width="50%">Name</td>
+                                                        <td width="50%">{{ $user->name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="50%">Gender</td>
+                                                        <td width="50%">{{ $user->info->get('gender') }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="50%">Age</td>
+                                                        <td width="50%">{{ $user->info->get('age') }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="50%">Country</td>
+                                                        <td width="50%"><img src="{{ $user->country }}" alt=""></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        @endslot
+                                    @endcomponent
+                                </div>
+                                <div class="col-md-6">
+                                    @component('layout.partials.components.portlet', [
+                                        'title' => 'Account',
+                                        'icon' => 'fa fa-user',
+                                        'actions' => ''
+                                    ])
+                                        @slot ('body')
+                                            <div class="portlet-body">
+                                                <table class="table table-striped">
+                                                    <tr>
+                                                        <td width="50%">Email</td>
+                                                        <td width="50%">{{ $user->email }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="50%">Phone</td>
+                                                        <td width="50%">{{ $user->phone }}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        @endslot
+                                    @endcomponent
+
+                                    @component('layout.partials.components.portlet', [
+                                        'title' => 'Specialities',
+                                        'icon' => 'fa fa-user',
+                                        'actions' => ''
+                                    ])
+                                        @slot ('body')
+                                            <div class="portlet-body">
+                                                <table class="table table-striped">
+                                                    @foreach ($user->specialities as $speciality)
+                                                        <tr>
+                                                            <td>{{ $speciality->display_name }}</td>
+                                                        </tr>
+                                                    @endforeach
+                                                </table>
+                                            </div>
+                                        @endslot
+                                    @endcomponent
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -302,7 +381,7 @@
 
     <script>
         $(function () {
-            var oTable = $('table').dataTable({
+            var oTable = $('#doctors, #banned_doctors').dataTable({
                 "language": @json (trans('general.datatable')),
                 "columnDefs": [{
                     "targets": [0],

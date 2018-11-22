@@ -81,7 +81,7 @@
             @component('layout.partials.components.dataTable', [
                 'title' => 'Banned ' .trans_choice('pages.admin.users.members.title', 2)
             ])
-                <table class="table table-striped table-hover order-column" id="لbanned_members">
+                <table class="table table-striped table-hover order-column" id="banned_members">
                     <thead>
                     <tr>
                         <th colspan="2" width="25%">{{ trans_choice('pages.admin.users.members.title', 1) }}</th>
@@ -192,7 +192,59 @@
                         </div>
 
                         <div class="modal-body">
-                            <h1>Soon</h1>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    @component('layout.partials.components.portlet', [
+                                        'title' => 'General Information',
+                                        'icon' => 'fa fa-user'
+                                    ])
+                                        @slot ('body')
+                                            <div class="portlet-body">
+                                                <table class="table table-striped">
+                                                    <tr>
+                                                        <td width="50%">Name</td>
+                                                        <td width="50%">{{ $user->name }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="50%">Gender</td>
+                                                        <td width="50%">{{ $user->info->get('gender') }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="50%">Age</td>
+                                                        <td width="50%">{{ $user->info->get('age') }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="50%">Country</td>
+                                                        <td width="50%"><img src="{{ $user->country }}" alt=""></td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        @endslot
+                                    @endcomponent
+                                </div>
+                                <div class="col-md-6">
+                                    @component('layout.partials.components.portlet', [
+                                        'title' => 'Account',
+                                        'icon' => 'fa fa-user',
+                                        'actions' => ''
+                                    ])
+                                        @slot ('body')
+                                            <div class="portlet-body">
+                                                <table class="table table-striped">
+                                                    <tr>
+                                                        <td width="50%">Email</td>
+                                                        <td width="50%">{{ $user->email }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td width="50%">Phone</td>
+                                                        <td width="50%">{{ $user->phone }}</td>
+                                                    </tr>
+                                                </table>
+                                            </div>
+                                        @endslot
+                                    @endcomponent
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -283,7 +335,7 @@
 
     <script>
         $(function () {
-            var oTable = $('table').dataTable({
+            var oTable = $('#members, #banned_members').dataTable({
                 "language": @json (trans('general.datatable')),
                 "columnDefs": [{
                     "targets": [0],

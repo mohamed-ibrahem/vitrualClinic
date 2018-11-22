@@ -94,7 +94,7 @@
                             @component('layout.partials.components.bs3-input', [
                                 'type' => 'select',
                                 'name' => 'country',
-                                'title' => 'Countries',
+                                'title' => 'Country',
                                 'labelClass' => 'col-sm-4',
                                 'div' => '<div class="col-sm-8">',
                                 'value' => isset($user) ? $user->info->get('country', 'EG') : 'EG',
