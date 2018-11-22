@@ -29,7 +29,7 @@
                         <td>{{ $user->getKey() }}</td>
                         <td>
                             <div class="label label-primary pull-left" style="margin:0 10px;">
-                                #{{ str_pad($user->getKey(), 4, '0', STR_PAD_LEFT) }}</div>
+                                #{{ $user->getKey() }}</div>
                             {{ $user->name }}
                         </td>
                         <td>
@@ -120,7 +120,7 @@
                             <td>{{ $user->getKey() }}</td>
                             <td>
                                 <div class="label label-primary pull-left" style="margin:0 10px;">
-                                    #{{ str_pad($user->getKey(), 4, '0', STR_PAD_LEFT) }}</div>
+                                    #{{ $user->getKey() }}</div>
                                 {{ $user->name }}
                             </td>
                             <td>
@@ -388,7 +388,6 @@
                     "visible": false,
                 }],
                 "ordering": false,
-                "bStateSave": true,
                 buttons: [
                     {extend: 'print', className: 'btn default'},
                     {extend: 'pdf', className: 'btn default'},
@@ -398,6 +397,10 @@
                     [0, "asc"]
                 ]
             });
+
+            @if (Request::has('q'))
+            oTable.fnFilter({{ Request::get('q') }});
+            @endif
 
             $('#action_tool > li > a.tool-action').on('click', function () {
                 var action = $(this).attr('data-action');

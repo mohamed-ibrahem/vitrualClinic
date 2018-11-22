@@ -177,7 +177,6 @@
                     "visible": false,
                 }],
                 "ordering": false,
-                "bStateSave": true,
                 buttons: [
                     {extend: 'print', className: 'btn default'},
                     {extend: 'pdf', className: 'btn default'},
@@ -187,6 +186,10 @@
                     [0, "asc"]
                 ]
             });
+
+            @if (Request::has('q'))
+            oTable.fnFilter({{ Request::get('q') }});
+            @endif
 
             $('#action_tool > li > a.tool-action').on('click', function () {
                 var action = $(this).attr('data-action');

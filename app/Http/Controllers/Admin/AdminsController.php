@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Role;
 use App\User;
 use Hash;
 use Illuminate\Http\Request;
@@ -53,7 +54,7 @@ class AdminsController extends Controller
         ]);
 
         if ($request->hasFile('profile_pic')) {
-            $name = str_pad($admin->getKey(), 4, '0', STR_PAD_LEFT) .
+            $name = $admin->id .
                 '.' . $request->file('profile_pic')->getClientOriginalExtension();
             $request->file('profile_pic')->storeAs('profiles', $name);
 
@@ -104,7 +105,7 @@ class AdminsController extends Controller
         if ($request->hasFile('profile_pic')) {
             @unlink($user->info->get('profile_pic'));
 
-            $name = str_pad($user->getKey(), 4, '0', STR_PAD_LEFT) .
+            $name = $user->id .
                 '.' . $request->file('profile_pic')->getClientOriginalExtension();
             $request->file('profile_pic')->storeAs('profiles', $name);
 
@@ -128,5 +129,19 @@ class AdminsController extends Controller
         if ( $user->delete() ) {
             return redirect()->route('admin.admins.index');
         }
+    }
+
+    /**
+     * @user mohamed-ibrahim 2018
+     *
+     * @param $role
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function reports($role)
+    {
+        return view('admin.admins.reports', [
+            'role' => $role,
+            'users' => Role::where('name', $role)->firstOrFail()->user()->get()
+        ]);
     }
 }

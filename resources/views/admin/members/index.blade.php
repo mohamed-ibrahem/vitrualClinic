@@ -17,9 +17,9 @@
             <table class="table table-striped table-hover order-column" id="members">
                 <thead>
                 <tr>
-                    <th colspan="2" width="25%">{{ trans_choice('pages.admin.users.members.title', 1) }}</th>
-                    <th>Contacts</th>
-                    <th width="20%"></th>
+                    <th colspan="2" width="65%">{{ trans_choice('pages.admin.users.members.title', 1) }}</th>
+                    <th width="10%">Contacts</th>
+                    <th width="15%"></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -28,15 +28,19 @@
                         <td>{{ $user->getKey() }}</td>
                         <td>
                             <div class="label label-primary pull-left" style="margin:0 10px;">
-                                #{{ str_pad($user->getKey(), 4, '0', STR_PAD_LEFT) }}</div>
+                                #{{ $user->getKey() }}</div>
                             {{ $user->name }}
                         </td>
                         <td>
-                            <a href="mailto:{{ $user->email }}">
+                            <a class="btn btn-xs btn-default tooltips"
+                               data-container="body" data-original-title="Email {{ $user->name }}"
+                               href="mailto:{{ $user->email }}">
                                 <i class="fa fa-fw fa-comment"></i>
                             </a>
                             @if ($user->phone)
-                                <a href="tel:{{ $user->phone }}">
+                                <a class="btn btn-xs btn-default tooltips"
+                                   data-container="body" data-original-title="Call {{ $user->name }}"
+                                   href="tel:{{ $user->phone }}">
                                     <i class="fa fa-fw fa-phone"></i>
                                 </a>
                             @endif
@@ -97,15 +101,19 @@
                             <td>{{ $user->getKey() }}</td>
                             <td>
                                 <div class="label label-primary pull-left" style="margin:0 10px;">
-                                    #{{ str_pad($user->getKey(), 4, '0', STR_PAD_LEFT) }}</div>
+                                    #{{ $user->getKey() }}</div>
                                 {{ $user->name }}
                             </td>
                             <td>
-                                <a href="mailto:{{ $user->email }}">
+                                <a class="btn btn-xs btn-default tooltips"
+                                   data-container="body" data-original-title="Email {{ $user->name }}"
+                                   href="mailto:{{ $user->email }}">
                                     <i class="fa fa-fw fa-comment"></i>
                                 </a>
                                 @if ($user->phone)
-                                    <a href="tel:{{ $user->phone }}">
+                                    <a class="btn btn-xs btn-default tooltips"
+                                       data-container="body" data-original-title="Call {{ $user->name }}"
+                                       href="tel:{{ $user->phone }}">
                                         <i class="fa fa-fw fa-phone"></i>
                                     </a>
                                 @endif
@@ -342,7 +350,6 @@
                     "visible": false,
                 }],
                 "ordering": false,
-                "bStateSave": true,
                 buttons: [
                     {extend: 'print', className: 'btn default'},
                     {extend: 'pdf', className: 'btn default'},
@@ -352,6 +359,10 @@
                     [0, "asc"]
                 ]
             });
+
+            @if (Request::has('q'))
+            oTable.fnFilter({{ Request::get('q') }});
+            @endif
 
             $('#action_tool > li > a.tool-action').on('click', function () {
                 var action = $(this).attr('data-action');

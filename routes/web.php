@@ -28,6 +28,8 @@ Route::group([
     ], [
         'except' => ['show']
     ]);
+    Route::get('/{role}s/reports', 'Admin\AdminsController@reports')->name('admins.report');
+    Route::post('/{role}s/reports', 'Admin\AdminsController@reports')->name('admins.doReport');
     Route::patch('/doctors/{doctor}/ban', 'Admin\DoctorsController@ban')->name('doctors.ban');
     Route::patch('/doctors/{doctor}/unban', 'Admin\DoctorsController@unban')->name('doctors.unban');
     Route::patch('/members/{member}/ban', 'Admin\DoctorsController@ban')->name('members.ban');
