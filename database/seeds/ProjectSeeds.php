@@ -14,6 +14,8 @@ class ProjectSeeds extends Seeder
         $this->createSpecialities();
         $this->createDoctor();
         $this->createMembers();
+
+        Artisan::call('translations:import');
     }
 
     /**
