@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 
 class TranslationsController extends Controller
 {
-
     /** @var \Barryvdh\TranslationManager\Manager */
     protected $manager;
 
@@ -19,7 +18,7 @@ class TranslationsController extends Controller
         $this->manager = $manager;
     }
 
-    public function getIndex()
+    public function getIndex(Request $request)
     {
         $locales = $this->manager->getLocales();
         $groups = Translation::groupBy('group');
@@ -35,10 +34,17 @@ class TranslationsController extends Controller
             $translations[$translation->group][$translation->key][$translation->locale] = $translation;
         }
 
-        return view('admin.pages.translation')
-            ->with('translations', $translations)
-            ->with('locales', $locales)
-            ->with('groups', $groups);
+        if ($request->wantsJson())
+            return response()->json([
+                'lan' => $translations,
+                'locales' => $locales
+            ]);
+        else {
+            return view('admin.pages.translation')
+                ->with('translations', $translations)
+                ->with('locales', $locales)
+                ->with('groups', $groups);
+        }
     }
 
     protected function loadLocales()

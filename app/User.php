@@ -10,10 +10,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Cog\Contracts\Ban\Bannable as BannableContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Cashier\Billable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable implements BannableContract
 {
-    use Notifiable, Billable, UsersOnlineTrait, Bannable;
+    use Notifiable, Billable, UsersOnlineTrait, Bannable, HasApiTokens;
 
     /** @var array $fillable */
     protected $fillable = [
