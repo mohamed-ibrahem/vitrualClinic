@@ -68,7 +68,7 @@ class MembersController extends Controller
         ]);
 
         if ($request->hasFile('profile_pic')) {
-            $name = str_pad($member->getKey(), 4, '0', STR_PAD_LEFT) .
+            $name = $member .
                 '.' . $request->file('profile_pic')->getClientOriginalExtension();
             $request->file('profile_pic')->storeAs('profiles', $name);
 
@@ -136,7 +136,7 @@ class MembersController extends Controller
         if ($request->hasFile('profile_pic')) {
             @unlink($user->info->get('profile_pic'));
 
-            $name = str_pad($user->getKey(), 4, '0', STR_PAD_LEFT) .
+            $name = $user->id .
                 '.' . $request->file('profile_pic')->getClientOriginalExtension();
             $request->file('profile_pic')->storeAs('profiles', $name);
 

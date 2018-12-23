@@ -134,6 +134,14 @@ class User extends Authenticatable implements BannableContract
     /**
      * @return string
      */
+    public function getIdAttribute($value)
+    {
+        return str_pad($value, 4, '0', STR_PAD_LEFT);
+    }
+
+    /**
+     * @return string
+     */
     public function getProfilePicAttribute()
     {
         return asset($this->info->get('profile_pic', 'assets\layout\img\avatar.png'));

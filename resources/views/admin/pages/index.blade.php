@@ -141,19 +141,23 @@
                         <table class="table table-hover table-light">
                             <thead>
                             <tr>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th></th>
+                                <th width="25%">Name</th>
+                                <th width="25%">Email</th>
                                 <th></th>
                             </tr>
                             </thead>
                             <tbody>
-                            @forelse((new \App\User)->mostRecentOnline() as $users)
+                            @forelse((new \App\User)->mostRecentOnline() as $user)
                                 <tr>
-                                    <td>{{ $users->name }}</td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
+                                    <td>
+                                        {{ $user->name }}
+                                        <div class="label label-primary pull-right">{{ $user->role->display_name }}</div>
+                                    </td>
+                                    <td>{{ $user->email }}</td>
+                                    <td class="text-right">
+                                        <a href="{{ route('admin.' . $user->role->name . 's.index') }}?q={{ $user->getKey() }}"
+                                           class="btn btn-primary btn-xs" style="width: 300px;">{{ trans('general.datatable.tools.show') }}</a>
+                                    </td>
                                 </tr>
                             @empty
                                 <tr>

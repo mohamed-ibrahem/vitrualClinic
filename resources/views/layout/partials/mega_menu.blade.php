@@ -4,7 +4,7 @@
             <a href="{{ route('admin.home') }}">@lang('pages.admin.home.title')</a>
         </li>
 
-        <li class="menu-dropdown mega-menu-dropdown mega-menu-full{{ (\Request::is('*doctors*') || \Request::is('*members*') || \Request::is('*admins*')) ? ' active' : '' }}">
+        <li class="menu-dropdown mega-menu-dropdown mega-menu-full{{ \Request::is(['*doctor*', '*member*', '*admins*']) ? ' active' : '' }}">
             <a href="javascript:;">@lang('pages.admin.users.title') <span class="arrow"></span></a>
             <ul class="dropdown-menu">
                 <li>
@@ -42,8 +42,8 @@
                                             @lang('general.createNew', ['page' => trans_choice('pages.admin.users.doctors.title', 1)])
                                         </a>
                                     </li>
-                                    <li>
-                                        <a href="components_date_time_pickers.html">
+                                    <li{!! Request::is('*doctors/reports') ? ' class="active"' : '' !!}>
+                                        <a href="{{ route('admin.admins.report', ['role' => 'doctor']) }}">
                                             <i class="fa fa-chart-bar"></i>
                                             @lang('general.reports')
                                         </a>
@@ -71,8 +71,13 @@
                                             @lang('general.createNew', ['page' => trans_choice('pages.admin.users.members.title', 2)])
                                         </a>
                                     </li>
+<<<<<<< HEAD
                                     <li>
                                         <a href="components_date_time_pickers.html">
+=======
+                                    <li{!! Request::is('*members/reports') ? ' class="active"' : '' !!}>
+                                        <a href="{{ route('admin.admins.report', ['role' => 'member']) }}">
+>>>>>>> 27937c0890509e916f7651100b0ab662932a7553
                                             <i class="fa fa-chart-bar"></i>
                                             @lang('general.reports')
                                         </a>

@@ -696,6 +696,7 @@
                     var wizard = this.form.bootstrapWizard({
                         'nextSelector': '.button-next',
                         'previousSelector': '.button-previous',
+                        'tabClass': '.steps',
                         onTabClick: function (tab, navigation, index, clickedIndex) {
                             return false;
                             if (this.form.valid() === false)
