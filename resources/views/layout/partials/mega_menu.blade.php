@@ -59,21 +59,6 @@
                                             @lang('general.createNew', ['page' => trans_choice('pages.admin.users.members.title', 2)])
                                         </a>
                                     </li>
-<<<<<<< HEAD
-=======
-                                    <li>
-                                        <a href="components_date_time_pickers.html">
-                                            <i class="fa fa-chart-bar"></i>
-                                            @lang('general.reports')
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components_date_time_pickers.html">
-                                            <i class="fa fa-cog"></i>
-                                            @lang('general.settings')
-                                        </a>
-                                    </li>
->>>>>>> old
                                 </ul>
                             </div>
                         </div>

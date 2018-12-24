@@ -1,5 +1,5 @@
 @if (count($breadcrumbs))
-    <ul class="page-breadcrumb breadcrumb">
+    <ol class="page-breadcrumb breadcrumb">
         @foreach ($breadcrumbs as $breadcrumb)
             @if ($breadcrumb->url && !$loop->last)
                 <li>
@@ -12,5 +12,5 @@
                 </li>
             @endif
         @endforeach
-    </ul>
+    </ol>
 @endif
