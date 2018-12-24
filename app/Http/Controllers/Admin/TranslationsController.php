@@ -34,17 +34,10 @@ class TranslationsController extends Controller
             $translations[$translation->group][$translation->key][$translation->locale] = $translation;
         }
 
-        if ($request->wantsJson())
-            return response()->json([
-                'lan' => $translations,
-                'locales' => $locales
-            ]);
-        else {
-            return view('admin.pages.translation')
-                ->with('translations', $translations)
-                ->with('locales', $locales)
-                ->with('groups', $groups);
-        }
+        return view('admin.pages.translation')
+            ->with('translations', $translations)
+            ->with('locales', $locales)
+            ->with('groups', $groups);
     }
 
     protected function loadLocales()
