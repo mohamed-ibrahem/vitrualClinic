@@ -3,7 +3,11 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
+<<<<<<< HEAD
  * Generated for Laravel 5.7.13 on 2018-12-12 16:39:26.
+=======
+ * Generated for Laravel 5.7.14 on 2018-11-22 12:16:57.
+>>>>>>> 691e927f5474024b85ee9ca28d26c9eafe650641
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3485,6 +3489,44 @@ namespace Illuminate\Support\Facades {
         public static function getQueuedCookies()
         {
             return \Illuminate\Cookie\CookieJar::getQueuedCookies();
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            \Illuminate\Cookie\CookieJar::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin)
+        {
+            \Illuminate\Cookie\CookieJar::mixin($mixin);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            return \Illuminate\Cookie\CookieJar::hasMacro($name);
         }
          
     }
@@ -10030,14 +10072,14 @@ namespace Illuminate\Support\Facades {
     /**
      * 
      *
-     * @method static \Illuminate\Routing\Route get(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route post(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route put(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route delete(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route patch(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route options(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route any(string $uri, \Closure|array|string|null $action = null)
-     * @method static \Illuminate\Routing\Route match(array|string $methods, string $uri, \Closure|array|string|null $action = null)
+     * @method static \Illuminate\Routing\Route get(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route post(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route put(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route delete(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route patch(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route options(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route any(string $uri, \Closure|array|string|callable|null $action = null)
+     * @method static \Illuminate\Routing\Route match(array|string $methods, string $uri, \Closure|array|string|callable|null $action = null)
      * @method static \Illuminate\Routing\RouteRegistrar prefix(string  $prefix)
      * @method static \Illuminate\Routing\RouteRegistrar where(array  $where)
      * @method static \Illuminate\Routing\PendingResourceRegistration resource(string $name, string $controller, array $options = [])
@@ -10067,7 +10109,7 @@ namespace Illuminate\Support\Facades {
          * Register a new GET route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10080,7 +10122,7 @@ namespace Illuminate\Support\Facades {
          * Register a new POST route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10093,7 +10135,7 @@ namespace Illuminate\Support\Facades {
          * Register a new PUT route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10106,7 +10148,7 @@ namespace Illuminate\Support\Facades {
          * Register a new PATCH route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10119,7 +10161,7 @@ namespace Illuminate\Support\Facades {
          * Register a new DELETE route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10132,7 +10174,7 @@ namespace Illuminate\Support\Facades {
          * Register a new OPTIONS route with the router.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10145,7 +10187,7 @@ namespace Illuminate\Support\Facades {
          * Register a new route responding to all verbs.
          *
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10157,7 +10199,7 @@ namespace Illuminate\Support\Facades {
         /**
          * Register a new Fallback route with the router.
          *
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10212,7 +10254,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param array|string $methods
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -10316,7 +10358,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param array|string $methods
          * @param string $uri
-         * @param \Closure|array|string|null $action
+         * @param \Closure|array|string|callable|null $action
          * @return \Illuminate\Routing\Route 
          * @static 
          */ 
@@ -12178,7 +12220,7 @@ namespace Illuminate\Support\Facades {
          *
          * @param string $path
          * @param resource $resource
-         * @param mixed $options
+         * @param array $options
          * @return bool 
          * @throws \InvalidArgumentException If $resource is not a file handle.
          * @throws FileExistsException
@@ -12346,7 +12388,7 @@ namespace Illuminate\Support\Facades {
      * @method static \Illuminate\Contracts\Routing\UrlGenerator setRootControllerNamespace(string $rootNamespace)
      * @method static string signedRoute(string $name, array $parameters = [], \DateTimeInterface|int $expiration = null)
      * @method static string temporarySignedRoute(string $name, \DateTimeInterface|int $expiration, array $parameters = [])
-     * @method static string hasValidSignature(\Illuminate\Http\Request $request)
+     * @method static string hasValidSignature(\Illuminate\Http\Request $request, bool $absolute)
      * @method static void defaults(array $defaults)
      * @see \Illuminate\Routing\UrlGenerator
      */ 
@@ -13737,6 +13779,225 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace DaveJamesMiller\Breadcrumbs\Facades { 
+
+    /**
+     * Breadcrumbs facade - allows easy access to the Manager instance.
+     *
+     * @see BreadcrumbsManager
+     */ 
+    class Breadcrumbs {
+        
+        /**
+         * Register a breadcrumb-generating callback for a page.
+         *
+         * @param string $name The name of the page.
+         * @param callable $callback The callback, which should accept a Generator instance as the first parameter and may
+         *     accept additional parameters.
+         * @return void 
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
+         *     used.
+         * @static 
+         */ 
+        public static function for($name, $callback)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::for($name, $callback);
+        }
+        
+        /**
+         * Register a breadcrumb-generating callback for a page.
+         * 
+         * For backwards-compatibility with v5.0.0 and below.
+         *
+         * @see self::for()
+         * @param string $name The name of the page.
+         * @param callable $callback The callback, which should accept a Generator instance as the first parameter and may
+         *     accept additional parameters.
+         * @return void 
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
+         *     used.
+         * @static 
+         */ 
+        public static function register($name, $callback)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::register($name, $callback);
+        }
+        
+        /**
+         * Register a closure to call before generating breadcrumbs for the current page.
+         * 
+         * For example, this can be used to always prepend the homepage without needing to manually add it to each page.
+         *
+         * @param callable $callback The callback, which should accept a Generator instance as the first and only parameter.
+         * @return void 
+         * @static 
+         */ 
+        public static function before($callback)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::before($callback);
+        }
+        
+        /**
+         * Register a closure to call after generating breadcrumbs for the current page.
+         * 
+         * For example, this can be used to append the current page number when using pagination.
+         *
+         * @param callable $callback The callback, which should accept a Generator instance as the first and only parameter.
+         * @return void 
+         * @static 
+         */ 
+        public static function after($callback)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::after($callback);
+        }
+        
+        /**
+         * Check if a breadcrumb with the given name exists.
+         * 
+         * If no name is given, defaults to the current route name.
+         *
+         * @param string|null $name The page name.
+         * @return bool Whether there is a registered callback with that name.
+         * @static 
+         */ 
+        public static function exists($name = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::exists($name);
+        }
+        
+        /**
+         * Generate a set of breadcrumbs for a page.
+         *
+         * @param string|null $name The name of the current page.
+         * @param mixed $params The parameters to pass to the closure for the current page.
+         * @return \Illuminate\Support\Collection The generated breadcrumbs.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route
+         *     doesn't have an associated name.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names
+         *     are) not registered.
+         * @static 
+         */ 
+        public static function generate($name = null, $params = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::generate($name, $params);
+        }
+        
+        /**
+         * Render breadcrumbs for a page with the specified view.
+         *
+         * @param string $view The name of the view to render.
+         * @param string|null $name The name of the current page.
+         * @param mixed $params The parameters to pass to the closure for the current page.
+         * @return \Illuminate\Support\HtmlString The generated HTML.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route doesn't have an associated name.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\ViewNotSetException if no view has been set.
+         * @static 
+         */ 
+        public static function view($view, $name = null, $params = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::view($view, $name, $params);
+        }
+        
+        /**
+         * Render breadcrumbs for a page with the default view.
+         *
+         * @param string|null $name The name of the current page.
+         * @param mixed $params The parameters to pass to the closure for the current page.
+         * @return \Illuminate\Support\HtmlString The generated HTML.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route doesn't have an associated name.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\ViewNotSetException if no view has been set.
+         * @static 
+         */ 
+        public static function render($name = null, $params = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::render($name, $params);
+        }
+        
+        /**
+         * Get the last breadcrumb for the current page.
+         * 
+         * Optionally pass a
+         *
+         * @return \stdClass|null The breadcrumb for the current page.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if the current route doesn't have an associated name.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
+         * @static 
+         */ 
+        public static function current()
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::current();
+        }
+        
+        /**
+         * Set the current route name and parameters to use when calling render() or generate() with no parameters.
+         *
+         * @param string $name The name of the current page.
+         * @param mixed $params The parameters to pass to the closure for the current page.
+         * @return void 
+         * @static 
+         */ 
+        public static function setCurrentRoute($name, $params = null)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::setCurrentRoute($name, $params);
+        }
+        
+        /**
+         * Clear the previously set route name and parameters to use when calling render() or generate() with no parameters.
+         * 
+         * Next time it will revert to the default behaviour of using the current route from Laravel.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function clearCurrentRoute()
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::clearCurrentRoute();
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::mixin($mixin);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::hasMacro($name);
+        }
+         
+    }
+ 
+}
+
 namespace Collective\Html { 
 
     /**
@@ -14852,6 +15113,585 @@ namespace Collective\Html {
  
 }
 
+namespace Mcamara\LaravelLocalization\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class LaravelLocalization {
+        
+        /**
+         * Set and return current locale.
+         *
+         * @param string $locale Locale to set the App to (optional)
+         * @return string Returns locale (if route has any) or null (if route does not have a locale)
+         * @static 
+         */ 
+        public static function setLocale($locale = null)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::setLocale($locale);
+        }
+        
+        /**
+         * Check if $locale is default locale and supposed to be hidden in url
+         *
+         * @param string $locale Locale to be checked
+         * @return boolean Returns true if above requirement are met, otherwise false
+         * @static 
+         */ 
+        public static function isHiddenDefault($locale)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::isHiddenDefault($locale);
+        }
+        
+        /**
+         * Set and return supported locales.
+         *
+         * @param array $locales Locales that the App supports
+         * @static 
+         */ 
+        public static function setSupportedLocales($locales)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::setSupportedLocales($locales);
+        }
+        
+        /**
+         * Returns an URL adapted to $locale or current locale.
+         *
+         * @param string $url URL to adapt. If not passed, the current url would be taken.
+         * @param string|bool $locale Locale to adapt, false to remove locale
+         * @throws UnsupportedLocaleException
+         * @return string URL translated
+         * @static 
+         */ 
+        public static function localizeURL($url = null, $locale = null)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::localizeURL($url, $locale);
+        }
+        
+        /**
+         * Returns an URL adapted to $locale.
+         *
+         * @param string|bool $locale Locale to adapt, false to remove locale
+         * @param string|false $url URL to adapt in the current language. If not passed, the current url would be taken.
+         * @param array $attributes Attributes to add to the route, if empty, the system would try to extract them from the url.
+         * @param bool $forceDefaultLocation Force to show default location even hideDefaultLocaleInURL set as TRUE
+         * @throws SupportedLocalesNotDefined
+         * @throws UnsupportedLocaleException
+         * @return string|false URL translated, False if url does not exist
+         * @static 
+         */ 
+        public static function getLocalizedURL($locale = null, $url = null, $attributes = array(), $forceDefaultLocation = false)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getLocalizedURL($locale, $url, $attributes, $forceDefaultLocation);
+        }
+        
+        /**
+         * Returns an URL adapted to the route name and the locale given.
+         *
+         * @param string|bool $locale Locale to adapt
+         * @param string $transKeyName Translation key name of the url to adapt
+         * @param array $attributes Attributes for the route (only needed if transKeyName needs them)
+         * @param bool $forceDefaultLocation Force to show default location even hideDefaultLocaleInURL set as TRUE
+         * @throws SupportedLocalesNotDefined
+         * @throws UnsupportedLocaleException
+         * @return string|false URL translated
+         * @static 
+         */ 
+        public static function getURLFromRouteNameTranslated($locale, $transKeyName, $attributes = array(), $forceDefaultLocation = false)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getURLFromRouteNameTranslated($locale, $transKeyName, $attributes, $forceDefaultLocation);
+        }
+        
+        /**
+         * It returns an URL without locale (if it has it)
+         * Convenience function wrapping getLocalizedURL(false).
+         *
+         * @param string|false $url URL to clean, if false, current url would be taken
+         * @return string URL with no locale in path
+         * @static 
+         */ 
+        public static function getNonLocalizedURL($url = null)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getNonLocalizedURL($url);
+        }
+        
+        /**
+         * Returns default locale.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getDefaultLocale()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getDefaultLocale();
+        }
+        
+        /**
+         * Return an array of all supported Locales.
+         *
+         * @throws SupportedLocalesNotDefined
+         * @return array 
+         * @static 
+         */ 
+        public static function getSupportedLocales()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getSupportedLocales();
+        }
+        
+        /**
+         * Return an array of all supported Locales but in the order the user
+         * has specified in the config file. Useful for the language selector.
+         *
+         * @return array 
+         * @static 
+         */ 
+        public static function getLocalesOrder()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getLocalesOrder();
+        }
+        
+        /**
+         * Returns current locale name.
+         *
+         * @return string current locale name
+         * @static 
+         */ 
+        public static function getCurrentLocaleName()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleName();
+        }
+        
+        /**
+         * Returns current locale native name.
+         *
+         * @return string current locale native name
+         * @static 
+         */ 
+        public static function getCurrentLocaleNative()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleNative();
+        }
+        
+        /**
+         * Returns current locale direction.
+         *
+         * @return string current locale direction
+         * @static 
+         */ 
+        public static function getCurrentLocaleDirection()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleDirection();
+        }
+        
+        /**
+         * Returns current locale script.
+         *
+         * @return string current locale script
+         * @static 
+         */ 
+        public static function getCurrentLocaleScript()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleScript();
+        }
+        
+        /**
+         * Returns current language's native reading.
+         *
+         * @return string current language's native reading
+         * @static 
+         */ 
+        public static function getCurrentLocaleNativeReading()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleNativeReading();
+        }
+        
+        /**
+         * Returns current language.
+         *
+         * @return string current language
+         * @static 
+         */ 
+        public static function getCurrentLocale()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocale();
+        }
+        
+        /**
+         * Returns current regional.
+         *
+         * @return string current regional
+         * @static 
+         */ 
+        public static function getCurrentLocaleRegional()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleRegional();
+        }
+        
+        /**
+         * Returns supported languages language key.
+         *
+         * @return array keys of supported languages
+         * @static 
+         */ 
+        public static function getSupportedLanguagesKeys()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getSupportedLanguagesKeys();
+        }
+        
+        /**
+         * Check if Locale exists on the supported locales array.
+         *
+         * @param string|bool $locale string|bool Locale to be checked
+         * @throws SupportedLocalesNotDefined
+         * @return bool is the locale supported?
+         * @static 
+         */ 
+        public static function checkLocaleInSupportedLocales($locale)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::checkLocaleInSupportedLocales($locale);
+        }
+        
+        /**
+         * Set current route name.
+         *
+         * @param string $routeName current route name
+         * @static 
+         */ 
+        public static function setRouteName($routeName)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::setRouteName($routeName);
+        }
+        
+        /**
+         * Translate routes and save them to the translated routes array (used in the localize route filter).
+         *
+         * @param string $routeName Key of the translated string
+         * @return string Translated string
+         * @static 
+         */ 
+        public static function transRoute($routeName)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::transRoute($routeName);
+        }
+        
+        /**
+         * Returns the translation key for a given path.
+         *
+         * @param string $path Path to get the key translated
+         * @return string|false Key for translation, false if not exist
+         * @static 
+         */ 
+        public static function getRouteNameFromAPath($path)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getRouteNameFromAPath($path);
+        }
+        
+        /**
+         * Returns the config repository for this instance.
+         *
+         * @return \Mcamara\LaravelLocalization\Repository Configuration repository
+         * @static 
+         */ 
+        public static function getConfigRepository()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getConfigRepository();
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function hideUrlAndAcceptHeader()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::hideUrlAndAcceptHeader();
+        }
+<<<<<<< HEAD
+         
+    }
+ 
+}
+
+namespace DaveJamesMiller\Breadcrumbs\Facades { 
+
+    /**
+     * Breadcrumbs facade - allows easy access to the Manager instance.
+     *
+     * @see BreadcrumbsManager
+     */ 
+    class Breadcrumbs {
+        
+        /**
+         * Register a breadcrumb-generating callback for a page.
+         *
+         * @param string $name The name of the page.
+         * @param callable $callback The callback, which should accept a Generator instance as the first parameter and may
+         *     accept additional parameters.
+         * @return void 
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
+         *     used.
+         * @static 
+         */ 
+        public static function for($name, $callback)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::for($name, $callback);
+        }
+        
+        /**
+         * Register a breadcrumb-generating callback for a page.
+         * 
+         * For backwards-compatibility with v5.0.0 and below.
+         *
+         * @see self::for()
+         * @param string $name The name of the page.
+         * @param callable $callback The callback, which should accept a Generator instance as the first parameter and may
+         *     accept additional parameters.
+         * @return void 
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
+         *     used.
+         * @static 
+         */ 
+        public static function register($name, $callback)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::register($name, $callback);
+        }
+        
+        /**
+         * Register a closure to call before generating breadcrumbs for the current page.
+         * 
+         * For example, this can be used to always prepend the homepage without needing to manually add it to each page.
+         *
+         * @param callable $callback The callback, which should accept a Generator instance as the first and only parameter.
+         * @return void 
+         * @static 
+         */ 
+        public static function before($callback)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::before($callback);
+        }
+        
+        /**
+         * Register a closure to call after generating breadcrumbs for the current page.
+         * 
+         * For example, this can be used to append the current page number when using pagination.
+         *
+         * @param callable $callback The callback, which should accept a Generator instance as the first and only parameter.
+         * @return void 
+         * @static 
+         */ 
+        public static function after($callback)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::after($callback);
+        }
+        
+        /**
+         * Check if a breadcrumb with the given name exists.
+         * 
+         * If no name is given, defaults to the current route name.
+         *
+         * @param string|null $name The page name.
+         * @return bool Whether there is a registered callback with that name.
+         * @static 
+         */ 
+        public static function exists($name = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::exists($name);
+        }
+        
+        /**
+         * Generate a set of breadcrumbs for a page.
+         *
+         * @param string|null $name The name of the current page.
+         * @param mixed $params The parameters to pass to the closure for the current page.
+         * @return \Illuminate\Support\Collection The generated breadcrumbs.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route
+         *     doesn't have an associated name.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names
+         *     are) not registered.
+         * @static 
+         */ 
+        public static function generate($name = null, $params = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::generate($name, $params);
+        }
+        
+        /**
+         * Render breadcrumbs for a page with the specified view.
+         *
+         * @param string $view The name of the view to render.
+         * @param string|null $name The name of the current page.
+         * @param mixed $params The parameters to pass to the closure for the current page.
+         * @return \Illuminate\Support\HtmlString The generated HTML.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route doesn't have an associated name.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\ViewNotSetException if no view has been set.
+         * @static 
+         */ 
+        public static function view($view, $name = null, $params = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::view($view, $name, $params);
+        }
+        
+        /**
+         * Render breadcrumbs for a page with the default view.
+         *
+         * @param string|null $name The name of the current page.
+         * @param mixed $params The parameters to pass to the closure for the current page.
+         * @return \Illuminate\Support\HtmlString The generated HTML.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route doesn't have an associated name.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\ViewNotSetException if no view has been set.
+         * @static 
+         */ 
+        public static function render($name = null, $params = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::render($name, $params);
+        }
+        
+        /**
+         * Get the last breadcrumb for the current page.
+         * 
+         * Optionally pass a
+         *
+         * @return \stdClass|null The breadcrumb for the current page.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if the current route doesn't have an associated name.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
+         * @static 
+         */ 
+        public static function current()
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::current();
+        }
+        
+        /**
+         * Set the current route name and parameters to use when calling render() or generate() with no parameters.
+         *
+         * @param string $name The name of the current page.
+         * @param mixed $params The parameters to pass to the closure for the current page.
+         * @return void 
+         * @static 
+         */ 
+        public static function setCurrentRoute($name, $params = null)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::setCurrentRoute($name, $params);
+        }
+        
+        /**
+         * Clear the previously set route name and parameters to use when calling render() or generate() with no parameters.
+         * 
+         * Next time it will revert to the default behaviour of using the current route from Laravel.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function clearCurrentRoute()
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::clearCurrentRoute();
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::mixin($mixin);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::hasMacro($name);
+=======
+        
+        /**
+         * Returns the translation key for a given path.
+         *
+         * @return bool Returns value of hideDefaultLocaleInURL in config.
+         * @static 
+         */ 
+        public static function hideDefaultLocaleInURL()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::hideDefaultLocaleInURL();
+        }
+        
+        /**
+         * Create an url from the uri.
+         *
+         * @param string $uri Uri
+         * @return string Url for the given uri
+         * @static 
+         */ 
+        public static function createUrlFromUri($uri)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::createUrlFromUri($uri);
+        }
+        
+        /**
+         * Sets the base url for the site.
+         *
+         * @param string $url Base url for the site
+         * @static 
+         */ 
+        public static function setBaseUrl($url)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::setBaseUrl($url);
+        }
+        
+        /**
+         * Returns serialized translated routes for caching purposes.
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getSerializedTranslatedRoutes()
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::getSerializedTranslatedRoutes();
+        }
+        
+        /**
+         * Sets the translated routes list.
+         * 
+         * Only useful from a cached routes context.
+         *
+         * @param string $serializedRoutes
+         * @static 
+         */ 
+        public static function setSerializedTranslatedRoutes($serializedRoutes)
+        {
+            return \Mcamara\LaravelLocalization\LaravelLocalization::setSerializedTranslatedRoutes($serializedRoutes);
+>>>>>>> 691e927f5474024b85ee9ca28d26c9eafe650641
+        }
+         
+    }
+ 
+}
+
 namespace Nahid\Talk\Facades { 
 
     /**
@@ -15172,583 +16012,6 @@ namespace Nahid\Talk\Facades {
         public static function deleteThread($id = null)
         {
             return \Nahid\Talk\Talk::deleteThread($id);
-        }
-         
-    }
- 
-}
-
-namespace DaveJamesMiller\Breadcrumbs\Facades { 
-
-    /**
-     * Breadcrumbs facade - allows easy access to the Manager instance.
-     *
-     * @see BreadcrumbsManager
-     */ 
-    class Breadcrumbs {
-        
-        /**
-         * Register a breadcrumb-generating callback for a page.
-         *
-         * @param string $name The name of the page.
-         * @param callable $callback The callback, which should accept a Generator instance as the first parameter and may
-         *     accept additional parameters.
-         * @return void 
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
-         *     used.
-         * @static 
-         */ 
-        public static function for($name, $callback)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::for($name, $callback);
-        }
-        
-        /**
-         * Register a breadcrumb-generating callback for a page.
-         * 
-         * For backwards-compatibility with v5.0.0 and below.
-         *
-         * @see self::for()
-         * @param string $name The name of the page.
-         * @param callable $callback The callback, which should accept a Generator instance as the first parameter and may
-         *     accept additional parameters.
-         * @return void 
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
-         *     used.
-         * @static 
-         */ 
-        public static function register($name, $callback)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::register($name, $callback);
-        }
-        
-        /**
-         * Register a closure to call before generating breadcrumbs for the current page.
-         * 
-         * For example, this can be used to always prepend the homepage without needing to manually add it to each page.
-         *
-         * @param callable $callback The callback, which should accept a Generator instance as the first and only parameter.
-         * @return void 
-         * @static 
-         */ 
-        public static function before($callback)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::before($callback);
-        }
-        
-        /**
-         * Register a closure to call after generating breadcrumbs for the current page.
-         * 
-         * For example, this can be used to append the current page number when using pagination.
-         *
-         * @param callable $callback The callback, which should accept a Generator instance as the first and only parameter.
-         * @return void 
-         * @static 
-         */ 
-        public static function after($callback)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::after($callback);
-        }
-        
-        /**
-         * Check if a breadcrumb with the given name exists.
-         * 
-         * If no name is given, defaults to the current route name.
-         *
-         * @param string|null $name The page name.
-         * @return bool Whether there is a registered callback with that name.
-         * @static 
-         */ 
-        public static function exists($name = null)
-        {
-            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::exists($name);
-        }
-        
-        /**
-         * Generate a set of breadcrumbs for a page.
-         *
-         * @param string|null $name The name of the current page.
-         * @param mixed $params The parameters to pass to the closure for the current page.
-         * @return \Illuminate\Support\Collection The generated breadcrumbs.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route
-         *     doesn't have an associated name.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names
-         *     are) not registered.
-         * @static 
-         */ 
-        public static function generate($name = null, $params = null)
-        {
-            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::generate($name, $params);
-        }
-        
-        /**
-         * Render breadcrumbs for a page with the specified view.
-         *
-         * @param string $view The name of the view to render.
-         * @param string|null $name The name of the current page.
-         * @param mixed $params The parameters to pass to the closure for the current page.
-         * @return \Illuminate\Support\HtmlString The generated HTML.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route doesn't have an associated name.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\ViewNotSetException if no view has been set.
-         * @static 
-         */ 
-        public static function view($view, $name = null, $params = null)
-        {
-            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::view($view, $name, $params);
-        }
-        
-        /**
-         * Render breadcrumbs for a page with the default view.
-         *
-         * @param string|null $name The name of the current page.
-         * @param mixed $params The parameters to pass to the closure for the current page.
-         * @return \Illuminate\Support\HtmlString The generated HTML.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route doesn't have an associated name.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\ViewNotSetException if no view has been set.
-         * @static 
-         */ 
-        public static function render($name = null, $params = null)
-        {
-            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::render($name, $params);
-        }
-        
-        /**
-         * Get the last breadcrumb for the current page.
-         * 
-         * Optionally pass a
-         *
-         * @return \stdClass|null The breadcrumb for the current page.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if the current route doesn't have an associated name.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
-         * @static 
-         */ 
-        public static function current()
-        {
-            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::current();
-        }
-        
-        /**
-         * Set the current route name and parameters to use when calling render() or generate() with no parameters.
-         *
-         * @param string $name The name of the current page.
-         * @param mixed $params The parameters to pass to the closure for the current page.
-         * @return void 
-         * @static 
-         */ 
-        public static function setCurrentRoute($name, $params = null)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::setCurrentRoute($name, $params);
-        }
-        
-        /**
-         * Clear the previously set route name and parameters to use when calling render() or generate() with no parameters.
-         * 
-         * Next time it will revert to the default behaviour of using the current route from Laravel.
-         *
-         * @return void 
-         * @static 
-         */ 
-        public static function clearCurrentRoute()
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::clearCurrentRoute();
-        }
-        
-        /**
-         * Register a custom macro.
-         *
-         * @param string $name
-         * @param object|callable $macro
-         * @return void 
-         * @static 
-         */ 
-        public static function macro($name, $macro)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::macro($name, $macro);
-        }
-        
-        /**
-         * Mix another object into the class.
-         *
-         * @param object $mixin
-         * @return void 
-         * @throws \ReflectionException
-         * @static 
-         */ 
-        public static function mixin($mixin)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::mixin($mixin);
-        }
-        
-        /**
-         * Checks if macro is registered.
-         *
-         * @param string $name
-         * @return bool 
-         * @static 
-         */ 
-        public static function hasMacro($name)
-        {
-            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::hasMacro($name);
-        }
-         
-    }
- 
-}
-
-namespace Mcamara\LaravelLocalization\Facades { 
-
-    /**
-     * 
-     *
-     */ 
-    class LaravelLocalization {
-        
-        /**
-         * Set and return current locale.
-         *
-         * @param string $locale Locale to set the App to (optional)
-         * @return string Returns locale (if route has any) or null (if route does not have a locale)
-         * @static 
-         */ 
-        public static function setLocale($locale = null)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::setLocale($locale);
-        }
-        
-        /**
-         * Check if $locale is default locale and supposed to be hidden in url
-         *
-         * @param string $locale Locale to be checked
-         * @return boolean Returns true if above requirement are met, otherwise false
-         * @static 
-         */ 
-        public static function isHiddenDefault($locale)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::isHiddenDefault($locale);
-        }
-        
-        /**
-         * Set and return supported locales.
-         *
-         * @param array $locales Locales that the App supports
-         * @static 
-         */ 
-        public static function setSupportedLocales($locales)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::setSupportedLocales($locales);
-        }
-        
-        /**
-         * Returns an URL adapted to $locale or current locale.
-         *
-         * @param string $url URL to adapt. If not passed, the current url would be taken.
-         * @param string|bool $locale Locale to adapt, false to remove locale
-         * @throws UnsupportedLocaleException
-         * @return string URL translated
-         * @static 
-         */ 
-        public static function localizeURL($url = null, $locale = null)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::localizeURL($url, $locale);
-        }
-        
-        /**
-         * Returns an URL adapted to $locale.
-         *
-         * @param string|bool $locale Locale to adapt, false to remove locale
-         * @param string|false $url URL to adapt in the current language. If not passed, the current url would be taken.
-         * @param array $attributes Attributes to add to the route, if empty, the system would try to extract them from the url.
-         * @param bool $forceDefaultLocation Force to show default location even hideDefaultLocaleInURL set as TRUE
-         * @throws SupportedLocalesNotDefined
-         * @throws UnsupportedLocaleException
-         * @return string|false URL translated, False if url does not exist
-         * @static 
-         */ 
-        public static function getLocalizedURL($locale = null, $url = null, $attributes = array(), $forceDefaultLocation = false)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getLocalizedURL($locale, $url, $attributes, $forceDefaultLocation);
-        }
-        
-        /**
-         * Returns an URL adapted to the route name and the locale given.
-         *
-         * @param string|bool $locale Locale to adapt
-         * @param string $transKeyName Translation key name of the url to adapt
-         * @param array $attributes Attributes for the route (only needed if transKeyName needs them)
-         * @param bool $forceDefaultLocation Force to show default location even hideDefaultLocaleInURL set as TRUE
-         * @throws SupportedLocalesNotDefined
-         * @throws UnsupportedLocaleException
-         * @return string|false URL translated
-         * @static 
-         */ 
-        public static function getURLFromRouteNameTranslated($locale, $transKeyName, $attributes = array(), $forceDefaultLocation = false)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getURLFromRouteNameTranslated($locale, $transKeyName, $attributes, $forceDefaultLocation);
-        }
-        
-        /**
-         * It returns an URL without locale (if it has it)
-         * Convenience function wrapping getLocalizedURL(false).
-         *
-         * @param string|false $url URL to clean, if false, current url would be taken
-         * @return string URL with no locale in path
-         * @static 
-         */ 
-        public static function getNonLocalizedURL($url = null)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getNonLocalizedURL($url);
-        }
-        
-        /**
-         * Returns default locale.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getDefaultLocale()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getDefaultLocale();
-        }
-        
-        /**
-         * Return an array of all supported Locales.
-         *
-         * @throws SupportedLocalesNotDefined
-         * @return array 
-         * @static 
-         */ 
-        public static function getSupportedLocales()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getSupportedLocales();
-        }
-        
-        /**
-         * Return an array of all supported Locales but in the order the user
-         * has specified in the config file. Useful for the language selector.
-         *
-         * @return array 
-         * @static 
-         */ 
-        public static function getLocalesOrder()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getLocalesOrder();
-        }
-        
-        /**
-         * Returns current locale name.
-         *
-         * @return string current locale name
-         * @static 
-         */ 
-        public static function getCurrentLocaleName()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleName();
-        }
-        
-        /**
-         * Returns current locale native name.
-         *
-         * @return string current locale native name
-         * @static 
-         */ 
-        public static function getCurrentLocaleNative()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleNative();
-        }
-        
-        /**
-         * Returns current locale direction.
-         *
-         * @return string current locale direction
-         * @static 
-         */ 
-        public static function getCurrentLocaleDirection()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleDirection();
-        }
-        
-        /**
-         * Returns current locale script.
-         *
-         * @return string current locale script
-         * @static 
-         */ 
-        public static function getCurrentLocaleScript()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleScript();
-        }
-        
-        /**
-         * Returns current language's native reading.
-         *
-         * @return string current language's native reading
-         * @static 
-         */ 
-        public static function getCurrentLocaleNativeReading()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleNativeReading();
-        }
-        
-        /**
-         * Returns current language.
-         *
-         * @return string current language
-         * @static 
-         */ 
-        public static function getCurrentLocale()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocale();
-        }
-        
-        /**
-         * Returns current regional.
-         *
-         * @return string current regional
-         * @static 
-         */ 
-        public static function getCurrentLocaleRegional()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getCurrentLocaleRegional();
-        }
-        
-        /**
-         * Returns supported languages language key.
-         *
-         * @return array keys of supported languages
-         * @static 
-         */ 
-        public static function getSupportedLanguagesKeys()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getSupportedLanguagesKeys();
-        }
-        
-        /**
-         * Check if Locale exists on the supported locales array.
-         *
-         * @param string|bool $locale string|bool Locale to be checked
-         * @throws SupportedLocalesNotDefined
-         * @return bool is the locale supported?
-         * @static 
-         */ 
-        public static function checkLocaleInSupportedLocales($locale)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::checkLocaleInSupportedLocales($locale);
-        }
-        
-        /**
-         * Set current route name.
-         *
-         * @param string $routeName current route name
-         * @static 
-         */ 
-        public static function setRouteName($routeName)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::setRouteName($routeName);
-        }
-        
-        /**
-         * Translate routes and save them to the translated routes array (used in the localize route filter).
-         *
-         * @param string $routeName Key of the translated string
-         * @return string Translated string
-         * @static 
-         */ 
-        public static function transRoute($routeName)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::transRoute($routeName);
-        }
-        
-        /**
-         * Returns the translation key for a given path.
-         *
-         * @param string $path Path to get the key translated
-         * @return string|false Key for translation, false if not exist
-         * @static 
-         */ 
-        public static function getRouteNameFromAPath($path)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getRouteNameFromAPath($path);
-        }
-        
-        /**
-         * Returns the config repository for this instance.
-         *
-         * @return \Mcamara\LaravelLocalization\Repository Configuration repository
-         * @static 
-         */ 
-        public static function getConfigRepository()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getConfigRepository();
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function hideUrlAndAcceptHeader()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::hideUrlAndAcceptHeader();
-        }
-        
-        /**
-         * Returns the translation key for a given path.
-         *
-         * @return bool Returns value of hideDefaultLocaleInURL in config.
-         * @static 
-         */ 
-        public static function hideDefaultLocaleInURL()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::hideDefaultLocaleInURL();
-        }
-        
-        /**
-         * Create an url from the uri.
-         *
-         * @param string $uri Uri
-         * @return string Url for the given uri
-         * @static 
-         */ 
-        public static function createUrlFromUri($uri)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::createUrlFromUri($uri);
-        }
-        
-        /**
-         * Sets the base url for the site.
-         *
-         * @param string $url Base url for the site
-         * @static 
-         */ 
-        public static function setBaseUrl($url)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::setBaseUrl($url);
-        }
-        
-        /**
-         * Returns serialized translated routes for caching purposes.
-         *
-         * @return string 
-         * @static 
-         */ 
-        public static function getSerializedTranslatedRoutes()
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::getSerializedTranslatedRoutes();
-        }
-        
-        /**
-         * Sets the translated routes list.
-         * 
-         * Only useful from a cached routes context.
-         *
-         * @param string $serializedRoutes
-         * @static 
-         */ 
-        public static function setSerializedTranslatedRoutes($serializedRoutes)
-        {
-            return \Mcamara\LaravelLocalization\LaravelLocalization::setSerializedTranslatedRoutes($serializedRoutes);
         }
          
     }
@@ -16968,6 +17231,35 @@ namespace  {
             }
          
             /**
+             * Add a "where in raw" clause for integer values to the query.
+             *
+             * @param string $column
+             * @param \Illuminate\Contracts\Support\Arrayable|array $values
+             * @param string $boolean
+             * @param bool $not
+             * @return $this 
+             * @static 
+             */ 
+            public static function whereIntegerInRaw($column, $values, $boolean = 'and', $not = false)
+            {    
+                return \Illuminate\Database\Query\Builder::whereIntegerInRaw($column, $values, $boolean, $not);
+            }
+         
+            /**
+             * Add a "where not in raw" clause for integer values to the query.
+             *
+             * @param string $column
+             * @param \Illuminate\Contracts\Support\Arrayable|array $values
+             * @param string $boolean
+             * @return $this 
+             * @static 
+             */ 
+            public static function whereIntegerNotInRaw($column, $values, $boolean = 'and')
+            {    
+                return \Illuminate\Database\Query\Builder::whereIntegerNotInRaw($column, $values, $boolean);
+            }
+         
+            /**
              * Add a "where null" clause to the query.
              *
              * @param string $column
@@ -18130,15 +18422,22 @@ namespace  {
 
     class View extends \Illuminate\Support\Facades\View {}
 
+    class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
+
     class Form extends \Collective\Html\FormFacade {}
 
     class Html extends \Collective\Html\HtmlFacade {}
 
+<<<<<<< HEAD
     class Talk extends \Nahid\Talk\Facades\Talk {}
 
     class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
 
+=======
+>>>>>>> 691e927f5474024b85ee9ca28d26c9eafe650641
     class LaravelLocalization extends \Mcamara\LaravelLocalization\Facades\LaravelLocalization {}
+
+    class Talk extends \Nahid\Talk\Facades\Talk {}
  
 }
 
