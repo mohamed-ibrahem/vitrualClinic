@@ -3,6 +3,8 @@
     'no_loading' => true
 ])
 
+@section ('title', trans('pages.login.title'))
+
 @section ('metronic-content')
     <!-- BEGIN LOGO -->
     <div class="logo">
