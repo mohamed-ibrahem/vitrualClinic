@@ -2,6 +2,7 @@
 
 Route::get('configure', 'Api\IndexController@configure');
 
-Route::get('/get_auth_user', function(\Illuminate\Http\Request $request) {
-    return $request->user();
-})->middleware('auth:api');
+Route::group(['middleware' => 'guest', 'namespace' => 'Api\\'], function() {
+    Route::post('auth/register/{role?}', 'Auth\RegisterController@register');
+    Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
+});

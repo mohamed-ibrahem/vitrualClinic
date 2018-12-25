@@ -3,7 +3,7 @@
 
 /**
  * A helper file for Laravel 5, to provide autocomplete information to your IDE
- * Generated for Laravel 5.7.19 on 2018-12-24 12:40:22.
+ * Generated for Laravel 5.7.19 on 2018-12-24 22:03:28.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -13436,6 +13436,225 @@ namespace Illuminate\Support\Facades {
  
 }
 
+namespace DaveJamesMiller\Breadcrumbs\Facades { 
+
+    /**
+     * Breadcrumbs facade - allows easy access to the Manager instance.
+     *
+     * @see BreadcrumbsManager
+     */ 
+    class Breadcrumbs {
+        
+        /**
+         * Register a breadcrumb-generating callback for a page.
+         *
+         * @param string $name The name of the page.
+         * @param callable $callback The callback, which should accept a Generator instance as the first parameter and may
+         *     accept additional parameters.
+         * @return void 
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
+         *     used.
+         * @static 
+         */ 
+        public static function for($name, $callback)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::for($name, $callback);
+        }
+        
+        /**
+         * Register a breadcrumb-generating callback for a page.
+         * 
+         * For backwards-compatibility with v5.0.0 and below.
+         *
+         * @see self::for()
+         * @param string $name The name of the page.
+         * @param callable $callback The callback, which should accept a Generator instance as the first parameter and may
+         *     accept additional parameters.
+         * @return void 
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
+         *     used.
+         * @static 
+         */ 
+        public static function register($name, $callback)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::register($name, $callback);
+        }
+        
+        /**
+         * Register a closure to call before generating breadcrumbs for the current page.
+         * 
+         * For example, this can be used to always prepend the homepage without needing to manually add it to each page.
+         *
+         * @param callable $callback The callback, which should accept a Generator instance as the first and only parameter.
+         * @return void 
+         * @static 
+         */ 
+        public static function before($callback)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::before($callback);
+        }
+        
+        /**
+         * Register a closure to call after generating breadcrumbs for the current page.
+         * 
+         * For example, this can be used to append the current page number when using pagination.
+         *
+         * @param callable $callback The callback, which should accept a Generator instance as the first and only parameter.
+         * @return void 
+         * @static 
+         */ 
+        public static function after($callback)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::after($callback);
+        }
+        
+        /**
+         * Check if a breadcrumb with the given name exists.
+         * 
+         * If no name is given, defaults to the current route name.
+         *
+         * @param string|null $name The page name.
+         * @return bool Whether there is a registered callback with that name.
+         * @static 
+         */ 
+        public static function exists($name = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::exists($name);
+        }
+        
+        /**
+         * Generate a set of breadcrumbs for a page.
+         *
+         * @param string|null $name The name of the current page.
+         * @param mixed $params The parameters to pass to the closure for the current page.
+         * @return \Illuminate\Support\Collection The generated breadcrumbs.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route
+         *     doesn't have an associated name.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names
+         *     are) not registered.
+         * @static 
+         */ 
+        public static function generate($name = null, $params = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::generate($name, $params);
+        }
+        
+        /**
+         * Render breadcrumbs for a page with the specified view.
+         *
+         * @param string $view The name of the view to render.
+         * @param string|null $name The name of the current page.
+         * @param mixed $params The parameters to pass to the closure for the current page.
+         * @return \Illuminate\Support\HtmlString The generated HTML.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route doesn't have an associated name.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\ViewNotSetException if no view has been set.
+         * @static 
+         */ 
+        public static function view($view, $name = null, $params = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::view($view, $name, $params);
+        }
+        
+        /**
+         * Render breadcrumbs for a page with the default view.
+         *
+         * @param string|null $name The name of the current page.
+         * @param mixed $params The parameters to pass to the closure for the current page.
+         * @return \Illuminate\Support\HtmlString The generated HTML.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route doesn't have an associated name.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\ViewNotSetException if no view has been set.
+         * @static 
+         */ 
+        public static function render($name = null, $params = null)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::render($name, $params);
+        }
+        
+        /**
+         * Get the last breadcrumb for the current page.
+         * 
+         * Optionally pass a
+         *
+         * @return \stdClass|null The breadcrumb for the current page.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if the current route doesn't have an associated name.
+         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
+         * @static 
+         */ 
+        public static function current()
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::current();
+        }
+        
+        /**
+         * Set the current route name and parameters to use when calling render() or generate() with no parameters.
+         *
+         * @param string $name The name of the current page.
+         * @param mixed $params The parameters to pass to the closure for the current page.
+         * @return void 
+         * @static 
+         */ 
+        public static function setCurrentRoute($name, $params = null)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::setCurrentRoute($name, $params);
+        }
+        
+        /**
+         * Clear the previously set route name and parameters to use when calling render() or generate() with no parameters.
+         * 
+         * Next time it will revert to the default behaviour of using the current route from Laravel.
+         *
+         * @return void 
+         * @static 
+         */ 
+        public static function clearCurrentRoute()
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::clearCurrentRoute();
+        }
+        
+        /**
+         * Register a custom macro.
+         *
+         * @param string $name
+         * @param object|callable $macro
+         * @return void 
+         * @static 
+         */ 
+        public static function macro($name, $macro)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::macro($name, $macro);
+        }
+        
+        /**
+         * Mix another object into the class.
+         *
+         * @param object $mixin
+         * @return void 
+         * @throws \ReflectionException
+         * @static 
+         */ 
+        public static function mixin($mixin)
+        {
+            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::mixin($mixin);
+        }
+        
+        /**
+         * Checks if macro is registered.
+         *
+         * @param string $name
+         * @return bool 
+         * @static 
+         */ 
+        public static function hasMacro($name)
+        {
+            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::hasMacro($name);
+        }
+         
+    }
+ 
+}
+
 namespace Collective\Html { 
 
     /**
@@ -14551,551 +14770,6 @@ namespace Collective\Html {
  
 }
 
-namespace Nahid\Talk\Facades { 
-
-    /**
-     * 
-     *
-     */ 
-    class Talk {
-        
-        /**
-         * set currently authenticated user id for global usage.
-         *
-         * @param int $id
-         * @return int|bool 
-         * @static 
-         */ 
-        public static function setAuthUserId($id = null)
-        {
-            return \Nahid\Talk\Talk::setAuthUserId($id);
-        }
-        
-        /**
-         * 
-         *
-         * @static 
-         */ 
-        public static function user($id = null)
-        {
-            return \Nahid\Talk\Talk::user($id);
-        }
-        
-        /**
-         * make sure is this conversation exist for this user with currently loggedin user.
-         *
-         * @param int $userId
-         * @return bool|int 
-         * @static 
-         */ 
-        public static function isConversationExists($userId)
-        {
-            return \Nahid\Talk\Talk::isConversationExists($userId);
-        }
-        
-        /**
-         * check the given user exist for the given conversation.
-         *
-         * @param int $conversationId
-         * @param int $userId
-         * @return bool 
-         * @static 
-         */ 
-        public static function isAuthenticUser($conversationId, $userId)
-        {
-            return \Nahid\Talk\Talk::isAuthenticUser($conversationId, $userId);
-        }
-        
-        /**
-         * send a message by using converstionid.
-         *
-         * @param int $conversationId
-         * @param string $message
-         * @return \Nahid\Talk\Messages\Message|bool 
-         * @static 
-         */ 
-        public static function sendMessage($conversatonId, $message)
-        {
-            return \Nahid\Talk\Talk::sendMessage($conversatonId, $message);
-        }
-        
-        /**
-         * create a new message by using receiverid.
-         *
-         * @param int $receiverId
-         * @param string $message
-         * @return \Nahid\Talk\Messages\Message 
-         * @static 
-         */ 
-        public static function sendMessageByUserId($receiverId, $message)
-        {
-            return \Nahid\Talk\Talk::sendMessageByUserId($receiverId, $message);
-        }
-        
-        /**
-         * fetch all inbox for currently loggedin user with pagination.
-         *
-         * @param int $offset
-         * @param int $take
-         * @return array 
-         * @static 
-         */ 
-        public static function getInbox($order = 'desc', $offset = 0, $take = 20)
-        {
-            return \Nahid\Talk\Talk::getInbox($order, $offset, $take);
-        }
-        
-        /**
-         * fetch all inbox with soft deleted message for currently loggedin user with pagination.
-         *
-         * @param int $offset
-         * @param int $take
-         * @return array 
-         * @static 
-         */ 
-        public static function getInboxAll($order = 'desc', $offset = 0, $take = 20)
-        {
-            return \Nahid\Talk\Talk::getInboxAll($order, $offset, $take);
-        }
-        
-        /**
-         * its a alias of getInbox method.
-         *
-         * @param int $offset
-         * @param int $take
-         * @return array 
-         * @static 
-         */ 
-        public static function threads($order = 'desc', $offset = 0, $take = 20)
-        {
-            return \Nahid\Talk\Talk::threads($order, $offset, $take);
-        }
-        
-        /**
-         * its a alias of getInboxAll method.
-         *
-         * @param int $offset
-         * @param int $take
-         * @return array 
-         * @static 
-         */ 
-        public static function threadsAll($order = 'desc', $offset = 0, $take = 20)
-        {
-            return \Nahid\Talk\Talk::threadsAll($order, $offset, $take);
-        }
-        
-        /**
-         * fetch all conversation by using coversation id.
-         *
-         * @param int $conversationId
-         * @param int $offset = 0
-         * @param int $take = 20
-         * @return \Nahid\Talk\Messages\Message 
-         * @static 
-         */ 
-        public static function getConversationsById($conversationId, $offset = 0, $take = 20)
-        {
-            return \Nahid\Talk\Talk::getConversationsById($conversationId, $offset, $take);
-        }
-        
-        /**
-         * fetch all conversation with soft deleted messages by using coversation id.
-         *
-         * @param int $conversationId
-         * @param int $offset = 0
-         * @param int $take = 20
-         * @return \Nahid\Talk\Messages\Message 
-         * @static 
-         */ 
-        public static function getConversationsAllById($conversationId, $offset = 0, $take = 20)
-        {
-            return \Nahid\Talk\Talk::getConversationsAllById($conversationId, $offset, $take);
-        }
-        
-        /**
-         * create a new message by using sender id.
-         *
-         * @param int $senderId
-         * @param int $offset = 0
-         * @param int $take = 20
-         * @return \Nahid\Talk\Messages\Message|bool 
-         * @static 
-         */ 
-        public static function getConversationsByUserId($senderId, $offset = 0, $take = 20)
-        {
-            return \Nahid\Talk\Talk::getConversationsByUserId($senderId, $offset, $take);
-        }
-        
-        /**
-         * create a new message by using sender id.
-         *
-         * @param int $senderId
-         * @param int $offset = 0
-         * @param int $take = 20
-         * @return \Nahid\Talk\Messages\Message|bool 
-         * @static 
-         */ 
-        public static function getConversationsAllByUserId($senderId, $offset = 0, $take = 20)
-        {
-            return \Nahid\Talk\Talk::getConversationsAllByUserId($senderId, $offset, $take);
-        }
-        
-        /**
-         * its an alias of getConversationById.
-         *
-         * @param int $conversationId
-         * @return \Nahid\Talk\Messages\Message|bool 
-         * @static 
-         */ 
-        public static function getMessages($conversationId, $offset = 0, $take = 20)
-        {
-            return \Nahid\Talk\Talk::getMessages($conversationId, $offset, $take);
-        }
-        
-        /**
-         * its an alias of getConversationAllById.
-         *
-         * @param int $conversationId
-         * @return \Nahid\Talk\Messages\Message|bool 
-         * @static 
-         */ 
-        public static function getMessagesAll($conversationId, $offset = 0, $take = 20)
-        {
-            return \Nahid\Talk\Talk::getMessagesAll($conversationId, $offset, $take);
-        }
-        
-        /**
-         * its an alias by getConversationByUserId.
-         *
-         * @param int $senderId
-         * @return \Nahid\Talk\Messages\Message|bool 
-         * @static 
-         */ 
-        public static function getMessagesByUserId($userId, $offset = 0, $take = 20)
-        {
-            return \Nahid\Talk\Talk::getMessagesByUserId($userId, $offset, $take);
-        }
-        
-        /**
-         * its an alias by getConversationAllByUserId.
-         *
-         * @param int $senderId
-         * @return \Nahid\Talk\Messages\Message|bool 
-         * @static 
-         */ 
-        public static function getMessagesAllByUserId($userId, $offset = 0, $take = 20)
-        {
-            return \Nahid\Talk\Talk::getMessagesAllByUserId($userId, $offset, $take);
-        }
-        
-        /**
-         * read a single message by message id.
-         *
-         * @param int $messageId
-         * @return \Nahid\Talk\Messages\Message|bool 
-         * @static 
-         */ 
-        public static function readMessage($messageId = null)
-        {
-            return \Nahid\Talk\Talk::readMessage($messageId);
-        }
-        
-        /**
-         * make a message as seen.
-         *
-         * @param int $messageId
-         * @return bool 
-         * @static 
-         */ 
-        public static function makeSeen($messageId)
-        {
-            return \Nahid\Talk\Talk::makeSeen($messageId);
-        }
-        
-        /**
-         * get receiver information for this conversation.
-         *
-         * @param int $conversationId
-         * @return \Nahid\Talk\UserModel 
-         * @deprecated since version 2.0.0 Remove it from version 2.0.2
-         * @static 
-         */ 
-        public static function getReceiverInfo($conversationId)
-        {
-            return \Nahid\Talk\Talk::getReceiverInfo($conversationId);
-        }
-        
-        /**
-         * delete a specific message, its a softdelete process. All message stored in db.
-         *
-         * @param int $messageId
-         * @return bool 
-         * @static 
-         */ 
-        public static function deleteMessage($messageId)
-        {
-            return \Nahid\Talk\Talk::deleteMessage($messageId);
-        }
-        
-        /**
-         * permanently delete message for this id.
-         *
-         * @param int $messageId
-         * @return bool 
-         * @static 
-         */ 
-        public static function deleteForever($messageId)
-        {
-            return \Nahid\Talk\Talk::deleteForever($messageId);
-        }
-        
-        /**
-         * delete message threat or conversation by conversation id.
-         *
-         * @param int $id
-         * @return bool 
-         * @static 
-         */ 
-        public static function deleteConversations($id)
-        {
-            return \Nahid\Talk\Talk::deleteConversations($id);
-        }
-        
-        /**
-         * its an alias of deleteConversations.
-         *
-         * @param int $id
-         * @return bool 
-         * @static 
-         */ 
-        public static function deleteThread($id = null)
-        {
-            return \Nahid\Talk\Talk::deleteThread($id);
-        }
-         
-    }
- 
-}
-
-namespace DaveJamesMiller\Breadcrumbs\Facades { 
-
-    /**
-     * Breadcrumbs facade - allows easy access to the Manager instance.
-     *
-     * @see BreadcrumbsManager
-     */ 
-    class Breadcrumbs {
-        
-        /**
-         * Register a breadcrumb-generating callback for a page.
-         *
-         * @param string $name The name of the page.
-         * @param callable $callback The callback, which should accept a Generator instance as the first parameter and may
-         *     accept additional parameters.
-         * @return void 
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
-         *     used.
-         * @static 
-         */ 
-        public static function for($name, $callback)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::for($name, $callback);
-        }
-        
-        /**
-         * Register a breadcrumb-generating callback for a page.
-         * 
-         * For backwards-compatibility with v5.0.0 and below.
-         *
-         * @see self::for()
-         * @param string $name The name of the page.
-         * @param callable $callback The callback, which should accept a Generator instance as the first parameter and may
-         *     accept additional parameters.
-         * @return void 
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\DuplicateBreadcrumbException If the given name has already been
-         *     used.
-         * @static 
-         */ 
-        public static function register($name, $callback)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::register($name, $callback);
-        }
-        
-        /**
-         * Register a closure to call before generating breadcrumbs for the current page.
-         * 
-         * For example, this can be used to always prepend the homepage without needing to manually add it to each page.
-         *
-         * @param callable $callback The callback, which should accept a Generator instance as the first and only parameter.
-         * @return void 
-         * @static 
-         */ 
-        public static function before($callback)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::before($callback);
-        }
-        
-        /**
-         * Register a closure to call after generating breadcrumbs for the current page.
-         * 
-         * For example, this can be used to append the current page number when using pagination.
-         *
-         * @param callable $callback The callback, which should accept a Generator instance as the first and only parameter.
-         * @return void 
-         * @static 
-         */ 
-        public static function after($callback)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::after($callback);
-        }
-        
-        /**
-         * Check if a breadcrumb with the given name exists.
-         * 
-         * If no name is given, defaults to the current route name.
-         *
-         * @param string|null $name The page name.
-         * @return bool Whether there is a registered callback with that name.
-         * @static 
-         */ 
-        public static function exists($name = null)
-        {
-            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::exists($name);
-        }
-        
-        /**
-         * Generate a set of breadcrumbs for a page.
-         *
-         * @param string|null $name The name of the current page.
-         * @param mixed $params The parameters to pass to the closure for the current page.
-         * @return \Illuminate\Support\Collection The generated breadcrumbs.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route
-         *     doesn't have an associated name.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names
-         *     are) not registered.
-         * @static 
-         */ 
-        public static function generate($name = null, $params = null)
-        {
-            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::generate($name, $params);
-        }
-        
-        /**
-         * Render breadcrumbs for a page with the specified view.
-         *
-         * @param string $view The name of the view to render.
-         * @param string|null $name The name of the current page.
-         * @param mixed $params The parameters to pass to the closure for the current page.
-         * @return \Illuminate\Support\HtmlString The generated HTML.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route doesn't have an associated name.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\ViewNotSetException if no view has been set.
-         * @static 
-         */ 
-        public static function view($view, $name = null, $params = null)
-        {
-            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::view($view, $name, $params);
-        }
-        
-        /**
-         * Render breadcrumbs for a page with the default view.
-         *
-         * @param string|null $name The name of the current page.
-         * @param mixed $params The parameters to pass to the closure for the current page.
-         * @return \Illuminate\Support\HtmlString The generated HTML.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if no name is given and the current route doesn't have an associated name.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\ViewNotSetException if no view has been set.
-         * @static 
-         */ 
-        public static function render($name = null, $params = null)
-        {
-            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::render($name, $params);
-        }
-        
-        /**
-         * Get the last breadcrumb for the current page.
-         * 
-         * Optionally pass a
-         *
-         * @return \stdClass|null The breadcrumb for the current page.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\UnnamedRouteException if the current route doesn't have an associated name.
-         * @throws \DaveJamesMiller\Breadcrumbs\Exceptions\InvalidBreadcrumbException if the name is (or any ancestor names are) not registered.
-         * @static 
-         */ 
-        public static function current()
-        {
-            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::current();
-        }
-        
-        /**
-         * Set the current route name and parameters to use when calling render() or generate() with no parameters.
-         *
-         * @param string $name The name of the current page.
-         * @param mixed $params The parameters to pass to the closure for the current page.
-         * @return void 
-         * @static 
-         */ 
-        public static function setCurrentRoute($name, $params = null)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::setCurrentRoute($name, $params);
-        }
-        
-        /**
-         * Clear the previously set route name and parameters to use when calling render() or generate() with no parameters.
-         * 
-         * Next time it will revert to the default behaviour of using the current route from Laravel.
-         *
-         * @return void 
-         * @static 
-         */ 
-        public static function clearCurrentRoute()
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::clearCurrentRoute();
-        }
-        
-        /**
-         * Register a custom macro.
-         *
-         * @param string $name
-         * @param object|callable $macro
-         * @return void 
-         * @static 
-         */ 
-        public static function macro($name, $macro)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::macro($name, $macro);
-        }
-        
-        /**
-         * Mix another object into the class.
-         *
-         * @param object $mixin
-         * @return void 
-         * @throws \ReflectionException
-         * @static 
-         */ 
-        public static function mixin($mixin)
-        {
-            \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::mixin($mixin);
-        }
-        
-        /**
-         * Checks if macro is registered.
-         *
-         * @param string $name
-         * @return bool 
-         * @static 
-         */ 
-        public static function hasMacro($name)
-        {
-            return \DaveJamesMiller\Breadcrumbs\BreadcrumbsManager::hasMacro($name);
-        }
-         
-    }
- 
-}
-
 namespace Mcamara\LaravelLocalization\Facades { 
 
     /**
@@ -15448,6 +15122,332 @@ namespace Mcamara\LaravelLocalization\Facades {
         public static function setSerializedTranslatedRoutes($serializedRoutes)
         {
             return \Mcamara\LaravelLocalization\LaravelLocalization::setSerializedTranslatedRoutes($serializedRoutes);
+        }
+         
+    }
+ 
+}
+
+namespace Nahid\Talk\Facades { 
+
+    /**
+     * 
+     *
+     */ 
+    class Talk {
+        
+        /**
+         * set currently authenticated user id for global usage.
+         *
+         * @param int $id
+         * @return int|bool 
+         * @static 
+         */ 
+        public static function setAuthUserId($id = null)
+        {
+            return \Nahid\Talk\Talk::setAuthUserId($id);
+        }
+        
+        /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function user($id = null)
+        {
+            return \Nahid\Talk\Talk::user($id);
+        }
+        
+        /**
+         * make sure is this conversation exist for this user with currently loggedin user.
+         *
+         * @param int $userId
+         * @return bool|int 
+         * @static 
+         */ 
+        public static function isConversationExists($userId)
+        {
+            return \Nahid\Talk\Talk::isConversationExists($userId);
+        }
+        
+        /**
+         * check the given user exist for the given conversation.
+         *
+         * @param int $conversationId
+         * @param int $userId
+         * @return bool 
+         * @static 
+         */ 
+        public static function isAuthenticUser($conversationId, $userId)
+        {
+            return \Nahid\Talk\Talk::isAuthenticUser($conversationId, $userId);
+        }
+        
+        /**
+         * send a message by using converstionid.
+         *
+         * @param int $conversationId
+         * @param string $message
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function sendMessage($conversatonId, $message)
+        {
+            return \Nahid\Talk\Talk::sendMessage($conversatonId, $message);
+        }
+        
+        /**
+         * create a new message by using receiverid.
+         *
+         * @param int $receiverId
+         * @param string $message
+         * @return \Nahid\Talk\Messages\Message 
+         * @static 
+         */ 
+        public static function sendMessageByUserId($receiverId, $message)
+        {
+            return \Nahid\Talk\Talk::sendMessageByUserId($receiverId, $message);
+        }
+        
+        /**
+         * fetch all inbox for currently loggedin user with pagination.
+         *
+         * @param int $offset
+         * @param int $take
+         * @return array 
+         * @static 
+         */ 
+        public static function getInbox($order = 'desc', $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getInbox($order, $offset, $take);
+        }
+        
+        /**
+         * fetch all inbox with soft deleted message for currently loggedin user with pagination.
+         *
+         * @param int $offset
+         * @param int $take
+         * @return array 
+         * @static 
+         */ 
+        public static function getInboxAll($order = 'desc', $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getInboxAll($order, $offset, $take);
+        }
+        
+        /**
+         * its a alias of getInbox method.
+         *
+         * @param int $offset
+         * @param int $take
+         * @return array 
+         * @static 
+         */ 
+        public static function threads($order = 'desc', $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::threads($order, $offset, $take);
+        }
+        
+        /**
+         * its a alias of getInboxAll method.
+         *
+         * @param int $offset
+         * @param int $take
+         * @return array 
+         * @static 
+         */ 
+        public static function threadsAll($order = 'desc', $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::threadsAll($order, $offset, $take);
+        }
+        
+        /**
+         * fetch all conversation by using coversation id.
+         *
+         * @param int $conversationId
+         * @param int $offset = 0
+         * @param int $take = 20
+         * @return \Nahid\Talk\Messages\Message 
+         * @static 
+         */ 
+        public static function getConversationsById($conversationId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getConversationsById($conversationId, $offset, $take);
+        }
+        
+        /**
+         * fetch all conversation with soft deleted messages by using coversation id.
+         *
+         * @param int $conversationId
+         * @param int $offset = 0
+         * @param int $take = 20
+         * @return \Nahid\Talk\Messages\Message 
+         * @static 
+         */ 
+        public static function getConversationsAllById($conversationId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getConversationsAllById($conversationId, $offset, $take);
+        }
+        
+        /**
+         * create a new message by using sender id.
+         *
+         * @param int $senderId
+         * @param int $offset = 0
+         * @param int $take = 20
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function getConversationsByUserId($senderId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getConversationsByUserId($senderId, $offset, $take);
+        }
+        
+        /**
+         * create a new message by using sender id.
+         *
+         * @param int $senderId
+         * @param int $offset = 0
+         * @param int $take = 20
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function getConversationsAllByUserId($senderId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getConversationsAllByUserId($senderId, $offset, $take);
+        }
+        
+        /**
+         * its an alias of getConversationById.
+         *
+         * @param int $conversationId
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function getMessages($conversationId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getMessages($conversationId, $offset, $take);
+        }
+        
+        /**
+         * its an alias of getConversationAllById.
+         *
+         * @param int $conversationId
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function getMessagesAll($conversationId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getMessagesAll($conversationId, $offset, $take);
+        }
+        
+        /**
+         * its an alias by getConversationByUserId.
+         *
+         * @param int $senderId
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function getMessagesByUserId($userId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getMessagesByUserId($userId, $offset, $take);
+        }
+        
+        /**
+         * its an alias by getConversationAllByUserId.
+         *
+         * @param int $senderId
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function getMessagesAllByUserId($userId, $offset = 0, $take = 20)
+        {
+            return \Nahid\Talk\Talk::getMessagesAllByUserId($userId, $offset, $take);
+        }
+        
+        /**
+         * read a single message by message id.
+         *
+         * @param int $messageId
+         * @return \Nahid\Talk\Messages\Message|bool 
+         * @static 
+         */ 
+        public static function readMessage($messageId = null)
+        {
+            return \Nahid\Talk\Talk::readMessage($messageId);
+        }
+        
+        /**
+         * make a message as seen.
+         *
+         * @param int $messageId
+         * @return bool 
+         * @static 
+         */ 
+        public static function makeSeen($messageId)
+        {
+            return \Nahid\Talk\Talk::makeSeen($messageId);
+        }
+        
+        /**
+         * get receiver information for this conversation.
+         *
+         * @param int $conversationId
+         * @return \Nahid\Talk\UserModel 
+         * @deprecated since version 2.0.0 Remove it from version 2.0.2
+         * @static 
+         */ 
+        public static function getReceiverInfo($conversationId)
+        {
+            return \Nahid\Talk\Talk::getReceiverInfo($conversationId);
+        }
+        
+        /**
+         * delete a specific message, its a softdelete process. All message stored in db.
+         *
+         * @param int $messageId
+         * @return bool 
+         * @static 
+         */ 
+        public static function deleteMessage($messageId)
+        {
+            return \Nahid\Talk\Talk::deleteMessage($messageId);
+        }
+        
+        /**
+         * permanently delete message for this id.
+         *
+         * @param int $messageId
+         * @return bool 
+         * @static 
+         */ 
+        public static function deleteForever($messageId)
+        {
+            return \Nahid\Talk\Talk::deleteForever($messageId);
+        }
+        
+        /**
+         * delete message threat or conversation by conversation id.
+         *
+         * @param int $id
+         * @return bool 
+         * @static 
+         */ 
+        public static function deleteConversations($id)
+        {
+            return \Nahid\Talk\Talk::deleteConversations($id);
+        }
+        
+        /**
+         * its an alias of deleteConversations.
+         *
+         * @param int $id
+         * @return bool 
+         * @static 
+         */ 
+        public static function deleteThread($id = null)
+        {
+            return \Nahid\Talk\Talk::deleteThread($id);
         }
          
     }
@@ -17886,15 +17886,15 @@ namespace  {
 
     class View extends \Illuminate\Support\Facades\View {}
 
+    class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
+
     class Form extends \Collective\Html\FormFacade {}
 
     class Html extends \Collective\Html\HtmlFacade {}
 
-    class Talk extends \Nahid\Talk\Facades\Talk {}
-
-    class Breadcrumbs extends \DaveJamesMiller\Breadcrumbs\Facades\Breadcrumbs {}
-
     class LaravelLocalization extends \Mcamara\LaravelLocalization\Facades\LaravelLocalization {}
+
+    class Talk extends \Nahid\Talk\Facades\Talk {}
  
 }
 
