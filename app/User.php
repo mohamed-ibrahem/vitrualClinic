@@ -5,12 +5,14 @@ namespace App;
 use App\Notifications\ResetPassword;
 use Cog\Laravel\Ban\Traits\Bannable;
 use HighIdeas\UsersOnline\Traits\UsersOnlineTrait;
+use Illuminate\Container\Container;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Cog\Contracts\Ban\Bannable as BannableContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Cashier\Billable;
 use Laravel\Passport\HasApiTokens;
+use Laravel\Passport\PersonalAccessTokenFactory;
 
 class User extends Authenticatable implements BannableContract
 {
@@ -145,7 +147,8 @@ class User extends Authenticatable implements BannableContract
      */
     public function getProfilePicAttribute()
     {
-        return asset($this->info->get('profile_pic', 'assets\layout\img\avatar.png'));
+        $img = $this->info->get('profile_pic', 'assets\layout\img\avatar.png');
+        return asset($img . '?' . filectime($img));
     }
 
     /**

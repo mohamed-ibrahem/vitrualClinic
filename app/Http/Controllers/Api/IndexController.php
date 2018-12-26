@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use Barryvdh\TranslationManager\Models\Translation;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use LaravelLocalization;
 
