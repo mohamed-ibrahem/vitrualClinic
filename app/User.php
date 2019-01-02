@@ -147,7 +147,7 @@ class User extends Authenticatable implements BannableContract
      */
     public function getProfilePicAttribute()
     {
-        $img = $this->info->get('profile_pic', 'assets\layout\img\avatar.png');
+        $img = $this->info->get('profile_pic', 'assets/layout/img/avatar.png');
         return asset($img . '?' . filectime($img));
     }
 
