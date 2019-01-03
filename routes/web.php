@@ -11,11 +11,20 @@
 |
 */
 
+
+
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
     'middleware' => ['auth', 'role:admin']
 ], function () {
+    Route::get('/test/message/{id}', function($id) {
+        \Talk::sendMessageByUserId($id, 'test;');
+
+        return response()->json([
+            \Talk::getMessagesByUserId($id)
+        ]);
+    })->middleware('talk');
     Route::get('/', 'Admin\PagesController@index')->name('home');
 
     Route::get('/system/{page?}', 'Admin\PagesController@settings')->name('settings');

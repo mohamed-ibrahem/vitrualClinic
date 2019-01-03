@@ -26,8 +26,8 @@ class UserResource extends JsonResource
         if ($this->isDoctor())
             $user['specialities'] = $this->specialities;
 
-        if ($this->is($request->user()))
-            $user['messages'] = \Talk::user($request->user()->id)->threads();
+        //if ($this->is($request->user()))
+            //$user['messages'] = \Talk::getInbox();
 
         return $user;
     }
