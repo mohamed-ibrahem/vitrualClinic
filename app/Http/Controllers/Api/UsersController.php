@@ -27,6 +27,7 @@ class UsersController extends Controller
             'data' => [
                 'users' => UserResource::collection($allUsers->filter(function (User $user) use ($request) {
                     $is = false;
+
                     if (str_contains(strtolower($user->name), strtolower($request->get('input'))))
                         $is = true;
 
@@ -39,9 +40,14 @@ class UsersController extends Controller
                     if (strtolower($user->email) == strtolower($request->get('input')))
                         $is = true;
 
+                    if ($user->specialities()->where('display_name', 'LIKE', "%{$request->get('input')}%")->count())
+                        $is = true;
+
                     return $is;
                 })),
-                'categories' => Speciality::where('display_name', 'LIKE', "%{$request->get('input')}%")->get()
+                'categories' => Speciality::with('users')
+                    ->where('display_name', 'LIKE', "%{$request->get('input')}%")
+                    ->get()
             ]
         ]);
     }

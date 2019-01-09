@@ -12,7 +12,7 @@ class UserResource extends JsonResource
      */
     public function toArray($request)
     {
-        $user =  [
+        return [
             'id' => $this->getkey(),
             'name' => $this->name,
             'profile_pic' => $this->profile_pic,
@@ -20,15 +20,11 @@ class UserResource extends JsonResource
             'phone' => $this->phone,
             'description' => $this->info->get('description', ''),
             'isOnline' => $this->isOnline(),
-
+            'isDoctor' => $this->isDoctor(),
+            'isMember' => $this->isMember(),
+            $this->mergeWhen($this->isDoctor(), [
+                'specialities' => $this->specialities
+            ])
         ];
-
-        if ($this->isDoctor())
-            $user['specialities'] = $this->specialities;
-
-        //if ($this->is($request->user()))
-            //$user['messages'] = \Talk::getInbox();
-
-        return $user;
     }
 }
