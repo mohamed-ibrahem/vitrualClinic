@@ -21,6 +21,7 @@ class Kernel extends HttpKernel
         \App\Http\Middleware\TrustProxies::class,
         \Cog\Laravel\Ban\Http\Middleware\ForbidBannedUser::class,
         \HighIdeas\UsersOnline\Middleware\UsersOnline::class,
+        \Barryvdh\Cors\HandleCors::class
     ];
 
     /**

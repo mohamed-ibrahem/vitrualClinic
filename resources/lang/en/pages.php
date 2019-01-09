@@ -148,5 +148,16 @@ return array (
     ),
     'remember' => 'Remember',
     'submit' => 'Login',
+    'register' => 
+    array (
+      'title' => 'Register',
+      'or' => 'OR',
+      'buttons' => 
+      array (
+        'back' => 'Back',
+        'continue' => 'continue',
+        'register' => 'Register',
+      ),
+    ),
   ),
 );

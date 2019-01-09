@@ -10,7 +10,6 @@ use App\Http\Controllers\Controller;
 
 class TranslationsController extends Controller
 {
-
     /** @var \Barryvdh\TranslationManager\Manager */
     protected $manager;
 
@@ -19,7 +18,7 @@ class TranslationsController extends Controller
         $this->manager = $manager;
     }
 
-    public function getIndex()
+    public function getIndex(Request $request)
     {
         $locales = $this->manager->getLocales();
         $groups = Translation::groupBy('group');

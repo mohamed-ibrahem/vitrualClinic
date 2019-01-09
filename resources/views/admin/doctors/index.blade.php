@@ -117,10 +117,10 @@
                     <tbody>
                     @foreach(\App\Role::Doctors()->user()->onlyBanned()->get() as $user)
                         <tr class="odd gradeX">
-                            <td>{{ $user->getKey() }}</td>
+                            <td>{{ $user->uid }}</td>
                             <td>
                                 <div class="label label-primary pull-left" style="margin:0 10px;">
-                                    #{{ $user->getKey() }}</div>
+                                    #{{ $user->uid }}</div>
                                 {{ $user->name }}
                             </td>
                             <td>
@@ -157,14 +157,14 @@
                                        data-container="body" data-placement="top">
                                         <i class="fa fa-fw fa-edit"></i>
                                     </a>
-                                    <a href="#unban_user_{{ $user->getKey() }}" class="btn btn-success tooltips"
+                                    <a href="#unban_user_{{ $user->uid }}" class="btn btn-success tooltips"
                                        data-toggle="modal"
                                        data-original-title="{{ trans('general.datatable.tools.unban', ['user' => $user->name]) }}"
                                        data-container="body" data-placement="top">
                                         <i class="fa fa-fw fa-user"></i>
                                     </a>
 
-                                    <a href="#delete_user_{{ $user->getKey() }}" class="btn btn-danger tooltips"
+                                    <a href="#delete_user_{{ $user->uid }}" class="btn btn-danger tooltips"
                                        data-toggle="modal"
                                        data-original-title="{{ trans('general.datatable.tools.delete') }}"
                                        data-container="body" data-placement="top">
@@ -180,7 +180,7 @@
         @endif
 
         @foreach(\App\Role::Doctors()->user()->get() as $user)
-            <div id="delete_user_{{ $user->getKey() }}" class="modal fade" data-keyboard="false" tabindex="-1"
+            <div id="delete_user_{{ $user->uid }}" class="modal fade" data-keyboard="false" tabindex="-1"
                  role="dialog" aria-hidden="true"
                  data-backdrop="static">
                 <div class="modal-dialog">
@@ -200,7 +200,7 @@
                     </div>
                 </div>
             </div>
-            <div id="user_{{ $user->getKey() }}_profile" class="modal fade" data-keyboard="false" tabindex="-1"
+            <div id="user_{{ $user->uid }}_profile" class="modal fade" data-keyboard="false" tabindex="-1"
                  role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -297,7 +297,7 @@
             </div>
 
             @if ($user->isNotBanned())
-                <div id="ban_user_{{ $user->getKey() }}" class="modal fade" tabindex="-1" role="dialog"
+                <div id="ban_user_{{ $user->uid }}" class="modal fade" tabindex="-1" role="dialog"
                      aria-hidden="true"
                      data-backdrop="static">
                     <div class="modal-dialog">
@@ -339,7 +339,7 @@
                     </div>
                 </div>
             @else
-                <div id="unban_user_{{ $user->getKey() }}" class="modal fade" tabindex="-1" role="dialog"
+                <div id="unban_user_{{ $user->uid }}" class="modal fade" tabindex="-1" role="dialog"
                      aria-hidden="true"
                      data-backdrop="static">
                     <div class="modal-dialog">

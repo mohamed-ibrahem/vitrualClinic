@@ -9,11 +9,11 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Cog\Contracts\Ban\Bannable as BannableContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Cashier\Billable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable implements BannableContract
 {
-    use Notifiable, Billable, UsersOnlineTrait, Bannable;
+    use Notifiable, UsersOnlineTrait, Bannable, HasApiTokens;
 
     /** @var array $fillable */
     protected $fillable = [
@@ -33,7 +33,7 @@ class User extends Authenticatable implements BannableContract
 
     /** @var array $appends */
     protected $appends = [
-        'profile_pic', 'country'
+        'profile_pic', 'country', 'uid'
     ];
 
     /**
@@ -57,6 +57,39 @@ class User extends Authenticatable implements BannableContract
     }
 
     /**
+     * @project VirtualClinic - Jan/2019
+     *
+     * @param $user
+     * @return bool
+     */
+    public function conversationsWith($user)
+    {
+        if (is_numeric($user)) $user = User::find($user);
+
+        $conversation = Conversation::where(function ($query) use ($user) {
+            $query->where(
+                function ($q) use ($user) {
+                    $q->where('user_one', $user->getKey())
+                        ->where('user_two', auth()->id());
+                }
+            )->orWhere(
+                function ($q) use ($user) {
+                    $q->where('user_one', auth()->id())
+                        ->where('user_two', $user->getKey());
+                }
+            );
+        })->first();
+
+        if (! $conversation)
+            $conversation = Conversation::create([
+                'user_one' => auth()->id(),
+                'user_two' => $user->getKey()
+            ]);
+
+        return $conversation;
+    }
+
+    /**
      * @project VirtualClinic - Oct/2018
      *
      * @param string $token
@@ -75,8 +108,8 @@ class User extends Authenticatable implements BannableContract
      */
     public function hasRole($role)
     {
-        if (! $role instanceof Role) {
-            if (! is_numeric($role))
+        if (!$role instanceof Role) {
+            if (!is_numeric($role))
                 $role = Role::where('name', $role)->first();
             else
                 $role = Role::find($role);
@@ -94,7 +127,7 @@ class User extends Authenticatable implements BannableContract
     public function hasRoles($roles)
     {
         foreach ($roles as $role) {
-            if ( $this->hasRole($role) )
+            if ($this->hasRole($role))
                 return true;
         }
 
@@ -134,9 +167,9 @@ class User extends Authenticatable implements BannableContract
     /**
      * @return string
      */
-    public function getIdAttribute($value)
+    public function getUidAttribute()
     {
-        return str_pad($value, 4, '0', STR_PAD_LEFT);
+        return str_pad($this->id, 4, '0', STR_PAD_LEFT);
     }
 
     /**
@@ -144,7 +177,8 @@ class User extends Authenticatable implements BannableContract
      */
     public function getProfilePicAttribute()
     {
-        return asset($this->info->get('profile_pic', 'assets\layout\img\avatar.png'));
+        $img = $this->info->get('profile_pic', 'assets/layout/img/avatar.png');
+        return asset($img . '?' . filectime($img));
     }
 
     /**

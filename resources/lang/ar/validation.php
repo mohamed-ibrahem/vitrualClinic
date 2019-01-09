@@ -11,7 +11,7 @@ return array (
   'array' => 'يجب أن يكون :attribute ًمصفوفة.',
   'before' => 'يجب على :attribute أن يكون تاريخًا سابقًا للتاريخ :date.',
   'before_or_equal' => ':attribute يجب أن يكون تاريخا سابقا أو مطابقا للتاريخ :date.',
-  'between' =>
+  'between' => 
   array (
     'numeric' => 'يجب أن تكون قيمة :attribute بين :min و :max.',
     'file' => 'يجب أن يكون حجم الملف :attribute بين :min و :max كيلوبايت.',
@@ -31,14 +31,14 @@ return array (
   'exists' => 'القيمة المحددة :attribute غير موجودة.',
   'file' => 'الـ :attribute يجب أن يكون ملفا.',
   'filled' => ':attribute إجباري.',
-  'gt' =>
+  'gt' => 
   array (
     'numeric' => 'يجب أن تكون قيمة :attribute أكبر من :value.',
     'file' => 'يجب أن يكون حجم الملف :attribute أكبر من :value كيلوبايت.',
     'string' => 'يجب أن يكون طول النّص :attribute أكثر من :value حروفٍ/حرفًا.',
     'array' => 'يجب أن يحتوي :attribute على أكثر من :value عناصر/عنصر.',
   ),
-  'gte' =>
+  'gte' => 
   array (
     'numeric' => 'يجب أن تكون قيمة :attribute مساوية أو أكبر من :value.',
     'file' => 'يجب أن يكون حجم الملف :attribute على الأقل :value كيلوبايت.',
@@ -53,21 +53,21 @@ return array (
   'ipv4' => 'يجب أن يكون :attribute عنوان IPv4 صحيحًا.',
   'ipv6' => 'يجب أن يكون :attribute عنوان IPv6 صحيحًا.',
   'json' => 'يجب أن يكون :attribute نصآ من نوع JSON.',
-  'lt' =>
+  'lt' => 
   array (
     'numeric' => 'يجب أن تكون قيمة :attribute أصغر من :value.',
     'file' => 'يجب أن يكون حجم الملف :attribute أصغر من :value كيلوبايت.',
     'string' => 'يجب أن يكون طول النّص :attribute أقل من :value حروفٍ/حرفًا.',
     'array' => 'يجب أن يحتوي :attribute على أقل من :value عناصر/عنصر.',
   ),
-  'lte' =>
+  'lte' => 
   array (
     'numeric' => 'يجب أن تكون قيمة :attribute مساوية أو أصغر من :value.',
     'file' => 'يجب أن لا يتجاوز حجم الملف :attribute :value كيلوبايت.',
     'string' => 'يجب أن لا يتجاوز طول النّص :attribute :value حروفٍ/حرفًا.',
     'array' => 'يجب أن لا يحتوي :attribute على أكثر من :value عناصر/عنصر.',
   ),
-  'max' =>
+  'max' => 
   array (
     'numeric' => 'يجب أن تكون قيمة :attribute مساوية أو أصغر من :max.',
     'file' => 'يجب أن لا يتجاوز حجم الملف :attribute :max كيلوبايت.',
@@ -76,7 +76,7 @@ return array (
   ),
   'mimes' => 'يجب أن يكون ملفًا من نوع : :values.',
   'mimetypes' => 'يجب أن يكون ملفًا من نوع : :values.',
-  'min' =>
+  'min' => 
   array (
     'numeric' => 'يجب أن تكون قيمة :attribute مساوية أو أكبر من :min.',
     'file' => 'يجب أن يكون حجم الملف :attribute على الأقل :min كيلوبايت.',
@@ -96,7 +96,7 @@ return array (
   'required_without' => ':attribute مطلوب إذا لم يتوفّر :values.',
   'required_without_all' => ':attribute مطلوب إذا لم يتوفّر :values.',
   'same' => 'يجب أن يتطابق :attribute مع :other.',
-  'size' =>
+  'size' => 
   array (
     'numeric' => 'يجب أن تكون قيمة :attribute مساوية لـ :size.',
     'file' => 'يجب أن يكون حجم الملف :attribute :size كيلوبايت.',

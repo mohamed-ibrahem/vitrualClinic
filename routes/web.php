@@ -10,12 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('conversation/seen', 'Api\MessageController@makeSeen');
 
 Route::group([
     'prefix' => 'admin',
     'as' => 'admin.',
     'middleware' => ['auth', 'role:admin']
 ], function () {
+    Route::get('/test/message/{id}', function($id) {
+        \Talk::sendMessageByUserId($id, 'test;');
+
+        return response()->json([
+            \Talk::getMessagesByUserId($id)
+        ]);
+    })->middleware('talk');
     Route::get('/', 'Admin\PagesController@index')->name('home');
 
     Route::get('/system/{page?}', 'Admin\PagesController@settings')->name('settings');
@@ -60,10 +68,8 @@ Route::group([
 
     Route::post('password/email', 'Auth\ForgotPasswordController@sendResetLinkEmail')
         ->name('password.email');
-    Route::get('password/reset', 'Auth\ForgotPasswordController@showLinkRequestForm')
-        ->name('password.request');
     Route::post('password/reset', 'Auth\ResetPasswordController@reset');
-    Route::get('password/reset/{token}', 'Auth\ResetPasswordController@showResetForm')
+    Route::get('password/reset/{token?}', 'Auth\ResetPasswordController@showResetForm')
         ->name('password.reset');
 });
 

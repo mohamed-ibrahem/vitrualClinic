@@ -16,6 +16,7 @@ class ProjectSeeds extends Seeder
         $this->createMembers();
 
         Artisan::call('translations:import');
+        Artisan::call('passport:install');
     }
 
     /**

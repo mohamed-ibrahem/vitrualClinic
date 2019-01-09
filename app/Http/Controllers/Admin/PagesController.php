@@ -2,16 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Conversation;
 use App\Role;
 use App\Setting;
 use App\Speciality;
-use Barryvdh\TranslationManager\Models\Translation;
 use Carbon\Carbon;
 use Carbon\CarbonInterval;
-use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Nahid\Talk\Conversations\Conversation;
 
 class PagesController extends Controller
 {

@@ -42,18 +42,6 @@
                                             @lang('general.createNew', ['page' => trans_choice('pages.admin.users.doctors.title', 1)])
                                         </a>
                                     </li>
-                                    <li{!! Request::is('*doctors/reports') ? ' class="active"' : '' !!}>
-                                        <a href="{{ route('admin.admins.report', ['role' => 'doctor']) }}">
-                                            <i class="fa fa-chart-bar"></i>
-                                            @lang('general.reports')
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components_date_time_pickers.html">
-                                            <i class="fa fa-cog"></i>
-                                            @lang('general.settings')
-                                        </a>
-                                    </li>
                                 </ul>
                             </div>
                             <div class="col-md-4">
@@ -69,18 +57,6 @@
                                         <a href="{{ route('admin.members.create') }}">
                                             <i class="fa fa-user-plus"></i>
                                             @lang('general.createNew', ['page' => trans_choice('pages.admin.users.members.title', 2)])
-                                        </a>
-                                    </li>
-                                    <li{!! Request::is('*members/reports') ? ' class="active"' : '' !!}>
-                                        <a href="{{ route('admin.admins.report', ['role' => 'member']) }}">
-                                            <i class="fa fa-chart-bar"></i>
-                                            @lang('general.reports')
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a href="components_date_time_pickers.html">
-                                            <i class="fa fa-cog"></i>
-                                            @lang('general.settings')
                                         </a>
                                     </li>
                                 </ul>
