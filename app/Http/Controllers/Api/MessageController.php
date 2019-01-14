@@ -9,18 +9,26 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\ConversationResource;
 use App\Http\Resources\MessageResource;
 use App\Http\Resources\UserResource;
+use App\Message;
 use App\User;
 use Illuminate\Http\Request;
 
 class MessageController extends Controller
 {
+    public function index(Request $request)
+    {
+        return response()->json([
+            ConversationResource::collection($request->user()->conversations())
+        ]);
+    }
+
     /**
      * @project VirtualClinic - Jan/2019
      *
      * @param User $user
      * @return \Illuminate\Http\JsonResponse
      */
-    public function index(User $user)
+    public function show(User $user)
     {
         return response()->json([
             'user' => UserResource::make($user),
@@ -53,9 +61,8 @@ class MessageController extends Controller
         ]);
     }
 
-    public function makeSeen(Request $request)
+    public function makeSeen(Message $message)
     {
-        foreach (Conversation::find($request->get('conversation'))->messages as $message)
-            $message->seen();
+        $message->seen();
     }
 }

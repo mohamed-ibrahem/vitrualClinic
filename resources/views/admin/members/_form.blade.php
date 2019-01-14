@@ -75,7 +75,7 @@
                                 'div' => '<div class="col-sm-8">',
                                 'labelClass' => 'col-sm-4',
                                 'value' => isset($user) ? $user->info->get('gender') : '',
-                                'list' => ['male' => 'Male', 'female' => 'Female']
+                                'list' => [0 => 'Male', 1 => 'Female']
                             ])@endcomponent
                             @component('layout.partials.components.bs3-input', [
                                 'name' => 'age',

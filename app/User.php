@@ -10,10 +10,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Cog\Contracts\Ban\Bannable as BannableContract;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
+use willvincent\Rateable\Rateable;
 
 class User extends Authenticatable implements BannableContract
 {
-    use Notifiable, UsersOnlineTrait, Bannable, HasApiTokens;
+    use Notifiable, UsersOnlineTrait, Bannable, HasApiTokens, Rateable;
 
     /** @var array $fillable */
     protected $fillable = [
@@ -54,6 +55,19 @@ class User extends Authenticatable implements BannableContract
     public function specialities()
     {
         return $this->belongsToMany(Speciality::class);
+    }
+
+    /**
+     * @project VirtualClinic - Jan/2019
+     *
+     * @return mixed
+     */
+    public function conversations()
+    {
+        return Conversation::where(function ($query) {
+            $query->where('user_two', auth()->id())
+                ->orWhere('user_one', auth()->id());
+        })->get();
     }
 
     /**
@@ -195,6 +209,11 @@ class User extends Authenticatable implements BannableContract
         return false;
     }
 
+    /**
+     * @project VirtualClinic - Jan/2019
+     *
+     * @return bool|string
+     */
     public function getCountryAttribute()
     {
         if ($this->info->has('country'))

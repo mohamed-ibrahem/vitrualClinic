@@ -8,14 +8,15 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::any('broadcasting/auth', '\Illuminate\Broadcasting\BroadcastController@authenticate');
 
     Route::group(['prefix' => 'users'], function () {
+        Route::get('messages', 'Api\MessageController@index');
+        Route::get('messages/{user}', 'Api\MessageController@show');
+        Route::post('message/{message}/seen', 'Api\MessageController@makeSeen');
+        Route::post('messages', 'Api\MessageController@store');
+        Route::delete('messages/{user}', 'Api\MessageController@destroy');
+
         Route::get('/getCurrent', 'Api\UsersController@getAuth');
         Route::post('/search', 'Api\UsersController@search');
         Route::get('/{user}', 'Api\UsersController@show');
-
-        Route::get('messages/{user}', 'Api\MessageController@index');
-        Route::post('conversation/seen', 'Api\MessageController@makeSeen');
-        Route::post('messages', 'Api\MessageController@store');
-        Route::delete('messages/{user}', 'Api\MessageController@destroy');
     });
 });
 

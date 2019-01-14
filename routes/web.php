@@ -10,7 +10,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::get('conversation/seen', 'Api\MessageController@makeSeen');
+Route::get('conversation', function() {
+    auth()->loginUsingId(12);
+
+    return response()->json(\App\Http\Resources\ConversationResource::make(auth()->user()->conversationsWith(2)));
+});
 
 Route::group([
     'prefix' => 'admin',

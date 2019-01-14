@@ -65,12 +65,10 @@ class Message extends Model
 
     public function seen()
     {
-        if ($this->where(function ($q) {
-            $q->where('user_id', '!=', auth()->id())
-                ->where('is_seen', 0);
-        })->update([
+        $this->update([
             'is_seen' => 1
-        ]))
-            broadcast(new MessageSeen($this))->toOthers();
+        ]);
+
+        broadcast(new MessageSeen($this))->toOthers();
     }
 }

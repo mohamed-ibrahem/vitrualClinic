@@ -16,7 +16,11 @@ class ConversationResource extends JsonResource
     {
         return [
             'id' => $this->getKey(),
-            'messages' => MessageResource::collection($this->messages)
+            'hasNewMessage' => (bool) $this->messages->filter(function($message) use($request) {
+                return ! $message->sender->is($request->user()) && ! $message->is_seen;
+            })->count() > 0,
+            'messages' => MessageResource::collection($this->messages),
+            'with' => UserResource::make($request->user()->is($this->userOne) ? $this->userTwo : $this->userOne)
         ];
     }
 }
