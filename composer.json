@@ -56,7 +56,7 @@
     },
     "scripts": {
         "post-install-cmd": [
-            "chmod -R 777 public/"
+            "chmod -R 777 public/",
             "chmod -R 775 storage/"
         ],
         "post-root-package-install": [
