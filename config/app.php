@@ -147,6 +147,8 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
 
+        NotificationChannels\FCM\ServiceProvider::class,
+
         /*
          * Application Service Providers...
          */
