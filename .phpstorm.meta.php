@@ -5,7 +5,7 @@ namespace PHPSTORM_META {
 
    /**
     * PhpStorm Meta file, to provide autocomplete information for PhpStorm
-    * Generated on 2019-01-28 09:55:12.
+    * Generated on 2019-01-28 10:45:14.
     *
     * @author Barry vd. Heuvel <barryvdh@gmail.com>
     * @see https://github.com/barryvdh/laravel-ide-helper
@@ -137,6 +137,9 @@ namespace PHPSTORM_META {
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
         'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
+        'fcm.client' => \GuzzleHttp\Client::class,
+        'fcm.group' => \LaravelFCM\Sender\FCMGroup::class,
+        'fcm.sender' => \LaravelFCM\Sender\FCMSender::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
@@ -301,6 +304,9 @@ namespace PHPSTORM_META {
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
         'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
+        'fcm.client' => \GuzzleHttp\Client::class,
+        'fcm.group' => \LaravelFCM\Sender\FCMGroup::class,
+        'fcm.sender' => \LaravelFCM\Sender\FCMSender::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
@@ -465,6 +471,9 @@ namespace PHPSTORM_META {
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
         'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
+        'fcm.client' => \GuzzleHttp\Client::class,
+        'fcm.group' => \LaravelFCM\Sender\FCMGroup::class,
+        'fcm.sender' => \LaravelFCM\Sender\FCMSender::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
@@ -629,6 +638,9 @@ namespace PHPSTORM_META {
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
         'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
+        'fcm.client' => \GuzzleHttp\Client::class,
+        'fcm.group' => \LaravelFCM\Sender\FCMGroup::class,
+        'fcm.sender' => \LaravelFCM\Sender\FCMSender::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
@@ -793,6 +805,9 @@ namespace PHPSTORM_META {
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
         'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
+        'fcm.client' => \GuzzleHttp\Client::class,
+        'fcm.group' => \LaravelFCM\Sender\FCMGroup::class,
+        'fcm.sender' => \LaravelFCM\Sender\FCMSender::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
@@ -957,6 +972,9 @@ namespace PHPSTORM_META {
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
         'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
+        'fcm.client' => \GuzzleHttp\Client::class,
+        'fcm.group' => \LaravelFCM\Sender\FCMGroup::class,
+        'fcm.sender' => \LaravelFCM\Sender\FCMSender::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
@@ -1121,6 +1139,9 @@ namespace PHPSTORM_META {
         'db.factory' => \Illuminate\Database\Connectors\ConnectionFactory::class,
         'encrypter' => \Illuminate\Encryption\Encrypter::class,
         'events' => \Illuminate\Events\Dispatcher::class,
+        'fcm.client' => \GuzzleHttp\Client::class,
+        'fcm.group' => \LaravelFCM\Sender\FCMGroup::class,
+        'fcm.sender' => \LaravelFCM\Sender\FCMSender::class,
         'files' => \Illuminate\Filesystem\Filesystem::class,
         'filesystem' => \Illuminate\Filesystem\FilesystemManager::class,
         'filesystem.disk' => \Illuminate\Filesystem\FilesystemAdapter::class,
