@@ -14,9 +14,12 @@ Route::group(['middleware' => 'auth:api'], function () {
         Route::post('messages', 'Api\MessageController@store');
         Route::delete('messages/{user}', 'Api\MessageController@destroy');
 
-        Route::get('/getCurrent', 'Api\UsersController@getAuth');
+        Route::get('/auth', 'Api\UsersController@getAuth');
+        Route::put('/auth/update', 'Api\UsersController@updateAuth');
+        Route::put('/auth/update-token', 'Api\UsersController@updateAuthToken');
         Route::post('/search', 'Api\UsersController@search');
         Route::get('/{user}', 'Api\UsersController@show');
+        Route::post('/{user}/rate', 'Api\UsersController@rate');
     });
 });
 

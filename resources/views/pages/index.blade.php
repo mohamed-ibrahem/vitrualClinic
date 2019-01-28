@@ -5,6 +5,9 @@
     'no_footer' => false,
     'no_loading' => true
 ])
+
+@section('title', 'Download App')
+
 @section ('header')
     <div class="page-header">
         <div class="page-header-menu" style="display: block;">
@@ -83,7 +86,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-4 hidden-sm">
-                    <img src="{{ asset('assets/layout/img/icliniq-app.png') }}" class="img-responsive">
+                    <img src="{{ asset('assets/layout/img/icliniq-app.png') }}" alt="VC LOGO" class="img-responsive">
                 </div>
                 <div class="col-md-8">
                     <h1>@lang('pages.index.phone.download', ['app' => config('app.name')])</h1>

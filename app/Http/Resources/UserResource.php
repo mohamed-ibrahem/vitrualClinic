@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use App\User;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class UserResource extends JsonResource
@@ -20,18 +19,24 @@ class UserResource extends JsonResource
             'email' => $this->email,
             'phone' => $this->phone,
             'gender' => $this->info->get('gender', 0) == 0 ? 'Male' : 'Female',
-            'rating' => $this->ratingPercent(),
+            'rating' => $this->ratingPercent(5),
             'description' => $this->info->get('description', ''),
             'country' => $this->country,
+            'country_code' => $this->info->get('country'),
+            'age' => $this->info->get('age'),
             'isOnline' => $this->isOnline(),
             'isDoctor' => $this->isDoctor(),
             'isMember' => $this->isMember(),
             $this->mergeWhen($this->isDoctor(), [
                 'specialities' => $this->specialities
             ]),
+            $this->mergeWhen(! $this->is($request->user()), [
+                'canRate' => $this->userCanRateMe($request->user())
+            ]),
             $this->mergeWhen($this->is($request->user()), [
                 'notification' => $this->notifications,
-                'messages' => ConversationResource::collection($this->conversations())
+                'messages' => ConversationResource::collection($this->conversations()),
+                'profileCompletion' => $this->getProfileCompletionRate()
             ])
         ];
     }

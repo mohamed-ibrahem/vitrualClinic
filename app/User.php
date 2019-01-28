@@ -18,7 +18,7 @@ class User extends Authenticatable implements BannableContract
 
     /** @var array $fillable */
     protected $fillable = [
-        'name', 'email', 'password', 'role_id', 'info'
+        'name', 'email', 'password', 'role_id', 'info', 'fcm_token'
     ];
 
     /** @var array $hidden */
@@ -36,6 +36,14 @@ class User extends Authenticatable implements BannableContract
     protected $appends = [
         'profile_pic', 'country', 'uid'
     ];
+
+    /**
+     * @return mixed
+     */
+    public function routeNotificationForFCM()
+    {
+        return $this->fcm_token;
+    }
 
     /**
      * @project VirtualClinic
@@ -203,7 +211,7 @@ class User extends Authenticatable implements BannableContract
         if ($this->info->has('phone')) {
             $arr = $this->info->get('phone', ['country' => '', 'number' => '']);
 
-            return '+' . $arr['country'] . $arr['number'];
+            return (isset($arr['country']) ? '+' .  $arr['country'] : '') . $arr['number'];
         }
 
         return false;
@@ -218,6 +226,50 @@ class User extends Authenticatable implements BannableContract
     {
         if ($this->info->has('country'))
             return asset('assets/global/img/flags/' . $this->info->get('country', 'EG') . '.png');
+
+        return false;
+    }
+
+    /**
+     * @return float
+     */
+    public function getProfileCompletionRate()
+    {
+        $result = 0;
+
+        if ($this->name) $result += 1;
+        if ($this->email) $result += 1;
+        if ($this->phone) $result += 1;
+        if ($this->info->get('gender')) $result += 1;
+        if ($this->country) $result += 1;
+        if ($this->info->get('description')) $result += 1;
+        if ($this->info->get('profile_pic')) $result += 1;
+
+        return floor(($result / 7) * 100);
+    }
+
+    public function userCanRateMe($user)
+    {
+        /** @var Conversation $conversations */
+        $conversations = Conversation::where(function ($query) use ($user) {
+            $query->where(
+                function ($q) use ($user) {
+                    $q->where('user_one', $user->getKey())
+                        ->where('user_two', auth()->id());
+                }
+            )->orWhere(
+                function ($q) use ($user) {
+                    $q->where('user_one', auth()->id())
+                        ->where('user_two', $user->getKey());
+                }
+            );
+        });
+
+        if ($conversations->count()) {
+            if ($conversations->messages->count())
+                if (! $this->ratings()->where('user_id', $user->getKey())->count())
+                    return true;
+        }
 
         return false;
     }
