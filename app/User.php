@@ -200,7 +200,7 @@ class User extends Authenticatable implements BannableContract
     public function getProfilePicAttribute()
     {
         $img = $this->info->get('profile_pic', 'assets/layout/img/avatar.png');
-        return asset($img . '?' . filectime($img));
+        return asset($img . (file_exists($img) ? '?' . filectime($img) : ''));
     }
 
     /**
@@ -211,7 +211,7 @@ class User extends Authenticatable implements BannableContract
         if ($this->info->has('phone')) {
             $arr = $this->info->get('phone', ['country' => '', 'number' => '']);
 
-            return (isset($arr['country']) ? '+' .  $arr['country'] : '') . $arr['number'];
+            return $arr['number'];
         }
 
         return false;

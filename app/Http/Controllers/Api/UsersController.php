@@ -22,7 +22,7 @@ class UsersController extends Controller
     public function updateAuth(Request $request)
     {
         $this->validate($request, [
-            'name' => 'numeric',
+            'name' => 'required',
             'gender' => 'required',
             'age' => 'required|numeric|min:20|max:70',
             'country' => 'required',
@@ -39,7 +39,7 @@ class UsersController extends Controller
         ]);
 
         if ($request->input('old_password') !== null) {
-            if (! Hash::check($request->input('old_password'), $request->user()->password))
+            if (!Hash::check($request->input('old_password'), $request->user()->password))
                 throw ValidationException::withMessages([
                     'old_password' => trans('auth.failed')
                 ]);
@@ -54,19 +54,21 @@ class UsersController extends Controller
             'age' => $request->input('age'),
             'country' => is_array($request->input('country')) ? $request->input('country')['key'] : $request->input('country'),
             'phone' => [
+                'country' => '',
                 'number' => $request->input('phone')
             ],
             'description' => $request->input('description')
         ]);
 
-        if ($request->hasFile('img')) {
-            @unlink($request->user()->info->get('profile_pic'));
+        if ($request->input('img')) {
+            @unlink(public_path($request->user()->info->get('profile_pic')));
 
-            $name = $request->user()->getKey() .
-                '.' . $request->file('img')->getClientOriginalExtension();
-            $request->file('img')->storeAs('profiles', $name);
+            $image = $request->input('img');  // your base64 encoded
+            $image = str_replace('data:image/jpeg;base64,', '', $image);
+            $image = str_replace(' ', '+', $image);
 
-            $request->user()->updateValue('profile_pic', 'storage/profiles/' . $name);
+            \Storage::put('profiles/' . $request->user()->getKey() . '_profile_image.png', base64_decode($image));
+            $request->user()->updateValue('profile_pic', 'storage/profiles/' . $request->user()->getKey() . '_profile_image.png');
         }
 
         return new UserResource($request->user());

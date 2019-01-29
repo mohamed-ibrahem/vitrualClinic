@@ -45,17 +45,45 @@ class MessageController extends Controller
      *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function store(Request $request)
     {
-        $user = User::find($request->get('user'));
-        $conv = auth()->user()->conversationsWith($user);
-        $message = $conv->send([
-            'message' => $request->get('message')
+        $this->validate($request, [
+            'message' => 'required'
         ]);
 
+        $user = User::find($request->get('user'));
+        $conv = auth()->user()->conversationsWith($user);
+        $data = [
+            'type' => $request->get('inputType', 'message'),
+            'images' => []
+        ];
+
+        if ($data['type'] === 'message') {
+            $data['message'] = $request->get('message')[0]['message'];
+        } else {
+            $data['message'] = implode('<br>', array_map(function($message) {
+                return $message['message1'] . ' <b><u>' . $message['message2'] . '</u></b>';
+            }, $request->get('message')));
+        }
+
+        if ($request->get('img')) {
+            foreach ($request->get('img') as $image) {
+                $image = str_replace('data:image/jpeg;base64,', '', $image);
+                $image = str_replace(' ', '+', $image);
+                $file = 'chat/' . $request->user()->getKey() . '_' . time() . rand(0000, 9999) . '.png';
+
+                \Storage::put($file, base64_decode($image));
+                $data['images'][] = $file;
+            }
+        }
+
+        $message = $conv->send($data);
+
         broadcast(new MessageSent($conv, $message))->toOthers();
-        $user->notify(new NewMessage($message));
+        if ($user->fcm_token)
+            $user->notify(new NewMessage($message));
 
         return response()->json([
             MessageResource::make($message)

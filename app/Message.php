@@ -12,12 +12,17 @@ class Message extends Model
 
     /** @var array $fillable */
     public $fillable = [
+        'type',
         'message',
+        'images',
         'is_seen',
-        'deleted_from_sender',
-        'deleted_from_receiver',
         'user_id',
         'conversation_id',
+    ];
+
+    /** @var array $casts */
+    protected $casts = [
+        'images' => 'array'
     ];
 
     /**

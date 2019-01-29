@@ -49,14 +49,18 @@ class Conversation extends Model
     /**
      * @project VirtualClinic - Jan/2019
      *
-     * @param $data
+     * @param $form
      * @return Model
      */
-    public function send($data)
+    public function send($form)
     {
-        return $this->messages()->create([
-            'message' => $data['message'],
+        $data = [
+            'type' => $form['type'],
+            'message' => $form['message'],
+            'images' => $form['images'],
             'user_id' => auth()->id()
-        ]);
+        ];
+
+        return $this->messages()->create($data);
     }
 }

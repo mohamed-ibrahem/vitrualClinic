@@ -66,7 +66,7 @@ class RegisterController extends Controller
                 'age' => $data['age'],
                 'country' => $data['country'],
                 'phone' => [
-                    //'country' => $data['phone_country'],
+                    'country' => '',
                     'number' => $data['phone']
                 ],
                 'description' => $data['description']

@@ -14,7 +14,11 @@ class MessageResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'type' => $this->type,
             'message' => $this->message,
+            'images' => array_map(function($image) {
+                return asset('storage/' . $image);
+            }, $this->images),
             'time' => $this->humans_time,
             'isSeen' => (bool) $this->is_seen,
             'sender' => $this->sender->getKey()
