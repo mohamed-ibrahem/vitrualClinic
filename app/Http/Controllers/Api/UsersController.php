@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\UserResource;
 use App\Speciality;
 use App\User;
+use App\Role;
 use Hash;
 use Illuminate\Http\Request;
 use Illuminate\Validation\ValidationException;
@@ -83,7 +84,7 @@ class UsersController extends Controller
 
     public function search(Request $request)
     {
-        $allUsers = User::all();
+        $allUsers = Role::Doctors()->user;
 
         return response()->json([
             'input' => $request->get('input'),
