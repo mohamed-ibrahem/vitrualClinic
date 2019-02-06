@@ -75,13 +75,6 @@ class UsersController extends Controller
         return new UserResource($request->user());
     }
 
-    public function updateAuthToken(Request $request)
-    {
-        $request->user()->update([
-            'fcm_token' => $request->input('token')
-        ]);
-    }
-
     public function search(Request $request)
     {
         $allUsers = Role::Doctors()->user;
