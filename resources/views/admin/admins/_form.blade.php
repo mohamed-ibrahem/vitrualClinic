@@ -161,12 +161,10 @@
                                 email: true
                             },
                             password: {
-                                required: true,
-                                min: 5,
+                                required: true
                             },
                             password_confirmation: {
                                 required: true,
-                                min: 5,
                                 equalTo: "#password"
                             }
                         },
