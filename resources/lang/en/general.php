@@ -61,4 +61,8 @@ return array (
       'sLast' => 'Last',
     ),
   ),
+    'users' => [
+        'email' => 'Email Address',
+        'password' => 'Password',
+    ]
 );

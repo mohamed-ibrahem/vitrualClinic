@@ -7,10 +7,9 @@
 
 @section ('metronic-content')
     <!-- BEGIN LOGO -->
-    <div class="logo">
-        <a href="{{ route('index') }}">
-            <img src="{{ asset('assets/layout/img/logo-big.png') }}" alt=""/>
-        </a>
+    <div class="logo text-primary">
+        <img src="{{ asset('assets/layout/img/icon.png') }}" alt="" height="60"/><br>
+        <h2>Virtual Clinic App</h2>
     </div>
     <!-- END LOGO -->
     <!-- BEGIN LOGIN -->

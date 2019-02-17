@@ -12,8 +12,9 @@
                     <!-- BEGIN LOGO -->
                     <div class="page-logo">
                         <a href="{{ url('/') }}">
-                            <img src="{{ asset('assets/layout/img/logo-default.jpg') }}"
-                                 alt="{{ config('app.name') }}" class="logo-default"/>
+                            <img src="{{ asset('assets/layout/img/icon.png') }}"
+                                 alt="{{ config('app.name') }}" class="logo-default margin-bottom-30" height="20" />
+                            Virtual Clinic app
                         </a>
                     </div>
                     <!-- END LOGO -->
