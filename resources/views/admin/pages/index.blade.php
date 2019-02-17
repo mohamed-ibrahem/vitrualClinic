@@ -151,12 +151,121 @@
                                 <tr>
                                     <td>
                                         {{ $user->name }}
-                                        <div class="label label-primary pull-right">{{ $user->role->display_name }}</div>
+                                        <div
+                                            class="label label-primary pull-right">{{ $user->role->display_name }}</div>
                                     </td>
                                     <td>{{ $user->email }}</td>
                                     <td class="text-right">
-                                        <a href="{{ route('admin.' . $user->role->name . 's.index') }}?q={{ $user->getKey() }}"
-                                           class="btn btn-primary btn-xs" style="width: 300px;">{{ trans('general.datatable.tools.show') }}</a>
+                                        <a href="#user_{{ $user->getKey() }}_profile" data-toggle="modal"
+                                           class="btn btn-primary btn-xs"
+                                           style="width: 300px;">{{ trans('general.datatable.tools.show') }}</a>
+
+                                        <div id="user_{{ $user->getKey() }}_profile" class="modal fade"
+                                             data-keyboard="false" tabindex="-1"
+                                             role="dialog" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg text-left">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                aria-hidden="true"></button>
+
+                                                        <img src="{{ $user->profile_pic }}" alt="{{ $user->name }}"
+                                                             width="55"
+                                                             class="pull-left img-circle margin-right-10">
+                                                        <h4 class="modal-title">
+                                                            {{ $user->name }}<br/>
+                                                            @if ($user->isDoctor())
+                                                                <small>{{ str_limit(
+                                                                implode(', ', $user->specialities->map(function($specialty) {
+                                                                    return $specialty->display_name;
+                                                                })->all())
+                                                            ) }}</small>
+                                                            @endif
+                                                        </h4>
+                                                    </div>
+
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                @component('layout.partials.components.portlet', [
+                                                                    'title' => 'General Information',
+                                                                    'icon' => 'fa fa-user'
+                                                                ])
+                                                                    @slot ('body')
+                                                                        <div class="portlet-body">
+                                                                            <table class="table table-striped">
+                                                                                <tr>
+                                                                                    <td width="50%">Name</td>
+                                                                                    <td width="50%">{{ $user->name }}</td>
+                                                                                </tr>
+                                                                                @if (! $user->isAdmin())
+                                                                                <tr>
+                                                                                    <td width="50%">Gender</td>
+                                                                                    <td width="50%">{{ $user->info->get('gender') }}</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td width="50%">Age</td>
+                                                                                    <td width="50%">{{ $user->info->get('age') }}</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td width="50%">Country</td>
+                                                                                    <td width="50%"><img
+                                                                                            src="{{ $user->country }}"
+                                                                                            alt=""></td>
+                                                                                </tr>
+                                                                                @endif
+                                                                            </table>
+                                                                        </div>
+                                                                    @endslot
+                                                                @endcomponent
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                @component('layout.partials.components.portlet', [
+                                                                    'title' => 'Account',
+                                                                    'icon' => 'fa fa-user',
+                                                                    'actions' => ''
+                                                                ])
+                                                                    @slot ('body')
+                                                                        <div class="portlet-body">
+                                                                            <table class="table table-striped">
+                                                                                <tr>
+                                                                                    <td width="50%">Email</td>
+                                                                                    <td width="50%">{{ $user->email }}</td>
+                                                                                </tr>
+                                                                                <tr>
+                                                                                    <td width="50%">Phone</td>
+                                                                                    <td width="50%">{{ $user->phone }}</td>
+                                                                                </tr>
+                                                                            </table>
+                                                                        </div>
+                                                                    @endslot
+                                                                @endcomponent
+
+                                                                @if ($user->isDoctor())
+                                                                    @component('layout.partials.components.portlet', [
+                                                                        'title' => 'Specialities',
+                                                                        'icon' => 'fa fa-user',
+                                                                        'actions' => ''
+                                                                    ])
+                                                                        @slot ('body')
+                                                                            <div class="portlet-body">
+                                                                                <table class="table table-striped">
+                                                                                    @foreach ($user->specialities as $speciality)
+                                                                                        <tr>
+                                                                                            <td>{{ $speciality->display_name }}</td>
+                                                                                        </tr>
+                                                                                    @endforeach
+                                                                                </table>
+                                                                            </div>
+                                                                        @endslot
+                                                                    @endcomponent
+                                                                @endif
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                     </td>
                                 </tr>
                             @empty

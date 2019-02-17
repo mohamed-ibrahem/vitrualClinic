@@ -29,18 +29,6 @@
             <!-- BEGIN HEADER MENU -->
             <div class="page-header-menu">
                 <div class="container">
-                    <!-- BEGIN HEADER SEARCH BOX -->
-                    <form class="search-form" action="page_general_search.html" method="GET">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="@lang('general.search')" name="query">
-                            <span class="input-group-btn">
-                                <a href="javascript:;" class="btn submit">
-                                    <i class="icon-magnifier"></i>
-                                </a>
-                            </span>
-                        </div>
-                    </form>
-                    <!-- END HEADER SEARCH BOX -->
                     <!-- BEGIN MEGA MENU -->
                 @include ('layout.partials.mega_menu')
                 <!-- END MEGA MENU -->

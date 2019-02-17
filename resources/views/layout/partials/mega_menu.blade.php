@@ -67,16 +67,8 @@
             </ul>
         </li>
 
-        <li class="menu-dropdown{{ \Request::is('*admin/mobile') ? ' active' : '' }}">
-            <a href="{{ route('admin.home') }}">@lang('pages.admin.mobile.title')</a>
-        </li>
-
         <li class="menu-dropdown{{ \Request::is('*admin/languages') ? ' active' : '' }}">
             <a href="{{ url('admin/languages') }}">@lang('pages.admin.translation.title')</a>
-        </li>
-
-        <li class="menu-dropdown{{ \Request::is('*admin/system') ? ' active' : '' }}">
-            <a href="{{ route('admin.settings') }}">@lang('pages.admin.system.title')</a>
         </li>
     </ul>
 </div>

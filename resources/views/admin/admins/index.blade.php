@@ -107,12 +107,7 @@
 
                             <img src="{{ $user->profile_pic }}" alt="{{ $user->name }}" width="55" class="pull-left img-circle margin-right-10">
                             <h4 class="modal-title">
-                                {{ $user->name }}<br />
-                                <small>{{ str_limit(
-                                    implode(', ', $user->specialities->map(function($specialty) {
-                                        return $specialty->display_name;
-                                    })->all())
-                                ) }}</small>
+                                {{ $user->name }}
                             </h4>
                         </div>
 
