@@ -50,7 +50,7 @@ class MessageController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'message' => 'required'
+            'message' => 'required_without:img'
         ]);
 
         $user = User::find($request->get('user'));

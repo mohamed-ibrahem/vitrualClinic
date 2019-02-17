@@ -65,7 +65,7 @@
                                 'title' => 'Last name',
                                 'div' => '<div class="col-sm-8">',
                                 'labelClass' => 'col-sm-4',
-                                'value' => isset($user) ? explode(' ', (isset($user->name)[1]) ? $user->name)[1] : '') : ''
+                                'value' => isset($user) ? (isset(explode(' ', $user->name)[1]) ? explode(' ', $user->name)[1] : '') : ''
                             ])@endcomponent
                             @component('layout.partials.components.bs3-input', [
                                 'type' => 'select',
