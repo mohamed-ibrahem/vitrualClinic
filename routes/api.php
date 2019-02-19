@@ -10,7 +10,7 @@ Route::group(['middleware' => 'auth:api'], function () {
     Route::group(['prefix' => 'users'], function () {
         Route::get('messages', 'Api\MessageController@index');
         Route::get('messages/{user}', 'Api\MessageController@show');
-        Route::post('message/{message}/seen', 'Api\MessageController@makeSeen');
+        Route::post('message/{conversation}/seen', 'Api\MessageController@makeSeen');
         Route::post('messages', 'Api\MessageController@store');
         Route::delete('messages/{user}', 'Api\MessageController@destroy');
 

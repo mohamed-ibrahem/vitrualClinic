@@ -102,7 +102,7 @@ class User extends Authenticatable implements BannableContract
             );
         })->first();
 
-        if (! $conversation)
+        if (!$conversation)
             $conversation = Conversation::create([
                 'user_one' => auth()->id(),
                 'user_two' => $user->getKey()
@@ -250,28 +250,24 @@ class User extends Authenticatable implements BannableContract
 
     public function userCanRateMe($user)
     {
-        /** @var Conversation $conversations */
-        $conversations = Conversation::where(function ($query) use ($user) {
+        $conversation = Conversation::where(function ($query) use ($user) {
             $query->where(
                 function ($q) use ($user) {
                     $q->where('user_one', $user->getKey())
-                        ->where('user_two', auth()->id());
+                        ->where('user_two', $this->getKey());
                 }
             )->orWhere(
                 function ($q) use ($user) {
-                    $q->where('user_one', auth()->id())
+                    $q->where('user_one', $this->getKey())
                         ->where('user_two', $user->getKey());
                 }
             );
-        });
+        })->first();
 
-        if ($conversations->count()) {
-            if ($conversations->messages->count())
-                if (! $this->ratings()->where('user_id', $user->getKey())->count())
-                    return true;
+        if ($conversation) {
+            if ($conversation->messages->count())
+                return $this->ratings()->where('user_id', $user->getKey())->count() === 0;
         }
-
-        return false;
     }
 
     /**

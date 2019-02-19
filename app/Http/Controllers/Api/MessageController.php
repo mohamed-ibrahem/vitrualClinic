@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Conversation;
 use App\Events\MessageSent;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ConversationResource;
@@ -90,8 +91,16 @@ class MessageController extends Controller
         ]);
     }
 
-    public function makeSeen(Message $message)
+    /**
+     * Mohamed Ibrahim - 2019
+     * virtualClinic
+     *
+     * @param Conversation $conversation
+     */
+    public function makeSeen(Conversation $conversation)
     {
-        $message->seen();
+        $conversation->messages->each(function(Message $message) {
+            $message->seen();
+        });
     }
 }

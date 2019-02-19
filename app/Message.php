@@ -70,6 +70,9 @@ class Message extends Model
 
     public function seen()
     {
+        if (auth()->is($this->sender()))
+            return;
+
         $this->update([
             'is_seen' => 1
         ]);

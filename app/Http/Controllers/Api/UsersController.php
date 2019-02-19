@@ -10,6 +10,7 @@ use App\User;
 use App\Role;
 use Hash;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Validation\ValidationException;
 use willvincent\Rateable\Rating;
 
@@ -98,6 +99,9 @@ class UsersController extends Controller
                         $is = true;
 
                     if ($user->specialities()->where('display_name', 'LIKE', "%{$request->get('input')}%")->count())
+                        $is = true;
+
+                    if (countries($request->get('input')) === $user->info->get('country', 'EG'))
                         $is = true;
 
                     return $is;

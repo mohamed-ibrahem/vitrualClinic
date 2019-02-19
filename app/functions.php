@@ -25,8 +25,8 @@ if (! function_exists('setting')) {
 }
 
 if (! function_exists('countries')) {
-    function countries() {
-        return [
+    function countries($key = '') {
+        $arr =  [
             "AF" => "Afghanistan",
             "AL" => "Albania",
             "DZ" => "Algeria",
@@ -267,6 +267,8 @@ if (! function_exists('countries')) {
             "ZM" => "Zambia",
             "ZW" => "Zimbabwe"
         ];
+
+        return ($key && isset($arr[$key])) ? $arr[$key] : $arr;
     }
 }
 
