@@ -38,8 +38,8 @@ Route::group([
     Route::post('/{role}s/reports', 'Admin\AdminsController@reports')->name('admins.doReport');
     Route::patch('/doctors/{doctor}/ban', 'Admin\DoctorsController@ban')->name('doctors.ban');
     Route::patch('/doctors/{doctor}/unban', 'Admin\DoctorsController@unban')->name('doctors.unban');
-    Route::patch('/members/{member}/ban', 'Admin\DoctorsController@ban')->name('members.ban');
-    Route::patch('/members/{member}/unban', 'Admin\DoctorsController@unban')->name('members.unban');
+    Route::patch('/members/{member}/ban', 'Admin\MembersController@ban')->name('members.ban');
+    Route::patch('/members/{member}/unban', 'Admin\MembersController@unban')->name('members.unban');
 
     Route::group([
         'prefix' => 'languages',

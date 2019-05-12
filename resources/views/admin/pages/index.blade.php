@@ -201,7 +201,7 @@
                                                                                 @if (! $user->isAdmin())
                                                                                 <tr>
                                                                                     <td width="50%">Gender</td>
-                                                                                    <td width="50%">{{ $user->info->get('gender') }}</td>
+                                                                                    <td width="50%">{{ $user->gender }}</td>
                                                                                 </tr>
                                                                                 <tr>
                                                                                     <td width="50%">Age</td>

@@ -18,7 +18,7 @@ class UserResource extends JsonResource
             'profile_pic' => $this->profile_pic,
             'email' => $this->email,
             'phone' => $this->phone,
-            'gender' => $this->info->get('gender', 0) == 0 ? 'Male' : 'Female',
+            'gender' => $this->gender,
             'rating' => $this->ratingPercent(5),
             'description' => $this->info->get('description', ''),
             'country' => $this->country,

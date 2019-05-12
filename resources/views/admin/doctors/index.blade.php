@@ -157,14 +157,14 @@
                                        data-container="body" data-placement="top">
                                         <i class="fa fa-fw fa-edit"></i>
                                     </a>
-                                    <a href="#unban_user_{{ $user->uid }}" class="btn btn-success tooltips"
+                                    <a href="#unban_user_{{ $user->getKey() }}" class="btn btn-success tooltips"
                                        data-toggle="modal"
                                        data-original-title="{{ trans('general.datatable.tools.unban', ['user' => $user->name]) }}"
                                        data-container="body" data-placement="top">
                                         <i class="fa fa-fw fa-user"></i>
                                     </a>
 
-                                    <a href="#delete_user_{{ $user->uid }}" class="btn btn-danger tooltips"
+                                    <a href="#delete_user_{{ $user->getKey() }}" class="btn btn-danger tooltips"
                                        data-toggle="modal"
                                        data-original-title="{{ trans('general.datatable.tools.delete') }}"
                                        data-container="body" data-placement="top">
@@ -235,7 +235,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td width="50%">Gender</td>
-                                                        <td width="50%">{{ $user->info->get('gender') }}</td>
+                                                        <td width="50%">{{ $user->gender }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="50%">Age</td>

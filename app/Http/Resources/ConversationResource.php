@@ -21,7 +21,7 @@ class ConversationResource extends JsonResource
                 return ! $message->sender->is(auth()->user()) && ! $message->is_seen;
             })->count() > 0,
             'messages' => MessageResource::collection($this->messages),
-            'with' => UserResource::make(User::find(2))
+            'with' => UserResource::make(auth()->user()->is($this->userOne) ? $this->userTwo : $this->userOne)
         ];
     }
 }

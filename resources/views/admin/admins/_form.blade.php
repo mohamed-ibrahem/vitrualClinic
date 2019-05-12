@@ -160,13 +160,15 @@
                                 required: true,
                                 email: true
                             },
+                            @if (! isset($user))
                             password: {
                                 required: true
                             },
                             password_confirmation: {
                                 required: true,
                                 equalTo: "#password"
-                            }
+                            },
+                            @endif
                         },
                         errorPlacement: function (error, element) {
                             $('button[type="submit"]', this.form).button('reset');

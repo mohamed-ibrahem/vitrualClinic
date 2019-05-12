@@ -322,6 +322,7 @@
                             phone: {
                                 required: true
                             },
+                            @if (! isset($user))
                             password: {
                                 required: true
                             },
@@ -329,6 +330,7 @@
                                 required: true,
                                 equalTo: "#password"
                             },
+                            @endif
                             specialities: {
                                 required: true
                             },

@@ -47,7 +47,7 @@
                         </td>
                         <td class="text-right">
                             <div class="btn-group btn-group-xs">
-                                <a href="#user_{{ $user->uid }}_profile"
+                                <a href="#user_{{ $user->getKey() }}_profile"
                                    class="btn btn-primary tooltips" data-toggle="modal"
                                    data-original-title="{{ trans('general.datatable.tools.show') }}"
                                    data-container="body" data-placement="top">
@@ -58,7 +58,7 @@
                                    data-container="body" data-placement="top">
                                     <i class="fa fa-fw fa-edit"></i>
                                 </a>
-                                <a href="#ban_user_{{ $user->uid }}" class="btn btn-danger tooltips"
+                                <a href="#ban_user_{{ $user->getKey() }}" class="btn btn-danger tooltips"
                                    data-toggle="modal"
                                    data-original-title="{{ trans('general.datatable.tools.ban', ['user' => $user->name]) }}"
                                    data-container="body" data-placement="top">
@@ -67,7 +67,7 @@
                             </div>
 
                             <div class="btn-group btn-group-xs">
-                                <a href="#delete_user_{{ $user->uid }}" class="btn btn-danger tooltips"
+                                <a href="#delete_user_{{ $user->getKey() }}" class="btn btn-danger tooltips"
                                    data-toggle="modal"
                                    data-original-title="{{ trans('general.datatable.tools.delete') }}"
                                    data-container="body" data-placement="top">
@@ -138,14 +138,14 @@
                                        data-container="body" data-placement="top">
                                         <i class="fa fa-fw fa-edit"></i>
                                     </a>
-                                    <a href="#unban_user_{{ $user->uid }}" class="btn btn-success tooltips"
+                                    <a href="#unban_user_{{ $user->getKey() }}" class="btn btn-success tooltips"
                                        data-toggle="modal"
                                        data-original-title="{{ trans('general.datatable.tools.unban', ['user' => $user->name]) }}"
                                        data-container="body" data-placement="top">
                                         <i class="fa fa-fw fa-user"></i>
                                     </a>
 
-                                    <a href="#delete_user_{{ $user->uid }}" class="btn btn-danger tooltips"
+                                    <a href="#delete_user_{{ $user->getKey() }}" class="btn btn-danger tooltips"
                                        data-toggle="modal"
                                        data-original-title="{{ trans('general.datatable.tools.delete') }}"
                                        data-container="body" data-placement="top">
@@ -161,7 +161,7 @@
         @endif
 
         @foreach(\App\Role::Members()->user()->get() as $user)
-            <div id="delete_user_{{ $user->uid }}" class="modal fade" data-keyboard="false" tabindex="-1"
+            <div id="delete_user_{{ $user->getKey() }}" class="modal fade" data-keyboard="false" tabindex="-1"
                  role="dialog" aria-hidden="true"
                  data-backdrop="static">
                 <div class="modal-dialog">
@@ -181,7 +181,7 @@
                     </div>
                 </div>
             </div>
-            <div id="user_{{ $user->uid }}_profile" class="modal fade" data-keyboard="false" tabindex="-1"
+            <div id="user_{{ $user->getKey() }}_profile" class="modal fade" data-keyboard="false" tabindex="-1"
                  role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
@@ -215,7 +215,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td width="50%">Gender</td>
-                                                        <td width="50%">{{ $user->info->get('gender') }}</td>
+                                                        <td width="50%">{{ $user->gender }}</td>
                                                     </tr>
                                                     <tr>
                                                         <td width="50%">Age</td>
@@ -259,7 +259,7 @@
             </div>
 
             @if ($user->isNotBanned())
-                <div id="ban_user_{{ $user->uid }}" class="modal fade" tabindex="-1" role="dialog"
+                <div id="ban_user_{{ $user->getKey() }}" class="modal fade" tabindex="-1" role="dialog"
                      aria-hidden="true"
                      data-backdrop="static">
                     <div class="modal-dialog">
@@ -301,7 +301,7 @@
                     </div>
                 </div>
             @else
-                <div id="unban_user_{{ $user->uid }}" class="modal fade" tabindex="-1" role="dialog"
+                <div id="unban_user_{{ $user->getKey() }}" class="modal fade" tabindex="-1" role="dialog"
                      aria-hidden="true"
                      data-backdrop="static">
                     <div class="modal-dialog">
@@ -370,7 +370,6 @@
             });
 
             $('.ban-form').validate({
-
                 errorElement: 'span',
                 errorClass: 'help-block',
                 rules: {

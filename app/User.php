@@ -34,7 +34,7 @@ class User extends Authenticatable implements BannableContract
 
     /** @var array $appends */
     protected $appends = [
-        'profile_pic', 'country', 'uid'
+        'profile_pic', 'country', 'uid', 'gender'
     ];
 
     /**
@@ -225,9 +225,19 @@ class User extends Authenticatable implements BannableContract
     public function getCountryAttribute()
     {
         if ($this->info->has('country'))
-            return asset('assets/global/img/flags/' . $this->info->get('country', 'EG') . '.png');
+            return asset('assets/global/img/flags/' . strtolower($this->info->get('country', 'eg')) . '.png');
 
         return false;
+    }
+
+    public function getGenderAttribute()
+    {
+        if ($this->info->has('gender') && $this->info->get('gender', '0') == '0' || $this->info->get('gender', '0') == '1')
+            return ucfirst(
+                $this->info->get('gender', '0') == '0' ? 'male' : 'female'
+            );
+
+        return ucfirst($this->info->get('gender'));
     }
 
     /**
